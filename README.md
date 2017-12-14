@@ -1,2 +1,2 @@
-# BeagleBot
-BeagleBone Blue based bot
+# BeagleBot:
+BeagleBone Blue Based Bot

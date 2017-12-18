@@ -1,0 +1,26 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+CC	Makefile	/^CC		:= gcc$/;"	m
+CFLAGS	Makefile	/^CFLAGS		:= -c -Wall -g$/;"	m
+INCLUDES	Makefile	/^INCLUDES	:= $(wildcard $(SRCDIR)\/*.h)$/;"	m
+INSTALL	Makefile	/^INSTALL		:= install -m 4755$/;"	m
+INSTALLDIR	Makefile	/^INSTALLDIR	:= install -d -m 755 $/;"	m
+LFLAGS	Makefile	/^LFLAGS		:= -lm -lrt -lpthread -lroboticscape$/;"	m
+LINK	Makefile	/^LINK		:= ln -s -f$/;"	m
+LINKDIR	Makefile	/^LINKDIR		:= \/etc\/roboticscape$/;"	m
+LINKER	Makefile	/^LINKER		:= gcc -o$/;"	m
+LINKNAME	Makefile	/^LINKNAME	:= link_to_startup_program$/;"	m
+OBJDIR	Makefile	/^OBJDIR		= obj$/;"	m
+OBJECTS	Makefile	/^OBJECTS  	:= $(SOURCES:$(SRCDIR)\/%.c=$(OBJDIR)\/%.o)$/;"	m
+RM	Makefile	/^RM		:= rm -f$/;"	m
+SOURCES	Makefile	/^SOURCES  	:= $(wildcard $(SRCDIR)\/*.c)$/;"	m
+SRCDIR	Makefile	/^SRCDIR		= src$/;"	m
+TARGET	Makefile	/^TARGET = main$/;"	m
+main	src/beaglebot.c	/^int main(){$/;"	f
+on_pause_pressed	src/beaglebot.c	/^void on_pause_pressed(){$/;"	f
+on_pause_released	src/beaglebot.c	/^void on_pause_released(){$/;"	f
+prefix	Makefile	/^prefix		:= \/usr\/local$/;"	m

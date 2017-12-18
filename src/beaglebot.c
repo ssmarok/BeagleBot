@@ -1,21 +1,24 @@
 /*******************************************************************************
 * beaglebot.c
 *
-* This is meant to be a skeleton program for robotics cape projects. 
-* Change this description and file name 
+* Test file for BeagleBot
 *******************************************************************************/
 
-// usefulincludes is a collection of common system includes for the lazy
-// This is not necessary for roboticscape projects but here for convenience
+// usefulincludes is a collection of common system includes, for convenience
 #include <rc_usefulincludes.h> 
 // main roboticscape API header
 #include <roboticscape.h>
 
+// Definitions
+#define FORWARD_PIN BLUE_GP0_PIN_3
+#define BACK_PIN BLUE_GP0_PIN_4
+#define LEFT_PIN BLUE_GP0_PIN_5
+#define RIGHT_PIN BLUE_GP0_PIN_6
 
-// function declarations
+// Function declarations
 void on_pause_pressed();
 void on_pause_released();
-
+void test_all_motors();
 
 /*******************************************************************************
 * int main() 
@@ -26,38 +29,45 @@ void on_pause_released();
 * - rc_cleanup() at the end
 *******************************************************************************/
 int main(){
-	// always initialize cape library first
+	// Initialize cape library first
 	if(rc_initialize()){
 		fprintf(stderr,"ERROR: failed to initialize rc_initialize(), are you root?\n");
 		return -1;
 	}
 
-	// do your own initialization here
-	printf("\nHello BeagleBone\n");
+	// Initialization
+	printf("\nHello from BeagleBone Blue!\n");
 	rc_set_pause_pressed_func(&on_pause_pressed);
 	rc_set_pause_released_func(&on_pause_released);
+    // Setup GPIOs
+    rc_gpio_set_dir(FORWARD_PIN, OUTPUT_PIN); // GPIO1_25 on schematic -- Forward
+    rc_gpio_set_dir(BACK_PIN, OUTPUT_PIN); // GPIO1_17 on schematic -- Back
+    rc_gpio_set_dir(LEFT_PIN, OUTPUT_PIN); // GPIO3_20 on schematic -- Left
+    rc_gpio_set_dir(RIGHT_PIN, OUTPUT_PIN); // GPIO3_17 on schematic -- Right
 
-	// done initializing so set state to RUNNING
+	// Done initializing, so set state to RUNNING
 	rc_set_state(RUNNING); 
 
 	// Keep looping until state changes to EXITING
 	while(rc_get_state()!=EXITING){
-		// handle other states
+		// Handle other states
 		if(rc_get_state()==RUNNING){
-			// do things
+			// Do things
 			rc_set_led(GREEN, ON);
 			rc_set_led(RED, OFF);
+            // Perform motor testing routine
+            test_all_motors();
 		}
 		else if(rc_get_state()==PAUSED){
-			// do other things
+            // Paused state
 			rc_set_led(GREEN, OFF);
 			rc_set_led(RED, ON);
 		}
-		// always sleep at some point
+		// Always sleep at some point
 		usleep(100000);
 	}
 	
-	// exit cleanly
+	// Exit cleanly
 	rc_cleanup(); 
 	return 0;
 }
@@ -94,4 +104,30 @@ void on_pause_pressed(){
 	printf("long press detected, shutting down\n");
 	rc_set_state(EXITING); 
 	return;
+}
+/*******************************************************************************
+* void test_all_motors() 
+*
+* Routine to test all motors.
+*******************************************************************************/
+void test_all_motors(){
+    rc_gpio_set_value_mmap(FORWARD_PIN, HIGH); // Turn on motor
+    usleep(1000000); // Run for 1 second
+    rc_gpio_set_value_mmap(FORWARD_PIN, LOW); // Turn off motor
+    usleep(500000); // Wait for half second
+
+    rc_gpio_set_value_mmap(BACK_PIN, HIGH); // Turn on motor
+    usleep(1000000); // Run for 1 second
+    rc_gpio_set_value_mmap(BACK_PIN, LOW); // Turn off motor
+    usleep(500000); // Wait for half second
+
+    rc_gpio_set_value_mmap(LEFT_PIN, HIGH); // Turn on motor
+    usleep(1000000); // Run for 1 second
+    rc_gpio_set_value_mmap(LEFT_PIN, LOW); // Turn off motor
+    usleep(500000); // Wait for half second
+
+    rc_gpio_set_value_mmap(RIGHT_PIN, HIGH); // Turn on motor
+    usleep(1000000); // Run for 1 second
+    rc_gpio_set_value_mmap(RIGHT_PIN, LOW); // Turn off motor
+    usleep(500000); // Wait for half second
 }

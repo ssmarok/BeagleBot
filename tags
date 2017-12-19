@@ -4,11 +4,16 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+BACK_PIN	src/beaglebot.c	17;"	d	file:
 CC	Makefile	/^CC		:= gcc$/;"	m
 CFLAGS	Makefile	/^CFLAGS		:= -c -Wall -g$/;"	m
+DEBUG_MODE	src/beaglebot.c	15;"	d	file:
+EXTRA_H	src/extra.h	2;"	d
+FORWARD_PIN	src/beaglebot.c	16;"	d	file:
 INCLUDES	Makefile	/^INCLUDES	:= $(wildcard $(SRCDIR)\/*.h)$/;"	m
 INSTALL	Makefile	/^INSTALL		:= install -m 4755$/;"	m
 INSTALLDIR	Makefile	/^INSTALLDIR	:= install -d -m 755 $/;"	m
+LEFT_PIN	src/beaglebot.c	18;"	d	file:
 LFLAGS	Makefile	/^LFLAGS		:= -lm -lrt -lpthread -lroboticscape$/;"	m
 LINK	Makefile	/^LINK		:= ln -s -f$/;"	m
 LINKDIR	Makefile	/^LINKDIR		:= \/etc\/roboticscape$/;"	m
@@ -16,11 +21,33 @@ LINKER	Makefile	/^LINKER		:= gcc -o$/;"	m
 LINKNAME	Makefile	/^LINKNAME	:= link_to_startup_program$/;"	m
 OBJDIR	Makefile	/^OBJDIR		= obj$/;"	m
 OBJECTS	Makefile	/^OBJECTS  	:= $(SOURCES:$(SRCDIR)\/%.c=$(OBJDIR)\/%.o)$/;"	m
+RIGHT_PIN	src/beaglebot.c	19;"	d	file:
 RM	Makefile	/^RM		:= rm -f$/;"	m
 SOURCES	Makefile	/^SOURCES  	:= $(wildcard $(SRCDIR)\/*.c)$/;"	m
 SRCDIR	Makefile	/^SRCDIR		= src$/;"	m
-TARGET	Makefile	/^TARGET = main$/;"	m
+TARGET	Makefile	/^TARGET = beaglebot $/;"	m
+estop_all_motors	src/beaglebot.c	/^void estop_all_motors(){$/;"	f
+getch	src/extra.c	/^char getch(void){$/;"	f
+getch_	src/extra.c	/^char getch_(int echo){$/;"	f
+getche	src/extra.c	/^char getche(void){$/;"	f
+go_back	src/beaglebot.c	/^void go_back(){$/;"	f
+go_forward	src/beaglebot.c	/^void go_forward(){$/;"	f
+go_left	src/beaglebot.c	/^void go_left(){$/;"	f
+go_right	src/beaglebot.c	/^void go_right(){$/;"	f
+initTermios	src/extra.c	/^void initTermios(int echo){$/;"	f
+init_msg	src/beaglebot.c	/^void init_msg(){$/;"	f
+input_checker	src/beaglebot.c	/^void * input_checker(void * param){$/;"	f
 main	src/beaglebot.c	/^int main(){$/;"	f
+new	src/extra.c	/^static struct termios old, new;$/;"	v	typeref:struct:	file:
+old	src/extra.c	/^static struct termios old, new;$/;"	v	typeref:struct:termios	file:
 on_pause_pressed	src/beaglebot.c	/^void on_pause_pressed(){$/;"	f
 on_pause_released	src/beaglebot.c	/^void on_pause_released(){$/;"	f
 prefix	Makefile	/^prefix		:= \/usr\/local$/;"	m
+print_state	src/beaglebot.c	/^void print_state(int current_heading, int current_turning){$/;"	f
+resetTermios	src/extra.c	/^void resetTermios(void){$/;"	f
+stop_all_motors	src/beaglebot.c	/^void stop_all_motors(){$/;"	f
+stop_back	src/beaglebot.c	/^void stop_back(){$/;"	f
+stop_forward	src/beaglebot.c	/^void stop_forward(){$/;"	f
+stop_left	src/beaglebot.c	/^void stop_left(){$/;"	f
+stop_right	src/beaglebot.c	/^void stop_right(){$/;"	f
+test_all_motors	src/beaglebot.c	/^void test_all_motors(){$/;"	f

@@ -7,7 +7,8 @@
 // usefulincludes is a collection of common system includes, for convenience
 #include <rc_usefulincludes.h> 
 // Main roboticscape API header
-#include <roboticscape.h>
+#include <roboticscape.h> 
+// Extra utility functions implemented (e.g. getch())
 #include "extra.h"
 
 // Definitions
@@ -68,20 +69,21 @@ int main(){
     rc_gpio_set_dir(RIGHT_PIN, OUTPUT_PIN);     // GPIO3_17 on schematic -- Right
 
     // Initialize variables
-    // Total time car executes a direction command (in microseconds):
-    //  (latch time in microseconds) ~= sleepTimeUS * latchLoops
+    // Total time vehicle executes a direction command (in microseconds):
+    // (latch time in microseconds) ~= sleepTimeUS * latchLoops
     int sleepTimeUS = 10000;            // Loop sleep time in microseconds
-    int latchLoops = 50;                // (latch time in microseconds) / (sleepTimeUS)
-    char inputCh = 0;                       // Character read
-    char previousCh = 0;                    // Previous character read
-    int forward_back_loop_count = 0;    // Holds forward/back loop count used to check if enough time has passed
-    int left_right_loop_count = 0;      // Holds left/right loop count used to check if enough time has passed
+    int latchLoops = 25;                // (latch time in microseconds) / (sleepTimeUS)
+    char inputCh = 0;                   // Character read
+    char previousCh = 0;                // Previous character read
+    int forward_back_tick = 0;          // Holds forward/back loop count used to check if enough time has passed
+    int left_right_tick = 0;            // Holds left/right loop count used to check if enough time has passed
     int current_heading = 0;            // -1 = Back    0 = Neutral     1 = Forward
-    int current_turning = 0;               // -1 = Left    0 = Neutral     1 = Right
+    int current_turning = 0;            // -1 = Left    0 = Neutral     1 = Right
 
     // Initialize pthreads
 	pthread_t  input_thread;
 	pthread_create(&input_thread, NULL, input_checker, (void*) &inputCh);
+
 	// Done initializing, so set state to RUNNING
 	rc_set_state(RUNNING); 
 
@@ -95,51 +97,78 @@ int main(){
 
             // Take in terminal input without newline character
             //system("/bin/stty raw");
-            //inputCh = getch();
-            /*if (inputCh == previousCh){
-                printf("Same Input\n");    
-                break;
-            }*/
+            //inputCh = getch(); // Blocked
+            //printf("Current inputCh is: %c\n", inputCh);
+            
+            // Update state variables based on input
+            if (inputCh != previousCh){
+                switch(inputCh){
+                    case '\033':    // Esc key
+                        rc_set_state(EXITING);
+                        break;
+                    case 'w':       // Forward
+                        current_heading = 1;
+                        forward_back_tick = 0;
+                        break;
+                    case 's':       // Back
+                        current_heading = -1;
+                        forward_back_tick = 0;
+                        break;
+                    case 'a':       // Left
+                        current_turning = -1;
+                        left_right_tick = 0;
+                        break;
+                    case 'd':       // Right
+                        current_turning = 1;
+                        left_right_tick = 0;
+                        break;
+                    case ' ':       // E-stop
+                        current_heading = 0;
+                        current_turning = 0;
+                        estop_all_motors();
+                        break;
+                    case 'p':       // Pause
+                        rc_set_state(PAUSED);
+                        printf("\rPAUSED        \t");
+                        fflush(stdout);
+                        break;
+                }
+            }
 
-            switch(inputCh){
-                case '\033': // Esc key
-                    rc_set_state(EXITING);
-                    break;
-                case 'w':
-                    current_heading = 1;
-                    stop_back();
-                    go_forward();
-                    forward_back_loop_count = 0;
-                    break;
-                case 's':
-                    current_heading = -1;
+
+            // Dual FSM for heading and turning
+            switch(current_heading){
+                case -1:
                     stop_forward();
                     go_back();
-                    forward_back_loop_count = 0;
                     break;
-                case 'a':
-                    current_turning = -1;
-                    stop_right();
-                    go_left();
-                    left_right_loop_count = 0;
+                case 0:
+                    stop_forward();
+                    stop_back();
                     break;
-                case 'd':
-                    current_turning = 1;
-                    stop_left();
-                    go_right();
-                    left_right_loop_count = 0;
-                    break;
-                case ' ':
-                    estop_all_motors();
-                    break;
-                case 'p':
-                    rc_set_state(PAUSED);
-                    printf("\rPAUSED        \t");
-                    fflush(stdout);
+                case 1:
+                    stop_back();
+                    go_forward();
                     break;
             }
+            switch(current_turning){
+                case -1:
+                    stop_right();
+                    go_left();
+                    break;
+                case 0:
+                    stop_left();
+                    stop_right();
+                    break;
+                case 1:
+                    stop_left();
+                    go_right();
+                    break;
+            }
+
             previousCh = inputCh;
-            print_state(current_heading, current_turning);
+            //printf("Previous previousCh is: %c\n", previousCh);
+            //print_state(current_heading, current_turning);
             // Set back
             //system("/bin/stty cooked");
 
@@ -170,22 +199,22 @@ int main(){
 		}
 		// Always sleep at some point
 		usleep(sleepTimeUS); // Was 100000
-        forward_back_loop_count += 1;
-        left_right_loop_count += 1;
-        printf("Forward/Backward count is %d\n", forward_back_loop_count);
-        printf("Left/Right count is %d\n", left_right_loop_count);
+        forward_back_tick += 1;
+        left_right_tick += 1;
+        //printf("Forward/Backward count is %d\n", forward_back_tick);
+        //printf("Left/Right count is %d\n", left_right_tick);
 
-        if (forward_back_loop_count > latchLoops){
+        if (forward_back_tick >= latchLoops){
             current_heading = 0;
-            stop_forward();
-            stop_back();
-            forward_back_loop_count = 0;
+            forward_back_tick = 0;
+            inputCh = 0; 
+           // printf("Reset Forward/Back\n");
         }
-        if(left_right_loop_count > latchLoops){
+        if(left_right_tick >= latchLoops){
             current_turning = 0;
-            stop_left();
-            stop_right();
-            left_right_loop_count = 0;
+            left_right_tick = 0;
+            inputCh = 0;
+            //printf("Reset Left/Right\n");
         }
 	}
 	
@@ -224,7 +253,7 @@ void on_pause_pressed(){
 		rc_usleep(us_wait/samples); // Check every 20ms for 2 seconds
 		if(rc_get_pause_button() == RELEASED) return; // If released before 2 seconds, continue
 	}
-	printf("long press detected, shutting down\n");
+	printf("Long press detected, shutting down\n");
 	rc_set_state(EXITING); 
 	return;
 }
@@ -252,32 +281,32 @@ void init_msg(){
 * Routine to test all motors.
 *******************************************************************************/
 void test_all_motors(){
-    rc_gpio_set_value_mmap(FORWARD_PIN, HIGH); // Turn on motor
+    rc_gpio_set_value_mmap(FORWARD_PIN, HIGH);  // Set pin
     printf("\rFORWARD\t");
     fflush(stdout);
     usleep(1000000); // Run for 1 second
-    rc_gpio_set_value_mmap(FORWARD_PIN, LOW);   // Turn off motor
+    rc_gpio_set_value_mmap(FORWARD_PIN, LOW);   // Reset pin
     usleep(500000); // Wait for half second
 
-    rc_gpio_set_value_mmap(BACK_PIN, HIGH);     // Turn on motor
+    rc_gpio_set_value_mmap(BACK_PIN, HIGH);     // Set pin
     printf("\rBACK   \t");
     fflush(stdout);
     usleep(1000000); // Run for 1 second
-    rc_gpio_set_value_mmap(BACK_PIN, LOW);      // Turn off motor
+    rc_gpio_set_value_mmap(BACK_PIN, LOW);      // Reset pin
     usleep(500000); // Wait for half second
 
-    rc_gpio_set_value_mmap(LEFT_PIN, HIGH);     // Turn on motor
+    rc_gpio_set_value_mmap(LEFT_PIN, HIGH);     // Set pin
     printf("\rLEFT   \t");
     fflush(stdout);
     usleep(1000000); // Run for 1 second
-    rc_gpio_set_value_mmap(LEFT_PIN, LOW);      // Turn off motor
+    rc_gpio_set_value_mmap(LEFT_PIN, LOW);      // Reset pin
     usleep(500000); // Wait for half second
 
-    rc_gpio_set_value_mmap(RIGHT_PIN, HIGH);    // Turn on motor
+    rc_gpio_set_value_mmap(RIGHT_PIN, HIGH);    // Set pin
     printf("\rRIGHT  \t");
     fflush(stdout);
     usleep(1000000); // Run for 1 second
-    rc_gpio_set_value_mmap(RIGHT_PIN, LOW);     // Turn off motor
+    rc_gpio_set_value_mmap(RIGHT_PIN, LOW);     // Reset pin
     usleep(500000); // Wait for half second
 }
 
@@ -288,8 +317,6 @@ void test_all_motors(){
 *******************************************************************************/
 void go_forward(){
     rc_gpio_set_value_mmap(FORWARD_PIN, HIGH);  // Set pin
-    printf("\rFORWARD\t");
-    fflush(stdout);
 }
 /*******************************************************************************
 * void go_back() 
@@ -298,8 +325,6 @@ void go_forward(){
 *******************************************************************************/
 void go_back(){
     rc_gpio_set_value_mmap(BACK_PIN, HIGH);     // Set pin 
-    printf("\rBACK   \t");
-    fflush(stdout);
 }
 /*******************************************************************************
 * void go_left() 
@@ -308,8 +333,6 @@ void go_back(){
 *******************************************************************************/
 void go_left(){
     rc_gpio_set_value_mmap(LEFT_PIN, HIGH);     // Set pin
-    printf("\rLEFT   \t");
-    fflush(stdout);
 }
 /*******************************************************************************
 * void go_right() 
@@ -318,8 +341,6 @@ void go_left(){
 *******************************************************************************/
 void go_right(){
     rc_gpio_set_value_mmap(RIGHT_PIN, HIGH);    // Set pin
-    printf("\rRIGHT  \t");
-    fflush(stdout);
 }
 /*******************************************************************************
 * void stop_forward() 
@@ -374,7 +395,7 @@ void estop_all_motors(){
     rc_gpio_set_value_mmap(BACK_PIN, LOW);      // Reset pin
     rc_gpio_set_value_mmap(LEFT_PIN, LOW);      // Reset pin
     rc_gpio_set_value_mmap(RIGHT_PIN, LOW);     // Reset pin
-    printf("\rE-STOP \t");
+    printf("\rE-STOP  \t");
     fflush(stdout);
 }
 /*******************************************************************************
@@ -407,8 +428,8 @@ void * input_checker(void * param){
     char newCh;
 	while(rc_get_state()!=EXITING){
         newCh = getch();
-        * inputCh = newCh;
-        printf("New input: %c", newCh);
+        *inputCh = newCh;
+        //printf("New input: %c\n", newCh);
         usleep(10000);
 	}
 	return NULL;

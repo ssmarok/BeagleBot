@@ -12,10 +12,10 @@
 #include "extra.h"
 
 // Definitions
-#define FORWARD_PIN BLUE_GP0_PIN_3
-#define BACK_PIN BLUE_GP0_PIN_4
-#define LEFT_PIN BLUE_GP0_PIN_5
-#define RIGHT_PIN BLUE_GP0_PIN_6
+#define FORWARD_PIN BLUE_GP0_PIN_6
+#define BACK_PIN BLUE_GP0_PIN_5
+#define LEFT_PIN BLUE_GP0_PIN_4
+#define RIGHT_PIN BLUE_GP0_PIN_3
 
 // Function declarations
 void on_pause_pressed();

@@ -1,7 +1,8 @@
 /*******************************************************************************
 * beaglebot.c
 *
-* Code to control a modified RC car.
+* Code to control a modified 4 wheel drive car with the L298N motor driver.
+* The controls W, A, S, D are setup the same was as in typical video games.
 *******************************************************************************/
 
 // usefulincludes is a collection of common system includes, for convenience
@@ -12,14 +13,15 @@
 #include "extra.h"
 
 // Definitions
-#define MOTOR_A_0 BLUE_GP0_PIN_6
-#define MOTOR_A_1 BLUE_GP0_PIN_5
-#define MOTOR_B_0 BLUE_GP0_PIN_4
-#define MOTOR_B_1 BLUE_GP0_PIN_3
+#define MOTOR_A_0 BLUE_GP0_PIN_3
+#define MOTOR_A_1 BLUE_GP0_PIN_4
+#define MOTOR_B_0 BLUE_GP0_PIN_5
+#define MOTOR_B_1 BLUE_GP0_PIN_6
 #define PWM_0A GPS_HEADER_PIN_3
 #define PWM_0B GPS_HEADER_PIN_4
 #define PWM_FREQUENCY 25000
 
+// Motor Direction
 typedef enum {NEUTRAL, FORWARD, BACK} direction;
 
 // Function declarations
@@ -60,7 +62,7 @@ static int new_input_flag = 0;
 /*******************************************************************************
 * int main() 
 *
-* This template main function contains these critical components
+* This main function contains these critical components
 * - call to rc_initialize() at the beginning
 * - main while loop that checks for EXITING condition
 * - rc_cleanup() at the end
@@ -398,8 +400,8 @@ void go_back(float speed){
 *******************************************************************************/
 void go_sharp_left_forward(float speed){
     speed = verify_speed(speed);
-    set_A_motors(speed, BACK);
-    set_B_motors(speed, FORWARD);
+    set_A_motors(speed, FORWARD);
+    set_B_motors(speed, BACK);
 }
 /*******************************************************************************
 * void go_sharp_right_forward(float speed)
@@ -408,8 +410,8 @@ void go_sharp_left_forward(float speed){
 *******************************************************************************/
 void go_sharp_right_forward(float speed){
     speed = verify_speed(speed);
-    set_A_motors(speed, FORWARD);
-    set_B_motors(speed, BACK);
+    set_A_motors(speed, BACK);
+    set_B_motors(speed, FORWARD);
 }
 /*******************************************************************************
 * void go_left_forward(float speed)
@@ -418,8 +420,8 @@ void go_sharp_right_forward(float speed){
 *******************************************************************************/
 void go_left_forward(float speed){
     speed = verify_speed(speed);
-    set_A_motors(speed, NEUTRAL);
-    set_B_motors(speed, FORWARD);
+    set_A_motors(speed, FORWARD);
+    set_B_motors(speed, NEUTRAL);
 }
 /*******************************************************************************
 * void go_right_forward(float speed)
@@ -428,8 +430,8 @@ void go_left_forward(float speed){
 *******************************************************************************/
 void go_right_forward(float speed){
     speed = verify_speed(speed);
-    set_A_motors(speed, FORWARD);
-    set_B_motors(speed, NEUTRAL);
+    set_A_motors(speed, NEUTRAL);
+    set_B_motors(speed, FORWARD);
 }
 /*******************************************************************************
 * void go_sharp_left_back(float speed)
@@ -438,8 +440,8 @@ void go_right_forward(float speed){
 *******************************************************************************/
 void go_sharp_left_back(float speed){
     speed = verify_speed(speed);
-    set_A_motors(speed, FORWARD);
-    set_B_motors(speed, BACK);
+    set_A_motors(speed, BACK);
+    set_B_motors(speed, FORWARD);
 }
 /*******************************************************************************
 * void go_sharp_right_back(float speed)
@@ -448,8 +450,8 @@ void go_sharp_left_back(float speed){
 *******************************************************************************/
 void go_sharp_right_back(float speed){
     speed = verify_speed(speed);
-    set_A_motors(speed, BACK);
-    set_B_motors(speed, FORWARD);
+    set_A_motors(speed, FORWARD);
+    set_B_motors(speed, BACK);
 }
 /*******************************************************************************
 * void go_left_back(float speed)
@@ -458,8 +460,8 @@ void go_sharp_right_back(float speed){
 *******************************************************************************/
 void go_left_back(float speed){
     speed = verify_speed(speed);
-    set_A_motors(speed, NEUTRAL);
-    set_B_motors(speed, BACK);
+    set_A_motors(speed, BACK);
+    set_B_motors(speed, NEUTRAL);
 }
 /*******************************************************************************
 * void go_right_back(float speed)
@@ -468,8 +470,8 @@ void go_left_back(float speed){
 *******************************************************************************/
 void go_right_back(float speed){
     speed = verify_speed(speed);
-    set_A_motors(speed, BACK);
-    set_B_motors(speed, NEUTRAL);
+    set_A_motors(speed, NEUTRAL);
+    set_B_motors(speed, BACK);
 }
 /*******************************************************************************
 * void set_A_motors(float speed, direction dir)
@@ -509,12 +511,12 @@ void set_B_motors(float speed, direction dir){
             rc_gpio_set_value_mmap(MOTOR_B_1, LOW);
             break;
         case FORWARD:
-            rc_gpio_set_value_mmap(MOTOR_B_0, LOW);
-            rc_gpio_set_value_mmap(MOTOR_B_1, HIGH);
-            break;
-        case BACK:
             rc_gpio_set_value_mmap(MOTOR_B_0, HIGH);
             rc_gpio_set_value_mmap(MOTOR_B_1, LOW);
+            break;
+        case BACK:
+            rc_gpio_set_value_mmap(MOTOR_B_0, LOW);
+            rc_gpio_set_value_mmap(MOTOR_B_1, HIGH);
             break;
     }
     rc_pwm_set_duty_mmap(0, 'B', speed/100.0);

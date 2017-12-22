@@ -17,16 +17,16 @@ LINK	Makefile	/^LINK		:= ln -s -f$/;"	m
 LINKDIR	Makefile	/^LINKDIR		:= \/etc\/roboticscape$/;"	m
 LINKER	Makefile	/^LINKER		:= gcc -o$/;"	m
 LINKNAME	Makefile	/^LINKNAME	:= link_to_startup_program$/;"	m
-MOTOR_A_0	src/beaglebot.c	15;"	d	file:
-MOTOR_A_1	src/beaglebot.c	16;"	d	file:
-MOTOR_B_0	src/beaglebot.c	17;"	d	file:
-MOTOR_B_1	src/beaglebot.c	18;"	d	file:
+MOTOR_A_0	src/beaglebot.c	16;"	d	file:
+MOTOR_A_1	src/beaglebot.c	17;"	d	file:
+MOTOR_B_0	src/beaglebot.c	18;"	d	file:
+MOTOR_B_1	src/beaglebot.c	19;"	d	file:
 NEUTRAL	src/beaglebot.c	/^typedef enum {NEUTRAL, FORWARD, BACK} direction;$/;"	e	enum:__anon1	file:
 OBJDIR	Makefile	/^OBJDIR		= obj$/;"	m
 OBJECTS	Makefile	/^OBJECTS  	:= $(SOURCES:$(SRCDIR)\/%.c=$(OBJDIR)\/%.o)$/;"	m
-PWM_0A	src/beaglebot.c	19;"	d	file:
-PWM_0B	src/beaglebot.c	20;"	d	file:
-PWM_FREQUENCY	src/beaglebot.c	21;"	d	file:
+PWM_0A	src/beaglebot.c	20;"	d	file:
+PWM_0B	src/beaglebot.c	21;"	d	file:
+PWM_FREQUENCY	src/beaglebot.c	22;"	d	file:
 RM	Makefile	/^RM		:= rm -f$/;"	m
 SOURCES	Makefile	/^SOURCES  	:= $(wildcard $(SRCDIR)\/*.c)$/;"	m
 SRCDIR	Makefile	/^SRCDIR		= src$/;"	m

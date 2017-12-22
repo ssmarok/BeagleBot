@@ -12,27 +12,40 @@
 #include "extra.h"
 
 // Definitions
-#define FORWARD_PIN BLUE_GP0_PIN_6
-#define BACK_PIN BLUE_GP0_PIN_5
-#define LEFT_PIN BLUE_GP0_PIN_4
-#define RIGHT_PIN BLUE_GP0_PIN_3
+#define MOTOR_A_0 BLUE_GP0_PIN_6
+#define MOTOR_A_1 BLUE_GP0_PIN_5
+#define MOTOR_B_0 BLUE_GP0_PIN_4
+#define MOTOR_B_1 BLUE_GP0_PIN_3
+#define PWM_0A GPS_HEADER_PIN_3
+#define PWM_0B GPS_HEADER_PIN_4
+#define PWM_FREQUENCY 25000
+
+typedef enum {NEUTRAL, FORWARD, BACK} direction;
 
 // Function declarations
 void on_pause_pressed();
 void on_pause_released();
 void init_msg();
-void init_gpio();
+void init_pins();
 void test_all_motors();
-void go_forward();
-void go_back();
-void go_left();
-void go_right();
-void stop_forward();
-void stop_back();
-void stop_left();
-void stop_right();
+void go_forward(float speed);
+void go_back(float speed);
+void go_sharp_left_forward(float speed);
+void go_sharp_right_forward(float speed);
+void go_left_forward(float speed);
+void go_right_forward(float speed);
+void go_sharp_left_back(float speed);
+void go_sharp_right_back(float speed);
+void go_left_back(float speed);
+void go_right_back(float speed);
+void set_A_motors(float speed, direction dir);
+void set_B_motors(float speed, direction dir);
+
+void stop_left_motors();
+void stop_right_motors();
 void stop_all_motors();
 void estop_all_motors();
+float verify_speed(float speed);
 void print_state(int current_heading, int current_turning);
 int get_new_input_flag();
 void set_new_input_flag();
@@ -61,7 +74,7 @@ int main(){
 
 	// Initialization
     init_msg();                         // Show Welcome message
-    init_gpio();                        // Initialze GPIOs
+    init_pins();                        // Initialze GPIOs
     // Set Pause button handlers
 	rc_set_pause_pressed_func(&on_pause_pressed);
 	rc_set_pause_released_func(&on_pause_released);
@@ -69,13 +82,15 @@ int main(){
     // Initialize variables
     // Total time vehicle executes a direction command (in microseconds):
     // (latch time in microseconds) ~= sleepTimeUS * latchLoops
-    int sleepTimeUS = 10000;            // Loop sleep time in microseconds
-    int latchLoops = 40;                // (latch time in microseconds) / (sleepTimeUS)
+    int sleepTimeUS = 4000;             // Loop sleep time in microseconds
+    int latchLoops = 100;               // (latch time in microseconds) / (sleepTimeUS)
     char inputCh = 0;                   // Character read
     int forward_back_tick = 0;          // Holds forward/back loop count used to check if enough time has passed
     int left_right_tick = 0;            // Holds left/right loop count used to check if enough time has passed
     int current_heading = 0;            // -1 = Back    0 = Neutral     1 = Forward
     int current_turning = 0;            // -1 = Left    0 = Neutral     1 = Right
+    float max_speed = 100.0;                // Max speed of motors. 100.0
+    float current_speed = 0;            // Speed of motors. 0.0 - 100.0
     //char previousCh = 0;              // Previous character read
 
     // Initialize pthreads
@@ -132,25 +147,44 @@ int main(){
                 reset_new_input_flag();
             }
 
-            // Dual FSM for heading and turning
+            // FSM for heading and turning
             switch(current_heading){
                 case -1:            // Back
-                    stop_forward();
-                    go_back();
+                    if (current_turning == -1){         // Back Left
+                        go_left_back(current_speed);
+                    } else if (current_turning == 0) {  // Straight Back
+                        go_back(current_speed);
+                    } else if (current_turning == 1) {  // Back Right
+                        go_right_back(current_speed);
+                    }
                     break;
-                case 0:             // Neutral
-                    stop_forward();
-                    stop_back();
+                case 0:             // No heading
+                    if (current_turning == -1){         // Sharp left turn
+                        go_sharp_left_forward(max_speed);   // Use max speed for sharp turn
+                    } else if (current_turning == 0) {  // Neutral
+                        stop_all_motors();
+                    } else if (current_turning == 1) {  // Sharp right turn
+                        go_sharp_right_forward(max_speed);  // Use max speed for sharp turn
+                    }
                     break;
                 case 1:             // Forward
-                    stop_back();
-                    go_forward();
+                    if (current_turning == -1){         // Sharp left turn
+                        go_left_forward(current_speed);
+                    } else if (current_turning == 0) {  // Neutral
+                        go_forward(current_speed);
+                    } else if (current_turning == 1) {  // Sharp right turn
+                        go_right_forward(current_speed);
+                    }
                     break;
             }
+            /*
             switch(current_turning){
                 case -1:            // Left
-                    stop_right();
-                    go_left();
+                    if(current_heading == 1){
+                        go_left(current_speed);
+                    } else {
+                        go_sharp_left(current_speed);
+                    }
                     break;
                 case 0:             // Neutral
                     stop_left();
@@ -160,7 +194,7 @@ int main(){
                     stop_left();
                     go_right();
                     break;
-            }
+            } */
             print_state(current_heading, current_turning);
             //previousCh = inputCh;   // Save current character
             //printf("Previous input is: %c\n", previousCh);
@@ -200,6 +234,9 @@ int main(){
 		usleep(sleepTimeUS); // Was 100000
         forward_back_tick += 1;
         left_right_tick += 1;
+        // Update current speed based on forward/back tick
+        // ramps down over time, as key is released
+        current_speed = max_speed - forward_back_tick;
         //printf("Forward/Backward count is %d\n", forward_back_tick);
         //printf("Left/Right count is %d\n", left_right_tick);
 
@@ -280,23 +317,29 @@ void init_msg(){
 *
 * Initialize GPIOs to correct state.
 *******************************************************************************/
-void init_gpio(){
+void init_pins(){
     // Export GPIOs
-    rc_gpio_export(FORWARD_PIN);                // GPIO1_25 on schematic -- Forward
-    rc_gpio_export(BACK_PIN);                   // GPIO1_17 on schematic -- Back
-    rc_gpio_export(LEFT_PIN);                   // GPIO3_20 on schematic -- Left
-    rc_gpio_export(RIGHT_PIN);                  // GPIO3_17 on schematic -- Right
+    rc_gpio_export(MOTOR_A_0);                      // GPIO3_17 on schematic -- Right
+    rc_gpio_export(MOTOR_A_1);                      // GPIO3_20 on schematic -- Left
+    rc_gpio_export(MOTOR_B_0);                      // GPIO1_17 on schematic -- Back
+    rc_gpio_export(MOTOR_B_1);                      // GPIO1_25 on schematic -- Forward
     // Set GPIO Direction
-    rc_gpio_set_dir(FORWARD_PIN, OUTPUT_PIN);   // GPIO1_25 on schematic -- Forward
-    rc_gpio_set_dir(BACK_PIN, OUTPUT_PIN);      // GPIO1_17 on schematic -- Back
-    rc_gpio_set_dir(LEFT_PIN, OUTPUT_PIN);      // GPIO3_20 on schematic -- Left
-    rc_gpio_set_dir(RIGHT_PIN, OUTPUT_PIN);     // GPIO3_17 on schematic -- Right
+    rc_gpio_set_dir(MOTOR_A_0, OUTPUT_PIN);         // GPIO3_17 on schematic -- Right
+    rc_gpio_set_dir(MOTOR_A_1, OUTPUT_PIN);         // GPIO3_20 on schematic -- Left
+    rc_gpio_set_dir(MOTOR_B_0, OUTPUT_PIN);         // GPIO1_17 on schematic -- Back
+    rc_gpio_set_dir(MOTOR_B_1, OUTPUT_PIN);         // GPIO1_25 on schematic -- Forward
+    // Change Pinmux mode to PWM
+    rc_set_pinmux_mode(PWM_0A, PINMUX_PWM);        
+    rc_set_pinmux_mode(PWM_0B, PINMUX_PWM);
+    // Initialize PWM subsystem
+    rc_pwm_init(0, PWM_FREQUENCY);                  // Subsystem 0, PWM frequency
 }
 /*******************************************************************************
 * void test_all_motors()
 *
 * Routine to test all motors.
 *******************************************************************************/
+/*
 void test_all_motors(){
     rc_gpio_set_value_mmap(FORWARD_PIN, HIGH);  // Set pin
     printf("\rFORWARD\t");
@@ -325,71 +368,173 @@ void test_all_motors(){
     usleep(1000000); // Run for 1 second
     rc_gpio_set_value_mmap(RIGHT_PIN, LOW);     // Reset pin
     usleep(500000); // Wait for half second
-}
+}*/
+
 
 /*******************************************************************************
-* void go_forward() 
+* void go_forward(float speed)
 *
 * Activate forward drive. 
 *******************************************************************************/
-void go_forward(){
-    rc_gpio_set_value_mmap(FORWARD_PIN, HIGH);  // Set pin
+void go_forward(float speed){
+    speed = verify_speed(speed);
+    set_A_motors(speed, FORWARD);
+    set_B_motors(speed, FORWARD);
 }
 /*******************************************************************************
-* void go_back() 
+* void go_back(float speed)
 *
 * Activate backward drive. 
 *******************************************************************************/
-void go_back(){
-    rc_gpio_set_value_mmap(BACK_PIN, HIGH);     // Set pin 
+void go_back(float speed){
+    speed = verify_speed(speed);
+    set_A_motors(speed, BACK);
+    set_B_motors(speed, BACK);
 }
 /*******************************************************************************
-* void go_left() 
+* void go_sharp_left_forward(float speed)
 *
 * Activate left drive. 
 *******************************************************************************/
-void go_left(){
-    rc_gpio_set_value_mmap(LEFT_PIN, HIGH);     // Set pin
+void go_sharp_left_forward(float speed){
+    speed = verify_speed(speed);
+    set_A_motors(speed, BACK);
+    set_B_motors(speed, FORWARD);
 }
 /*******************************************************************************
-* void go_right() 
+* void go_sharp_right_forward(float speed)
 *
 * Activate right drive. 
 *******************************************************************************/
-void go_right(){
-    rc_gpio_set_value_mmap(RIGHT_PIN, HIGH);    // Set pin
+void go_sharp_right_forward(float speed){
+    speed = verify_speed(speed);
+    set_A_motors(speed, FORWARD);
+    set_B_motors(speed, BACK);
 }
 /*******************************************************************************
-* void stop_forward() 
+* void go_left_forward(float speed)
 *
-* Stop forward drive. 
+* Activate left drive. 
 *******************************************************************************/
-void stop_forward(){
-    rc_gpio_set_value_mmap(FORWARD_PIN, LOW);  // Reset pin
+void go_left_forward(float speed){
+    speed = verify_speed(speed);
+    set_A_motors(speed, NEUTRAL);
+    set_B_motors(speed, FORWARD);
 }
 /*******************************************************************************
-* void stop_back() 
+* void go_right_forward(float speed)
 *
-* Stop backward drive. 
+* Activate right drive. 
 *******************************************************************************/
-void stop_back(){
-    rc_gpio_set_value_mmap(BACK_PIN, LOW);     // Reset pin 
+void go_right_forward(float speed){
+    speed = verify_speed(speed);
+    set_A_motors(speed, FORWARD);
+    set_B_motors(speed, NEUTRAL);
 }
 /*******************************************************************************
-* void stop_left() 
+* void go_sharp_left_back(float speed)
+*
+* Activate left drive. 
+*******************************************************************************/
+void go_sharp_left_back(float speed){
+    speed = verify_speed(speed);
+    set_A_motors(speed, FORWARD);
+    set_B_motors(speed, BACK);
+}
+/*******************************************************************************
+* void go_sharp_right_back(float speed)
+*
+* Activate right drive. 
+*******************************************************************************/
+void go_sharp_right_back(float speed){
+    speed = verify_speed(speed);
+    set_A_motors(speed, BACK);
+    set_B_motors(speed, FORWARD);
+}
+/*******************************************************************************
+* void go_left_back(float speed)
+*
+* Activate left drive. 
+*******************************************************************************/
+void go_left_back(float speed){
+    speed = verify_speed(speed);
+    set_A_motors(speed, NEUTRAL);
+    set_B_motors(speed, BACK);
+}
+/*******************************************************************************
+* void go_right_back(float speed)
+*
+* Activate right drive. 
+*******************************************************************************/
+void go_right_back(float speed){
+    speed = verify_speed(speed);
+    set_A_motors(speed, BACK);
+    set_B_motors(speed, NEUTRAL);
+}
+/*******************************************************************************
+* void set_A_motors(float speed, direction dir)
+*
+* Sets system A motors. (One output pair of motor driver).
+* speed - value between 0 and 100
+* dir - direction type: NEUTRAL, FORWARD, BACK
+*******************************************************************************/
+void set_A_motors(float speed, direction dir){
+    switch(dir){
+        case NEUTRAL:
+            rc_gpio_set_value_mmap(MOTOR_A_0, LOW);
+            rc_gpio_set_value_mmap(MOTOR_A_1, LOW);
+            break;
+        case FORWARD:
+            rc_gpio_set_value_mmap(MOTOR_A_0, LOW);
+            rc_gpio_set_value_mmap(MOTOR_A_1, HIGH);
+            break;
+        case BACK:
+            rc_gpio_set_value_mmap(MOTOR_A_0, HIGH);
+            rc_gpio_set_value_mmap(MOTOR_A_1, LOW);
+            break;
+    }
+    rc_pwm_set_duty_mmap(0, 'A', speed/100.0);
+}
+/*******************************************************************************
+* void set_B_motors(float speed, direction dir)
+*
+* Sets system B motors. (One output pair of motor driver).
+* speed - value between 0 and 100
+* dir - direction type: NEUTRAL, FORWARD, BACK
+*******************************************************************************/
+void set_B_motors(float speed, direction dir){
+    switch(dir){
+        case NEUTRAL:
+            rc_gpio_set_value_mmap(MOTOR_B_0, LOW);
+            rc_gpio_set_value_mmap(MOTOR_B_1, LOW);
+            break;
+        case FORWARD:
+            rc_gpio_set_value_mmap(MOTOR_B_0, LOW);
+            rc_gpio_set_value_mmap(MOTOR_B_1, HIGH);
+            break;
+        case BACK:
+            rc_gpio_set_value_mmap(MOTOR_B_0, HIGH);
+            rc_gpio_set_value_mmap(MOTOR_B_1, LOW);
+            break;
+    }
+    rc_pwm_set_duty_mmap(0, 'B', speed/100.0);
+}
+
+/*******************************************************************************
+* void stop_left_motors()
 *
 * Stop left drive. 
 *******************************************************************************/
-void stop_left(){
-    rc_gpio_set_value_mmap(LEFT_PIN, LOW);     // Reset pin
+void stop_left_motors(){
+    set_A_motors(0, NEUTRAL);
 }
 /*******************************************************************************
-* void stop_right() 
+* void stop_right_motors()
 *
 * Stop right drive. 
 *******************************************************************************/
-void stop_right(){
-    rc_gpio_set_value_mmap(RIGHT_PIN, LOW);    // Reset pin
+void stop_right_motors(){
+    set_B_motors(0, NEUTRAL);
 }
 /*******************************************************************************
 * void stop_all_motors() 
@@ -397,10 +542,8 @@ void stop_right(){
 * Stops all motors.
 *******************************************************************************/
 void stop_all_motors(){
-    rc_gpio_set_value_mmap(FORWARD_PIN, LOW);   // Reset pin
-    rc_gpio_set_value_mmap(BACK_PIN, LOW);      // Reset pin
-    rc_gpio_set_value_mmap(LEFT_PIN, LOW);      // Reset pin
-    rc_gpio_set_value_mmap(RIGHT_PIN, LOW);     // Reset pin
+    stop_left_motors();
+    stop_right_motors();
 }
 /*******************************************************************************
 * void estop_all_motors() 
@@ -408,12 +551,23 @@ void stop_all_motors(){
 * Emergency stop all motors. (Includes print statement)
 *******************************************************************************/
 void estop_all_motors(){
-    rc_gpio_set_value_mmap(FORWARD_PIN, LOW);   // Reset pin
-    rc_gpio_set_value_mmap(BACK_PIN, LOW);      // Reset pin
-    rc_gpio_set_value_mmap(LEFT_PIN, LOW);      // Reset pin
-    rc_gpio_set_value_mmap(RIGHT_PIN, LOW);     // Reset pin
+    stop_left_motors();
+    stop_right_motors();
     printf("\rE-STOP  \t");
     fflush(stdout);
+}
+/*******************************************************************************
+* void verify_speed() 
+*
+* Check speed value
+*******************************************************************************/
+float verify_speed(float speed){
+    if(speed > 100.0){
+        speed = 100.0;
+    } else if(speed < 0.0) {
+        speed = 0.0;
+    }
+    return speed;
 }
 /*******************************************************************************
 * void print_state() 

@@ -19,7 +19,7 @@
 #define MOTOR_B_1 BLUE_GP0_PIN_6
 #define PWM_0A GPS_HEADER_PIN_3
 #define PWM_0B GPS_HEADER_PIN_4
-#define PWM_FREQUENCY 25000
+#define PWM_FREQUENCY 20000 
 
 // Motor Direction
 typedef enum {NEUTRAL, FORWARD, BACK} direction;

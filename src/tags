@@ -1,0 +1,68 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+BACK	beaglebot.c	/^typedef enum {NEUTRAL, FORWARD, BACK} direction;$/;"	e	enum:__anon1	file:
+EXTRA_H	extra.h	2;"	d
+FORWARD	beaglebot.c	/^typedef enum {NEUTRAL, FORWARD, BACK} direction;$/;"	e	enum:__anon1	file:
+FUNC_LUT	fsm.c	/^state_ptr FUNC_LUT[NUM_STATES] =$/;"	v
+INIT	fsm.c	/^    INIT=0, STATE_ONE=1, STATE_TWO=2, STATE_THREE=3, NUM_STATES=4$/;"	e	enum:MULTI_STATE	file:
+MOTOR_A_0	beaglebot.c	16;"	d	file:
+MOTOR_A_1	beaglebot.c	17;"	d	file:
+MOTOR_B_0	beaglebot.c	18;"	d	file:
+MOTOR_B_1	beaglebot.c	19;"	d	file:
+MULTI_STATE	fsm.c	/^typedef enum MULTI_STATE{$/;"	g	file:
+MULTI_STATE	fsm.c	/^}MULTI_STATE;$/;"	t	typeref:enum:MULTI_STATE	file:
+NEUTRAL	beaglebot.c	/^typedef enum {NEUTRAL, FORWARD, BACK} direction;$/;"	e	enum:__anon1	file:
+NUM_STATES	fsm.c	/^    INIT=0, STATE_ONE=1, STATE_TWO=2, STATE_THREE=3, NUM_STATES=4$/;"	e	enum:MULTI_STATE	file:
+PWM_0A	beaglebot.c	20;"	d	file:
+PWM_0B	beaglebot.c	21;"	d	file:
+PWM_FREQUENCY	beaglebot.c	22;"	d	file:
+STATE_ONE	fsm.c	/^    INIT=0, STATE_ONE=1, STATE_TWO=2, STATE_THREE=3, NUM_STATES=4$/;"	e	enum:MULTI_STATE	file:
+STATE_THREE	fsm.c	/^    INIT=0, STATE_ONE=1, STATE_TWO=2, STATE_THREE=3, NUM_STATES=4$/;"	e	enum:MULTI_STATE	file:
+STATE_TWO	fsm.c	/^    INIT=0, STATE_ONE=1, STATE_TWO=2, STATE_THREE=3, NUM_STATES=4$/;"	e	enum:MULTI_STATE	file:
+direction	beaglebot.c	/^typedef enum {NEUTRAL, FORWARD, BACK} direction;$/;"	t	typeref:enum:__anon1	file:
+estop_all_motors	beaglebot.c	/^void estop_all_motors(){$/;"	f
+get_new_input_flag	beaglebot.c	/^int get_new_input_flag(){$/;"	f
+getch	extra.c	/^char getch(void){$/;"	f
+getch_	extra.c	/^char getch_(int echo){$/;"	f
+getche	extra.c	/^char getche(void){$/;"	f
+go_back	beaglebot.c	/^void go_back(float speed){$/;"	f
+go_forward	beaglebot.c	/^void go_forward(float speed){$/;"	f
+go_left_back	beaglebot.c	/^void go_left_back(float speed){$/;"	f
+go_left_forward	beaglebot.c	/^void go_left_forward(float speed){$/;"	f
+go_right_back	beaglebot.c	/^void go_right_back(float speed){$/;"	f
+go_right_forward	beaglebot.c	/^void go_right_forward(float speed){$/;"	f
+go_sharp_left_back	beaglebot.c	/^void go_sharp_left_back(float speed){$/;"	f
+go_sharp_left_forward	beaglebot.c	/^void go_sharp_left_forward(float speed){$/;"	f
+go_sharp_right_back	beaglebot.c	/^void go_sharp_right_back(float speed){$/;"	f
+go_sharp_right_forward	beaglebot.c	/^void go_sharp_right_forward(float speed){$/;"	f
+initTermios	extra.c	/^void initTermios(int echo){$/;"	f
+init_msg	beaglebot.c	/^void init_msg(){$/;"	f
+init_pins	beaglebot.c	/^void init_pins(){$/;"	f
+init_state	fsm.c	/^MULTI_STATE init_state(){$/;"	f
+input_checker	beaglebot.c	/^void * input_checker(void * param){$/;"	f
+main	beaglebot.c	/^int main(){$/;"	f
+main	fsm.c	/^int main() {$/;"	f
+new	extra.c	/^static struct termios old, new;$/;"	v	typeref:struct:	file:
+new_input_flag	beaglebot.c	/^static int new_input_flag = 0;$/;"	v	file:
+old	extra.c	/^static struct termios old, new;$/;"	v	typeref:struct:termios	file:
+on_pause_pressed	beaglebot.c	/^void on_pause_pressed(){$/;"	f
+on_pause_released	beaglebot.c	/^void on_pause_released(){$/;"	f
+print_state	beaglebot.c	/^void print_state(int current_heading, int current_turning){$/;"	f
+resetTermios	extra.c	/^void resetTermios(void){$/;"	f
+reset_new_input_flag	beaglebot.c	/^void reset_new_input_flag(){$/;"	f
+robot_fsm	fsm.c	/^void robot_fsm(){$/;"	f
+set_A_motors	beaglebot.c	/^void set_A_motors(float speed, direction dir){$/;"	f
+set_B_motors	beaglebot.c	/^void set_B_motors(float speed, direction dir){$/;"	f
+set_new_input_flag	beaglebot.c	/^void set_new_input_flag(){$/;"	f
+state_one	fsm.c	/^MULTI_STATE state_one() {$/;"	f
+state_ptr	fsm.c	/^typedef MULTI_STATE (*state_ptr)( void );$/;"	t	file:
+state_three	fsm.c	/^MULTI_STATE state_three(){$/;"	f
+state_two	fsm.c	/^MULTI_STATE state_two() {$/;"	f
+stop_all_motors	beaglebot.c	/^void stop_all_motors(){$/;"	f
+stop_left_motors	beaglebot.c	/^void stop_left_motors(){$/;"	f
+stop_right_motors	beaglebot.c	/^void stop_right_motors(){$/;"	f
+verify_speed	beaglebot.c	/^float verify_speed(float speed){$/;"	f

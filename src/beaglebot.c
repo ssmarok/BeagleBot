@@ -1,15 +1,5 @@
-/*******************************************************************************
-* beaglebot.c
-*
-* Code to control a modified 4 wheel drive car with the L298N motor driver.
-* The controls W, A, S, D are setup the same was as in typical video games.
-*******************************************************************************/
-
-// usefulincludes is a collection of common system includes, for convenience
-#include <rc_usefulincludes.h> 
-// Main roboticscape API header
-#include <roboticscape.h> 
-// Extra utility functions implemented (e.g. getch())
+#include <rc_usefulincludes.h>
+#include <roboticscape.h>
 #include "extra.h"
 
 // Definitions
@@ -59,63 +49,49 @@ void * input_checker(void * param);
 // Global Variables
 static int new_input_flag = 0;
 
-/*******************************************************************************
-* int main() 
-*
-* This main function contains these critical components
-* - call to rc_initialize() at the beginning
-* - main while loop that checks for EXITING condition
-* - rc_cleanup() at the end
-*******************************************************************************/
-int main(){
-	// Initialize cape library first
+void init_cape(){
 	if(rc_initialize()){
 		fprintf(stderr,"ERROR: failed to initialize rc_initialize(), are you root?\n");
-		return -1;
+		exit(-1);
 	}
+}
 
-	// Initialization
-    init_msg();                         // Show Welcome message
-    init_pins();                        // Initialze GPIOs
+void init_robot() {
+    init_cape();
+    init_msg();
+    init_pins();
     // Set Pause button handlers
 	rc_set_pause_pressed_func(&on_pause_pressed);
 	rc_set_pause_released_func(&on_pause_released);
+}
 
-    // Initialize variables
-    // Total time vehicle executes a direction command (in microseconds):
-    // (latch time in microseconds) ~= sleepTimeUS * latchLoops
+int main(){
+    init_robot(); // Includes running setState
+
+    // Initialize pthreads
+	pthread_t  input_thread;
+    char inputCh = 0;                   // Character read
+	pthread_create(&input_thread, NULL, input_checker, (void*) &inputCh);
+	// Done initializing, so set state to RUNNING
+	rc_set_state(RUNNING);
+
     int sleepTimeUS = 4000;             // Loop sleep time in microseconds
     int latchLoops = 100;               // (latch time in microseconds) / (sleepTimeUS)
-    char inputCh = 0;                   // Character read
     int forward_back_tick = 0;          // Holds forward/back loop count used to check if enough time has passed
     int left_right_tick = 0;            // Holds left/right loop count used to check if enough time has passed
     int current_heading = 0;            // -1 = Back    0 = Neutral     1 = Forward
     int current_turning = 0;            // -1 = Left    0 = Neutral     1 = Right
     float max_speed = 100.0;                // Max speed of motors. 100.0
     float current_speed = 0;            // Speed of motors. 0.0 - 100.0
-    //char previousCh = 0;              // Previous character read
 
-    // Initialize pthreads
-	pthread_t  input_thread;
-	pthread_create(&input_thread, NULL, input_checker, (void*) &inputCh);
-
-	// Done initializing, so set state to RUNNING
-	rc_set_state(RUNNING); 
 
 	// Keep looping until state changes to EXITING
 	while(rc_get_state()!=EXITING){
-		// Handle other states
 		if(rc_get_state()==RUNNING){
-			// Activate Green LED
 			rc_set_led(GREEN, ON);
 			rc_set_led(RED, OFF);
 
-            // Take in terminal input without pressing enter
-            //system("/bin/stty raw"); 
-            //printf("Current inputCh is: %c\n", inputCh);
-            
             // Update state variables based on input
-            // if (inputCh != previousCh){
             if (get_new_input_flag()){
                 switch(inputCh){
                     case '\033':    // Esc key
@@ -179,32 +155,7 @@ int main(){
                     }
                     break;
             }
-            /*
-            switch(current_turning){
-                case -1:            // Left
-                    if(current_heading == 1){
-                        go_left(current_speed);
-                    } else {
-                        go_sharp_left(current_speed);
-                    }
-                    break;
-                case 0:             // Neutral
-                    stop_left();
-                    stop_right();
-                    break;
-                case 1:             // Right
-                    stop_left();
-                    go_right();
-                    break;
-            } */
             print_state(current_heading, current_turning);
-            //previousCh = inputCh;   // Save current character
-            //printf("Previous input is: %c\n", previousCh);
-            // Set back
-            //system("/bin/stty cooked");
-
-            // Perform motor testing routine
-            //test_all_motors();
 		} else if(rc_get_state()==PAUSED){
             // Paused state
 			rc_set_led(GREEN, OFF);
@@ -213,7 +164,6 @@ int main(){
             stop_all_motors();      // Set pins low
 
             // Take in terminal input without newline character
-            //system("/bin/stty raw");
             printf("\rPAUSED          \t");
             fflush(stdout);
             if(get_new_input_flag()){
@@ -230,7 +180,6 @@ int main(){
                 reset_new_input_flag();
             }
             // Set back
-            //system("/bin/stty cooked");
 		}
 		// Always sleep at some point
 		usleep(sleepTimeUS); // Was 100000
@@ -239,8 +188,6 @@ int main(){
         // Update current speed based on forward/back tick
         // ramps down over time, as key is released
         current_speed = max_speed - forward_back_tick;
-        //printf("Forward/Backward count is %d\n", forward_back_tick);
-        //printf("Left/Right count is %d\n", left_right_tick);
 
         if (forward_back_tick >= latchLoops){
             current_heading = 0;
@@ -637,7 +584,6 @@ void * input_checker(void * param){
         newCh = getch();
         *inputCh = newCh;
         set_new_input_flag();
-        //printf("New input: %c\n", newCh);
         usleep(10000);
 	}
 	return NULL;

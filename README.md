@@ -5,11 +5,11 @@ Competition Code developed for the Cal Poly Roborodentia 2018 robotics competiti
 Authors: Sean Wallace, Sukhman Marok, and Hayden Hudgins.
 
 
-#Internal Development Notes 
+### Internal Development Notes
 
 Use this. 
 
-###Remote Development 
+### Local Development
 
 Run the latest build
 ```

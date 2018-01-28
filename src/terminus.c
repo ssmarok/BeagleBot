@@ -46,8 +46,8 @@ void printDriveInstructions(){
     printf("| s - Back            |\n");
     printf("| a - Left            |\n");
     printf("| d - Right           |\n");
-    printf("| Spacebar - E-Stop   |\n");
-    printf("| Esc - Quit          |\n");
+    printf("| p - Half            |\n");
+    printf("| q - Sys Exit        |\n");
 	printf("-----------------------\n");
 }
 

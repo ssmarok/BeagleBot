@@ -5,7 +5,7 @@
 
 void init_drive_test(pthread_t pThread) {
 	if(rc_initialize()){
-		fprintf(stderr,"ERROR: failed to initialize rc_initialize(), are you root?\n");
+		fprintf(stderr,"Initialization failed. Are you root?\n");
 		exit(-1);
 	}
     printDriveInstructions();

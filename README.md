@@ -5,6 +5,7 @@ Authors: Sean Wallace, Sukhman Marok, and Hayden Hudgins.
 
 
 #Internal Development Notes
+
 ###Remote Development
 Run the latest build
 ```
@@ -13,7 +14,7 @@ alias run="sudo /home/robot/Beaglebot/./main"
 
 Rebuild and run
 ```
-alias build="make clean &#26; make && sudo /home/robot/Beaglebot/./main"
+alias build="make clean && make && sudo /home/robot/Beaglebot/./main"
 ```
 
 Wipe all remote directory contents (following this, you should push local workspace content onto the default BeagleBone remote working directory as described under "Local Development")

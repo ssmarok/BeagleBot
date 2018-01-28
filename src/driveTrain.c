@@ -1,6 +1,6 @@
 #include <rc_usefulincludes.h>
 #include <roboticscape.h>
-#include "./stdio/terminus.h"
+#include "stdio/terminus.h"
 #include "driveTrain.h"
 
 void init_drive_test(pthread_t pThread) {

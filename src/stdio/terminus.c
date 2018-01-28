@@ -1,6 +1,6 @@
 #include <termios.h>
 #include <stdio.h>
-#include "terminus.h"
+#include "stdio/terminus.h"
 
 static struct termios old, new;
 

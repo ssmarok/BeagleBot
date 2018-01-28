@@ -51,10 +51,3 @@ MULTI_STATE state_four(){
     return STATE_ONE;
 }
 
-
-int main() {
-    while(1) {
-        robot_fsm();
-    }
-    return 1;
-}

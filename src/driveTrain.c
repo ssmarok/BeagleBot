@@ -1,6 +1,6 @@
 #include <rc_usefulincludes.h>
 #include <roboticscape.h>
-#include "stdio/terminus.h"
+#include "terminus.h"
 #include "driveTrain.h"
 
 void init_drive_test(pthread_t pThread) {
@@ -8,23 +8,9 @@ void init_drive_test(pthread_t pThread) {
 		fprintf(stderr,"ERROR: failed to initialize rc_initialize(), are you root?\n");
 		exit(-1);
 	}
-    printWelcomeMessage();
+    printDriveInstructions();
 	pthread_create(&pThread, NULL, parseKeyboardInput, NULL);
 	initializeDrivePins();
-}
-
-void printWelcomeMessage(){
-	printf("\nHello from BeagleBot!\n");
-	printf("-----------------------\n");
-	printf("|       Controls      |\n");
-	printf("-----------------------\n");
-    printf("| w - Forward         |\n");
-    printf("| s - Back            |\n");
-    printf("| a - Left            |\n");
-    printf("| d - Right           |\n");
-    printf("| Spacebar - E-Stop   |\n");
-    printf("| Esc - Quit          |\n");
-	printf("-----------------------\n");
 }
 
 void initializeDrivePins(){

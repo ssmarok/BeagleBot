@@ -6,5 +6,6 @@ void resetTermios(void);
 char getch_(int echo);
 char getch(void);
 char getche(void);
+void printDriveInstructions();
 
 #endif

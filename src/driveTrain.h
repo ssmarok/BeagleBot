@@ -13,7 +13,6 @@
 
 // Functions
 void init_drive_test(pthread_t pThread);
-void printWelcomeMessage();
 void initializeDrivePins();
 void *parseKeyboardInput(void * param);
 void drive(int lSpeed, int rSpeed);

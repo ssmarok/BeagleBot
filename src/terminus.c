@@ -1,6 +1,6 @@
 #include <termios.h>
 #include <stdio.h>
-#include "stdio/terminus.h"
+#include "terminus.h"
 
 static struct termios old, new;
 
@@ -35,5 +35,19 @@ char getch(void){
 /* Read 1 character with echo */
 char getche(void){
 	return getch_(1);
+}
+
+void printDriveInstructions(){
+	printf("\nHello from BeagleBot!\n");
+	printf("-----------------------\n");
+	printf("|       Controls      |\n");
+	printf("-----------------------\n");
+    printf("| w - Forward         |\n");
+    printf("| s - Back            |\n");
+    printf("| a - Left            |\n");
+    printf("| d - Right           |\n");
+    printf("| Spacebar - E-Stop   |\n");
+    printf("| Esc - Quit          |\n");
+	printf("-----------------------\n");
 }
 

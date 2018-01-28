@@ -1,13 +1,15 @@
 # BeagleBot - Autonomous Nerf Ball Shooter Bot
 Roborodentia 2018
 Competition Code developed for the Cal Poly Roborodentia 2018 robotics competition.
+
 Authors: Sean Wallace, Sukhman Marok, and Hayden Hudgins.
 
 
-#Internal Development Notes
-Use this.
+#Internal Development Notes 
 
-###Remote Development
+Use this. 
+
+###Remote Development 
 
 Run the latest build
 ```

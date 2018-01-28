@@ -11,8 +11,7 @@
 #define PWM_0B GPS_HEADER_PIN_4
 #define PWM_FREQUENCY 20000
 
-// Functions
-void init_drive_test(pthread_t pThread);
+void initializeDriveTest(pthread_t pThread);
 void initializeDrivePins();
 void *parseKeyboardInput(void * param);
 void drive(int lSpeed, int rSpeed);

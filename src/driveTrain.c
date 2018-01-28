@@ -3,7 +3,7 @@
 #include "terminus.h"
 #include "driveTrain.h"
 
-void init_drive_test(pthread_t pThread) {
+void initializeDriveTest(pthread_t pThread) {
 	if(rc_initialize()){
 		fprintf(stderr,"Initialization failed. Are you root?\n");
 		exit(-1);

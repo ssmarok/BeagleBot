@@ -3,6 +3,9 @@
 #include "terminus.h"
 #include "driveTrain.h"
 
+int left = 50;
+int right = 50;
+
 void initializeDriveTest(pthread_t pThread) {
 	if(rc_initialize()){
 		fprintf(stderr,"Initialization failed. Are you root?\n");
@@ -34,22 +37,22 @@ void *parseKeyboardInput(void * param){
         printf("---");
         switch (nextChar) {
             case 'w':
-                drive(100, 100);
+                drive(left, right);
                 printf("Forward");
                 break;
             case 's':
-                drive(-100, -100);
+                drive(-1*left, -1*right);
                 printf("Reverse");
                 break;
             case 'd':
-                drive(-100, 100);
+                drive(left, -1*right);
                 printf("Right Turn");
                 break;
             case 'a':
-                drive(100, -100);
+                drive(-1*left, right);
                 printf("Left Turn");
                 break;
-            case 'p':
+            case 'P':
                 drive(0, 0);
                 printf("Halt");
                 break;
@@ -57,6 +60,22 @@ void *parseKeyboardInput(void * param){
                 drive(0, 0);
                 printf("System Exit---\n\n");
                 exit(0);
+            case 'o':
+                left = (left < 100 ? left+1 : 100);
+                printf("Increase left: %d", left);
+                break;
+            case 'p':
+                right = (right < 100 ? right+1 : 100);
+                printf("Increase right: %d", right);
+                break;
+            case 'k':
+                left = (left > 0 ? left-1 : 0);
+                printf("Decrease left: %d", left);
+                break;
+            case 'l':
+                right = (right > 0 ? right-1 : 0);
+                printf("Decrease right: %d", right);
+                break;
             default:
                 printf("Running Thread");
                 break;
@@ -67,15 +86,12 @@ void *parseKeyboardInput(void * param){
 }
 
 void drive(int lSpeed, int rSpeed) {
-    rc_gpio_set_value_mmap(MOTOR_A_0, lSpeed >= 0 ? LOW : HIGH);
-    rc_gpio_set_value_mmap(MOTOR_A_1, lSpeed >  0 ? HIGH : LOW);
-
-    rc_gpio_set_value_mmap(MOTOR_B_0, rSpeed >  0 ? HIGH : LOW);
-    rc_gpio_set_value_mmap(MOTOR_B_1, rSpeed >= 0 ? LOW : HIGH);
+    rc_gpio_set_value_mmap(MOTOR_A_0, lSpeed >= 0 ? LOW: HIGH);
+    rc_gpio_set_value_mmap(MOTOR_A_1, rSpeed >= 0 ? HIGH: LOW);
 
     lSpeed = lSpeed > 0 ? lSpeed : -1*lSpeed;
     rSpeed = rSpeed > 0 ? rSpeed : -1*rSpeed;
 
-    rc_pwm_set_duty_mmap(0, 'A', lSpeed > MAX_DRIVE_SPEED ? 1.0 : lSpeed/100.0);
-    rc_pwm_set_duty_mmap(0, 'B', rSpeed > MAX_DRIVE_SPEED ? 1.0 : rSpeed/100.0);
+    rc_pwm_set_duty_mmap(0, 'A', (lSpeed/100.0) >= 1.0 ? MAX_DRIVE_SPEED : lSpeed/100.0);
+    rc_pwm_set_duty_mmap(0, 'B', (rSpeed/100.0) >= 1.0 ? MAX_DRIVE_SPEED : rSpeed/100.0);
 }

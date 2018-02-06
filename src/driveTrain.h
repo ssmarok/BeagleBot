@@ -2,7 +2,7 @@
 #define DRIVETRAIN_H
 
 // Definitions
-#define MAX_DRIVE_SPEED 100
+#define MAX_DRIVE_SPEED 0.99
 #define MOTOR_A_0 BLUE_GP0_PIN_3
 #define MOTOR_A_1 BLUE_GP0_PIN_4
 #define MOTOR_B_0 BLUE_GP0_PIN_5

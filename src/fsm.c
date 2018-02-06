@@ -23,27 +23,27 @@ void runFSM(){
 }
 
 MULTI_STATE initialization(){
-    putchar('i');
+    //putchar('i');
     return STATE_ONE;
 }
 
 MULTI_STATE stateOne() {
-    putchar('1');
+    //putchar('1');
     return STATE_TWO;
 }
 
 MULTI_STATE stateTwo() {
-    putchar('2');
+    //putchar('2');
     return STATE_THREE;
 }
 
 MULTI_STATE stateThree(){
-    putchar('3');
+    //putchar('3');
     return STATE_FOUR;
 }
 
 MULTI_STATE stateFour(){
-    putchar('4');
+    //putchar('4');
     return STATE_ONE;
 }
 

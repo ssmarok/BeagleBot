@@ -5,6 +5,7 @@
 
 int main(){
     pthread_t pThread = 0;
+    pthread_t subPThread = 0;
 
     /*
      * Implicitly loops in parallel
@@ -12,6 +13,7 @@ int main(){
      * Uses stdio file for manual testing of drive
      */
     initializeDriveTest(pThread);
+    initializeSubState(subPThread);
 
     while(1) {
         /*

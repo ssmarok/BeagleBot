@@ -14,10 +14,15 @@
 #define PWM_FREQUENCY 20000
 
 void initializeDriveTest(pthread_t pThread);
+void initializeSubState(pthread_t pThread);
 void initializeDrivePins();
 void *parseKeyboardInput(void * param);
+void *trySubstate(void * param);
 void drive(int lSpeed, int rSpeed);
 void releaseTrigger();
 void holdTrigger();
+
+void lineFollowForward(void);
+void lineFollowBackward(void);
 
 #endif

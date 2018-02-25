@@ -4,7 +4,6 @@
 #include <stdint.h>
 #include "lineSensor.h"
 #include "driveTrain.h"
-#include "./../api/libraries/bb_blue_api.h"
 
 #define I2C_BUS 1
 #define PORT_EXPANDER_ONE 0x3E
@@ -23,8 +22,8 @@ Configures direction for each IO.
 Write: Data to be output to the output-configured IOs
 Read: Data seen at the IOs, independent of the direction configured.
 */
-#define RegDataA 0x10
-#define RegDataB 0x11
+#define RegDataA 0x10 // Back Sensor
+#define RegDataB 0x11 // Front Sensor
 
 /*
 Enables high input mode for each [input-configured] IO
@@ -45,6 +44,7 @@ typedef int bool;
 enum bool { false, true };
 int frontSensor[LINE_SENSOR_LEN];
 int backSensor[LINE_SENSOR_LEN];
+int weightMap[LINE_SENSOR_LEN] = { 25, 20, 15, 10, 10, 15, 20, 25};
 
 void initializeIRSensors() {
     rc_i2c_init(I2C_BUS, PORT_EXPANDER_ONE);
@@ -52,19 +52,19 @@ void initializeIRSensors() {
     rc_i2c_write_byte(I2C_BUS, RegDirB, FULL_MASK);
     rc_i2c_write_byte(I2C_BUS, RegHighInputA, FULL_MASK);
     rc_i2c_write_byte(I2C_BUS, RegHighInputB, FULL_MASK);
+    printf("Initialization of IR Sensors Complete\n");
+    //rc_i2c_release_bus(I2C_BUS);
 }
 
 void updateLineData() {
     rc_i2c_claim_bus(I2C_BUS);
 
     int mask = 0x01;
-    uint8_t buffer[128];
-    uint8_t frontRegisterVal = rc_i2c_read_byte(I2C_BUS, RegDataA, buffer);
-    printf("Front Sensor Integer: %d\n", frontRegisterVal);
-    printf("Back Sensor Hex: %02x\n", frontRegisterVal);
-    uint8_t backRegisterVal = rc_i2c_read_byte(I2C_BUS, RegDataA, buffer);
-    printf("Back Sensor Integer: %d\n", backRegisterVal);
-    printf("Back Sensor Hex: %02x\n", backRegisterVal);
+
+    uint8_t frontRegisterVal = 0;
+    rc_i2c_read_byte(I2C_BUS, RegDataB, &frontRegisterVal);
+    uint8_t backRegisterVal = 0;
+    rc_i2c_read_byte(I2C_BUS, RegDataA, &backRegisterVal);
     for (int i=0; i<LINE_SENSOR_LEN; i++) {
         frontSensor[i] = (mask & frontRegisterVal) ? true: false;
         mask <<= 1;
@@ -75,23 +75,37 @@ void updateLineData() {
         mask <<= 1;
     }
 
+    for (int i=0; i<LINE_SENSOR_LEN; i++) {
+        printf("FrontBuffer[%d]: %d\n", i, frontSensor[i]);
+    }
+    for (int i=0; i<LINE_SENSOR_LEN; i++) {
+        printf("BackBuffer[%d]: %d\n", i, backSensor[i]);
+    }
+
     rc_i2c_release_bus(I2C_BUS);
 }
+    /*
+    printf("Front Sensor Integer: %d\n", frontRegisterVal);
+    printf("Front Sensor Hex: %02x\n", frontRegisterVal);
+    */
 
-/*
-int simpleLeftBias(int sensor[]) {
+    /*
+    printf("Back Sensor Integer: %d\n", backRegisterVal);
+    printf("Back Sensor Hex: %02x\n", backRegisterVal);
+    */
+
+int simpleLeftBiasBack(void) {
     int bias = 0;
     for (int i=0; i<4; i++) {
-        bias += sensor[i] ? weightMap[i] : 0;
+        bias += backSensor[i] ? weightMap[i] : 0;
     }
     return bias;
 }
 
-int simpleRightBias(int sensor[]) {
+int simpleRightBiasBack(void) {
     int bias = 0;
     for (int i=4; i<LINE_SENSOR_LEN; i++) {
-        bias += sensor[i] ? weightMap[i] : 0;
+        bias += backSensor[i] ? weightMap[i] : 0;
     }
     return bias;
 }
-*/

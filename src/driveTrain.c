@@ -6,9 +6,10 @@
 
 int left = 50;
 int right = 50;
+int SUBSTATE = 0;
 float trigger= 0.0;
 
-#define BASE_SPEED 50
+#define BASE_SPEED 75
 
 void initializeDriveTest(pthread_t pThread) {
 	if(rc_initialize()){
@@ -18,6 +19,10 @@ void initializeDriveTest(pthread_t pThread) {
     printDriveInstructions();
 	pthread_create(&pThread, NULL, parseKeyboardInput, NULL);
 	initializeDrivePins();
+}
+
+void initializeSubState(pthread_t pThread) {
+	pthread_create(&pThread, NULL, trySubstate, NULL);
 }
 
 void initializeDrivePins(){
@@ -36,6 +41,40 @@ void initializeDrivePins(){
 
     //Initialize Servo Pins
     rc_enable_servo_power_rail();
+
+    //Initialize Line Sensors
+    initializeIRSensors();
+}
+
+void *trySubstate(void * param) {
+    while (1) {
+        printf("SubState: %d\n", SUBSTATE);
+        switch (SUBSTATE) {
+            case 0:
+                drive(0, 0);
+                usleep(1000);
+                SUBSTATE = 0;
+                break;
+            case 1:
+                usleep(1000);
+                lineFollowForward();
+                break;
+            case 2:
+                usleep(1000);
+                lineFollowBackward();
+                break;
+            case 3:
+                usleep(1000);
+                break;
+            case 4:
+                usleep(1000);
+                break;
+            default:
+                usleep(1000);
+                break;
+        }
+    }
+	return 0; // Exits void thread
 }
 
 void *parseKeyboardInput(void * param){
@@ -44,24 +83,31 @@ void *parseKeyboardInput(void * param){
         printf("---");
         switch (nextChar) {
             case 'w':
-                drive(left, right);
+                //drive(left, right);
                 printf("Forward");
+                //lineFollowForward();
+                SUBSTATE = 1;
                 break;
             case 's':
-                drive(-1*left, -1*right);
+                //drive(-1*left, -1*right);
                 printf("Reverse");
+                //lineFollowBackward();
+                SUBSTATE = 2;
                 break;
             case 'd':
                 drive(left, -1*right);
                 printf("Right Turn");
+                SUBSTATE = 4;
                 break;
             case 'a':
                 drive(-1*left, right);
                 printf("Left Turn");
+                SUBSTATE = 3;
                 break;
             case 'P':
                 drive(0, 0);
                 printf("Halt");
+                SUBSTATE = 0;
                 break;
             case 'q':
                 drive(0, 0);
@@ -114,12 +160,12 @@ void *parseKeyboardInput(void * param){
 
 void lineFollowForward(void) {
     updateLineData();
-    drive(BASE_SPEED, BASE_SPEED);
+    drive(BASE_SPEED-simpleLeftBias(), BASE_SPEED-simpleRightBias());
 }
 
 void lineFollowBackward(void) {
     updateLineData();
-    drive(BASE_SPEED, BASE_SPEED);
+    drive(-1*BASE_SPEED+simpleLeftBiasBack(), -1*BASE_SPEED+simpleRightBiasBack());
 }
 
 void drive(int lSpeed, int rSpeed) {

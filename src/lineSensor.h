@@ -3,7 +3,7 @@
 
 void initializeIRSensors();
 void updateLineData();
-int simpleLeftBias(int sensor[]);
-int simpleRightBias(int sensor[]);
+int simpleLeftBiasBack(void);
+int simpleRightBiasBack(void);
 
 #endif

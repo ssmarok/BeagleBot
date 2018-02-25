@@ -1,0 +1,67 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+CC	Makefile	/^CC		:= gcc$/;"	m
+CFLAGS	Makefile	/^CFLAGS		:= -c -Wall -g$/;"	m
+DRIVETRAIN_H	src/driveTrain.h	2;"	d
+FSM_H	src/fsm.h	2;"	d
+FUNC_LUT	src/fsm.c	/^state_ptr FUNC_LUT[NUM_STATES] =$/;"	v
+INCLUDES	Makefile	/^INCLUDES	:= $(wildcard $(SRCDIR)\/*.h)$/;"	m
+INIT	src/fsm.h	/^    INIT=0, STATE_ONE=1, STATE_TWO=2, STATE_THREE=3, STATE_FOUR=4, NUM_STATES=5$/;"	e	enum:MULTI_STATE
+INSTALL	Makefile	/^INSTALL		:= install -m 4755$/;"	m
+INSTALLDIR	Makefile	/^INSTALLDIR	:= install -d -m 755 $/;"	m
+LFLAGS	Makefile	/^LFLAGS		:= -lm -lrt -lpthread -lroboticscape$/;"	m
+LINK	Makefile	/^LINK		:= ln -s -f$/;"	m
+LINKDIR	Makefile	/^LINKDIR		:= \/etc\/roboticscape$/;"	m
+LINKER	Makefile	/^LINKER		:= gcc -o$/;"	m
+LINKNAME	Makefile	/^LINKNAME	:= link_to_startup_program$/;"	m
+MAX_DRIVE_SPEED	src/driveTrain.h	5;"	d
+MOTOR_A_0	src/driveTrain.h	6;"	d
+MOTOR_A_1	src/driveTrain.h	7;"	d
+MOTOR_B_0	src/driveTrain.h	8;"	d
+MOTOR_B_1	src/driveTrain.h	9;"	d
+MULTI_STATE	src/fsm.h	/^typedef enum MULTI_STATE{$/;"	g
+MULTI_STATE	src/fsm.h	/^}MULTI_STATE;$/;"	t	typeref:enum:MULTI_STATE
+NUM_STATES	src/fsm.h	/^    INIT=0, STATE_ONE=1, STATE_TWO=2, STATE_THREE=3, STATE_FOUR=4, NUM_STATES=5$/;"	e	enum:MULTI_STATE
+OBJDIR	Makefile	/^OBJDIR		= obj$/;"	m
+OBJECTS	Makefile	/^OBJECTS  	:= $(SOURCES:$(SRCDIR)\/%.c=$(OBJDIR)\/%.o)$/;"	m
+PWM_0A	src/driveTrain.h	10;"	d
+PWM_0B	src/driveTrain.h	11;"	d
+PWM_FREQUENCY	src/driveTrain.h	12;"	d
+RM	Makefile	/^RM		:= rm -f$/;"	m
+SOURCES	Makefile	/^SOURCES  	:= $(wildcard $(SRCDIR)\/*.c)$/;"	m
+SRCDIR	Makefile	/^SRCDIR		= src$/;"	m
+STATE_FOUR	src/fsm.h	/^    INIT=0, STATE_ONE=1, STATE_TWO=2, STATE_THREE=3, STATE_FOUR=4, NUM_STATES=5$/;"	e	enum:MULTI_STATE
+STATE_ONE	src/fsm.h	/^    INIT=0, STATE_ONE=1, STATE_TWO=2, STATE_THREE=3, STATE_FOUR=4, NUM_STATES=5$/;"	e	enum:MULTI_STATE
+STATE_THREE	src/fsm.h	/^    INIT=0, STATE_ONE=1, STATE_TWO=2, STATE_THREE=3, STATE_FOUR=4, NUM_STATES=5$/;"	e	enum:MULTI_STATE
+STATE_TWO	src/fsm.h	/^    INIT=0, STATE_ONE=1, STATE_TWO=2, STATE_THREE=3, STATE_FOUR=4, NUM_STATES=5$/;"	e	enum:MULTI_STATE
+TARGET	Makefile	/^TARGET = main$/;"	m
+TERMINUS_H	src/terminus.h	2;"	d
+drive	src/driveTrain.c	/^void drive(int lSpeed, int rSpeed) {$/;"	f
+getch	src/terminus.c	/^char getch(void){$/;"	f
+getch_	src/terminus.c	/^char getch_(int echo){$/;"	f
+getche	src/terminus.c	/^char getche(void){$/;"	f
+holdTrigger	src/driveTrain.c	/^void holdTrigger() {$/;"	f
+initTermios	src/terminus.c	/^void initTermios(int echo){$/;"	f
+initialization	src/fsm.c	/^MULTI_STATE initialization(){$/;"	f
+initializeDrivePins	src/driveTrain.c	/^void initializeDrivePins(){$/;"	f
+initializeDriveTest	src/driveTrain.c	/^void initializeDriveTest(pthread_t pThread) {$/;"	f
+left	src/driveTrain.c	/^int left = 50;$/;"	v
+main	src/main.c	/^int main(){$/;"	f
+new	src/terminus.c	/^static struct termios old, new;$/;"	v	typeref:struct:	file:
+old	src/terminus.c	/^static struct termios old, new;$/;"	v	typeref:struct:termios	file:
+parseKeyboardInput	src/driveTrain.c	/^void *parseKeyboardInput(void * param){$/;"	f
+prefix	Makefile	/^prefix		:= \/usr\/local$/;"	m
+printDriveInstructions	src/terminus.c	/^void printDriveInstructions(){$/;"	f
+releaseTrigger	src/driveTrain.c	/^void releaseTrigger() {$/;"	f
+resetTermios	src/terminus.c	/^void resetTermios(void){$/;"	f
+right	src/driveTrain.c	/^int right = 50;$/;"	v
+runFSM	src/fsm.c	/^void runFSM(){$/;"	f
+stateFour	src/fsm.c	/^MULTI_STATE stateFour(){$/;"	f
+stateOne	src/fsm.c	/^MULTI_STATE stateOne() {$/;"	f
+stateThree	src/fsm.c	/^MULTI_STATE stateThree(){$/;"	f
+stateTwo	src/fsm.c	/^MULTI_STATE stateTwo() {$/;"	f
+state_ptr	src/fsm.h	/^typedef MULTI_STATE (*state_ptr)( void );$/;"	t

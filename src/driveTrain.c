@@ -2,9 +2,13 @@
 #include <roboticscape.h>
 #include "terminus.h"
 #include "driveTrain.h"
+#include "lineSensor.h"
 
 int left = 50;
 int right = 50;
+float trigger= 0.0;
+
+#define BASE_SPEED 50
 
 void initializeDriveTest(pthread_t pThread) {
 	if(rc_initialize()){
@@ -17,7 +21,7 @@ void initializeDriveTest(pthread_t pThread) {
 }
 
 void initializeDrivePins(){
-    int driveMotorPins[] = { MOTOR_A_0, MOTOR_A_1, MOTOR_B_0, MOTOR_B_1};
+    int driveMotorPins[] = { MOTOR_A_0, MOTOR_A_1, MOTOR_B_0, MOTOR_B_1, MOTOR_TRIGGER, MOTOR_TRIGGER_2};
     for (int i=0; i < 4; i++) {
         rc_gpio_export(driveMotorPins[i]);
         rc_gpio_set_dir(driveMotorPins[i], OUTPUT_PIN);
@@ -29,6 +33,9 @@ void initializeDrivePins(){
 
     // Initialize PWM subsystem
     rc_pwm_init(0, PWM_FREQUENCY);
+
+    //Initialize Servo Pins
+    rc_enable_servo_power_rail();
 }
 
 void *parseKeyboardInput(void * param){
@@ -62,7 +69,9 @@ void *parseKeyboardInput(void * param){
                 exit(0);
             case 'o':
                 left = (left < 100 ? left+1 : 100);
-                printf("Increase left: %d", left);
+                //trigger = (trigger < 1.0 ? trigger +0.5 : 1.0);
+                //printf("Increase left: %d", left);
+                printf("Increase trigger: %f", trigger);
                 break;
             case 'p':
                 right = (right < 100 ? right+1 : 100);
@@ -70,11 +79,29 @@ void *parseKeyboardInput(void * param){
                 break;
             case 'k':
                 left = (left > 0 ? left-1 : 0);
-                printf("Decrease left: %d", left);
+                //trigger = (trigger > -1.0 ? trigger-0.5 : -1.0);
+                //printf("Decrease left: %d", left);
+                printf("Decrease trigger: %f", trigger);
                 break;
             case 'l':
                 right = (right > 0 ? right-1 : 0);
                 printf("Decrease right: %d", right);
+                break;
+            case 'y':
+                rc_send_servo_pulse_normalized_all(-1.0);
+                usleep(10000);
+                break;
+            case 't':
+                rc_send_servo_pulse_normalized_all(1.0);
+                usleep(10000);
+                break;
+            case 'f':
+                printf("FIRE");
+                releaseTrigger();
+                break;
+            case 'h':
+                printf("HOLD");
+                holdTrigger();
                 break;
             default:
                 printf("Running Thread");
@@ -83,6 +110,16 @@ void *parseKeyboardInput(void * param){
         printf("\n");
 	}
 	return 0; // Exits void thread
+}
+
+void lineFollowForward(void) {
+    updateLineData();
+    drive(BASE_SPEED, BASE_SPEED);
+}
+
+void lineFollowBackward(void) {
+    updateLineData();
+    drive(BASE_SPEED, BASE_SPEED);
 }
 
 void drive(int lSpeed, int rSpeed) {
@@ -94,4 +131,16 @@ void drive(int lSpeed, int rSpeed) {
 
     rc_pwm_set_duty_mmap(0, 'A', (lSpeed/100.0) >= 1.0 ? MAX_DRIVE_SPEED : lSpeed/100.0);
     rc_pwm_set_duty_mmap(0, 'B', (rSpeed/100.0) >= 1.0 ? MAX_DRIVE_SPEED : rSpeed/100.0);
+}
+
+void releaseTrigger() {
+    rc_gpio_set_value_mmap(MOTOR_TRIGGER, HIGH);
+    rc_gpio_set_value_mmap(MOTOR_TRIGGER_2, HIGH);
+    rc_set_led(GREEN, HIGH);
+}
+
+void holdTrigger() {
+    rc_gpio_set_value_mmap(MOTOR_TRIGGER, LOW);
+    rc_gpio_set_value_mmap(MOTOR_TRIGGER_2, LOW);
+    rc_set_led(GREEN, LOW);
 }

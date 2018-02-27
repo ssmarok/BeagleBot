@@ -4,16 +4,21 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+BASE_SPEED	src/driveTrain.c	12;"	d	file:
 CC	Makefile	/^CC		:= gcc$/;"	m
 CFLAGS	Makefile	/^CFLAGS		:= -c -Wall -g$/;"	m
 DRIVETRAIN_H	src/driveTrain.h	2;"	d
 FSM_H	src/fsm.h	2;"	d
+FULL_MASK	src/lineSensor.c	19;"	d	file:
 FUNC_LUT	src/fsm.c	/^state_ptr FUNC_LUT[NUM_STATES] =$/;"	v
+I2C_BUS	src/lineSensor.c	8;"	d	file:
 INCLUDES	Makefile	/^INCLUDES	:= $(wildcard $(SRCDIR)\/*.h)$/;"	m
 INIT	src/fsm.h	/^    INIT=0, STATE_ONE=1, STATE_TWO=2, STATE_THREE=3, STATE_FOUR=4, NUM_STATES=5$/;"	e	enum:MULTI_STATE
 INSTALL	Makefile	/^INSTALL		:= install -m 4755$/;"	m
 INSTALLDIR	Makefile	/^INSTALLDIR	:= install -d -m 755 $/;"	m
 LFLAGS	Makefile	/^LFLAGS		:= -lm -lrt -lpthread -lroboticscape$/;"	m
+LINESENSOR_H	src/lineSensor.h	2;"	d
+LINE_SENSOR_LEN	src/lineSensor.c	10;"	d	file:
 LINK	Makefile	/^LINK		:= ln -s -f$/;"	m
 LINKDIR	Makefile	/^LINKDIR		:= \/etc\/roboticscape$/;"	m
 LINKER	Makefile	/^LINKER		:= gcc -o$/;"	m
@@ -21,26 +26,38 @@ LINKNAME	Makefile	/^LINKNAME	:= link_to_startup_program$/;"	m
 MAX_DRIVE_SPEED	src/driveTrain.h	5;"	d
 MOTOR_A_0	src/driveTrain.h	6;"	d
 MOTOR_A_1	src/driveTrain.h	7;"	d
-MOTOR_B_0	src/driveTrain.h	8;"	d
-MOTOR_B_1	src/driveTrain.h	9;"	d
+MOTOR_FIRE	src/driveTrain.h	15;"	d
 MULTI_STATE	src/fsm.h	/^typedef enum MULTI_STATE{$/;"	g
 MULTI_STATE	src/fsm.h	/^}MULTI_STATE;$/;"	t	typeref:enum:MULTI_STATE
 NUM_STATES	src/fsm.h	/^    INIT=0, STATE_ONE=1, STATE_TWO=2, STATE_THREE=3, STATE_FOUR=4, NUM_STATES=5$/;"	e	enum:MULTI_STATE
 OBJDIR	Makefile	/^OBJDIR		= obj$/;"	m
 OBJECTS	Makefile	/^OBJECTS  	:= $(SOURCES:$(SRCDIR)\/%.c=$(OBJDIR)\/%.o)$/;"	m
-PWM_0A	src/driveTrain.h	10;"	d
-PWM_0B	src/driveTrain.h	11;"	d
-PWM_FREQUENCY	src/driveTrain.h	12;"	d
+PORT_EXPANDER_ONE	src/lineSensor.c	9;"	d	file:
+PWM_0A	src/driveTrain.h	12;"	d
+PWM_0B	src/driveTrain.h	13;"	d
+PWM_FREQUENCY	src/driveTrain.h	14;"	d
 RM	Makefile	/^RM		:= rm -f$/;"	m
+RegDataA	src/lineSensor.c	25;"	d	file:
+RegDataB	src/lineSensor.c	26;"	d	file:
+RegDirA	src/lineSensor.c	17;"	d	file:
+RegDirB	src/lineSensor.c	18;"	d	file:
+RegHighInputA	src/lineSensor.c	33;"	d	file:
+RegHighInputB	src/lineSensor.c	34;"	d	file:
 SOURCES	Makefile	/^SOURCES  	:= $(wildcard $(SRCDIR)\/*.c)$/;"	m
 SRCDIR	Makefile	/^SRCDIR		= src$/;"	m
 STATE_FOUR	src/fsm.h	/^    INIT=0, STATE_ONE=1, STATE_TWO=2, STATE_THREE=3, STATE_FOUR=4, NUM_STATES=5$/;"	e	enum:MULTI_STATE
 STATE_ONE	src/fsm.h	/^    INIT=0, STATE_ONE=1, STATE_TWO=2, STATE_THREE=3, STATE_FOUR=4, NUM_STATES=5$/;"	e	enum:MULTI_STATE
 STATE_THREE	src/fsm.h	/^    INIT=0, STATE_ONE=1, STATE_TWO=2, STATE_THREE=3, STATE_FOUR=4, NUM_STATES=5$/;"	e	enum:MULTI_STATE
 STATE_TWO	src/fsm.h	/^    INIT=0, STATE_ONE=1, STATE_TWO=2, STATE_THREE=3, STATE_FOUR=4, NUM_STATES=5$/;"	e	enum:MULTI_STATE
+SUBSTATE	src/driveTrain.c	/^int SUBSTATE = 0;$/;"	v
 TARGET	Makefile	/^TARGET = main$/;"	m
 TERMINUS_H	src/terminus.h	2;"	d
+backSensor	src/lineSensor.c	/^int backSensor[LINE_SENSOR_LEN];$/;"	v
+bool	src/lineSensor.c	/^enum bool { false, true };$/;"	g	file:
+bool	src/lineSensor.c	/^typedef int bool;$/;"	t	file:
 drive	src/driveTrain.c	/^void drive(int lSpeed, int rSpeed) {$/;"	f
+false	src/lineSensor.c	/^enum bool { false, true };$/;"	e	enum:bool	file:
+frontSensor	src/lineSensor.c	/^int frontSensor[LINE_SENSOR_LEN];$/;"	v
 getch	src/terminus.c	/^char getch(void){$/;"	f
 getch_	src/terminus.c	/^char getch_(int echo){$/;"	f
 getche	src/terminus.c	/^char getche(void){$/;"	f
@@ -49,7 +66,11 @@ initTermios	src/terminus.c	/^void initTermios(int echo){$/;"	f
 initialization	src/fsm.c	/^MULTI_STATE initialization(){$/;"	f
 initializeDrivePins	src/driveTrain.c	/^void initializeDrivePins(){$/;"	f
 initializeDriveTest	src/driveTrain.c	/^void initializeDriveTest(pthread_t pThread) {$/;"	f
+initializeIRSensors	src/lineSensor.c	/^void initializeIRSensors() {$/;"	f
+initializeSubState	src/driveTrain.c	/^void initializeSubState(pthread_t pThread) {$/;"	f
 left	src/driveTrain.c	/^int left = 50;$/;"	v
+lineFollowBackward	src/driveTrain.c	/^void lineFollowBackward(void) {$/;"	f
+lineFollowForward	src/driveTrain.c	/^void lineFollowForward(void) {$/;"	f
 main	src/main.c	/^int main(){$/;"	f
 new	src/terminus.c	/^static struct termios old, new;$/;"	v	typeref:struct:	file:
 old	src/terminus.c	/^static struct termios old, new;$/;"	v	typeref:struct:termios	file:
@@ -59,9 +80,20 @@ printDriveInstructions	src/terminus.c	/^void printDriveInstructions(){$/;"	f
 releaseTrigger	src/driveTrain.c	/^void releaseTrigger() {$/;"	f
 resetTermios	src/terminus.c	/^void resetTermios(void){$/;"	f
 right	src/driveTrain.c	/^int right = 50;$/;"	v
+rotateCCW	src/driveTrain.c	/^void rotateCCW(void) {$/;"	f
+rotateCW	src/driveTrain.c	/^void rotateCW(void) {$/;"	f
 runFSM	src/fsm.c	/^void runFSM(){$/;"	f
+simpleLeftBiasBack	src/lineSensor.c	/^int simpleLeftBiasBack(void) {$/;"	f
+simpleLeftBiasForward	src/lineSensor.c	/^int simpleLeftBiasForward(void) {$/;"	f
+simpleRightBiasBack	src/lineSensor.c	/^int simpleRightBiasBack(void) {$/;"	f
+simpleRightBiasForward	src/lineSensor.c	/^int simpleRightBiasForward(void) {$/;"	f
 stateFour	src/fsm.c	/^MULTI_STATE stateFour(){$/;"	f
 stateOne	src/fsm.c	/^MULTI_STATE stateOne() {$/;"	f
 stateThree	src/fsm.c	/^MULTI_STATE stateThree(){$/;"	f
 stateTwo	src/fsm.c	/^MULTI_STATE stateTwo() {$/;"	f
 state_ptr	src/fsm.h	/^typedef MULTI_STATE (*state_ptr)( void );$/;"	t
+trigger	src/driveTrain.c	/^float trigger= 0.0;$/;"	v
+true	src/lineSensor.c	/^enum bool { false, true };$/;"	e	enum:bool	file:
+trySubstate	src/driveTrain.c	/^void *trySubstate(void * param) {$/;"	f
+updateLineData	src/lineSensor.c	/^void updateLineData() {$/;"	f
+weightMap	src/lineSensor.c	/^int weightMap[LINE_SENSOR_LEN] = { 50, 15, 10, 0, 0, 10, 15, 50};$/;"	v

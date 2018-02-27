@@ -44,7 +44,7 @@ typedef int bool;
 enum bool { false, true };
 int frontSensor[LINE_SENSOR_LEN];
 int backSensor[LINE_SENSOR_LEN];
-int weightMap[LINE_SENSOR_LEN] = { 25, 20, 15, 10, 10, 15, 20, 25};
+int weightMap[LINE_SENSOR_LEN] = { 50, 15, 10, 0, 0, 10, 15, 50};
 
 void initializeIRSensors() {
     rc_i2c_init(I2C_BUS, PORT_EXPANDER_ONE);
@@ -53,7 +53,6 @@ void initializeIRSensors() {
     rc_i2c_write_byte(I2C_BUS, RegHighInputA, FULL_MASK);
     rc_i2c_write_byte(I2C_BUS, RegHighInputB, FULL_MASK);
     printf("Initialization of IR Sensors Complete\n");
-    //rc_i2c_release_bus(I2C_BUS);
 }
 
 void updateLineData() {
@@ -63,16 +62,21 @@ void updateLineData() {
 
     uint8_t frontRegisterVal = 0;
     rc_i2c_read_byte(I2C_BUS, RegDataB, &frontRegisterVal);
+    printf("val:%d", frontRegisterVal);
     uint8_t backRegisterVal = 0;
     rc_i2c_read_byte(I2C_BUS, RegDataA, &backRegisterVal);
-    for (int i=0; i<LINE_SENSOR_LEN; i++) {
-        frontSensor[i] = (mask & frontRegisterVal) ? true: false;
-        mask <<= 1;
+    if (frontRegisterVal >= 1) {
+        for (int i=0; i<LINE_SENSOR_LEN; i++) {
+            frontSensor[i] = (mask & frontRegisterVal) ? true: false;
+            mask <<= 1;
+        }
     }
     mask = 0x01;
-    for (int i=0; i<LINE_SENSOR_LEN; i++) {
-        backSensor[i] = (mask & backRegisterVal) ? true: false;
-        mask <<= 1;
+    if (backRegisterVal >= 1) {
+        for (int i=0; i<LINE_SENSOR_LEN; i++) {
+            backSensor[i] = (mask & backRegisterVal) ? true: false;
+            mask <<= 1;
+        }
     }
 
     for (int i=0; i<LINE_SENSOR_LEN; i++) {
@@ -84,15 +88,6 @@ void updateLineData() {
 
     rc_i2c_release_bus(I2C_BUS);
 }
-    /*
-    printf("Front Sensor Integer: %d\n", frontRegisterVal);
-    printf("Front Sensor Hex: %02x\n", frontRegisterVal);
-    */
-
-    /*
-    printf("Back Sensor Integer: %d\n", backRegisterVal);
-    printf("Back Sensor Hex: %02x\n", backRegisterVal);
-    */
 
 int simpleLeftBiasBack(void) {
     int bias = 0;
@@ -106,6 +101,22 @@ int simpleRightBiasBack(void) {
     int bias = 0;
     for (int i=4; i<LINE_SENSOR_LEN; i++) {
         bias += backSensor[i] ? weightMap[i] : 0;
+    }
+    return bias;
+}
+
+int simpleLeftBiasForward(void) {
+    int bias = 0;
+    for (int i=0; i<4; i++) {
+        bias += frontSensor[i] ? weightMap[i] : 0;
+    }
+    return bias;
+}
+
+int simpleRightBiasForward(void) {
+    int bias = 0;
+    for (int i=4; i<LINE_SENSOR_LEN; i++) {
+        bias += frontSensor[i] ? weightMap[i] : 0;
     }
     return bias;
 }

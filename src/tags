@@ -1,0 +1,82 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+BASE_SPEED	driveTrain.c	12;"	d	file:
+DRIVETRAIN_H	driveTrain.h	2;"	d
+FSM_H	fsm.h	2;"	d
+FULL_MASK	lineSensor.c	19;"	d	file:
+FUNC_LUT	fsm.c	/^state_ptr FUNC_LUT[NUM_STATES] =$/;"	v
+I2C_BUS	lineSensor.c	8;"	d	file:
+INIT	fsm.h	/^    INIT=0, STATE_ONE=1, STATE_TWO=2, STATE_THREE=3, STATE_FOUR=4, NUM_STATES=5$/;"	e	enum:MULTI_STATE
+LINESENSOR_H	lineSensor.h	2;"	d
+LINE_SENSOR_LEN	lineSensor.c	10;"	d	file:
+MAX_DRIVE_SPEED	driveTrain.h	5;"	d
+MOTOR_A_0	driveTrain.h	6;"	d
+MOTOR_A_1	driveTrain.h	7;"	d
+MOTOR_FIRE	driveTrain.h	15;"	d
+MULTI_STATE	fsm.h	/^typedef enum MULTI_STATE{$/;"	g
+MULTI_STATE	fsm.h	/^}MULTI_STATE;$/;"	t	typeref:enum:MULTI_STATE
+NUM_STATES	fsm.h	/^    INIT=0, STATE_ONE=1, STATE_TWO=2, STATE_THREE=3, STATE_FOUR=4, NUM_STATES=5$/;"	e	enum:MULTI_STATE
+PORT_EXPANDER_ONE	lineSensor.c	9;"	d	file:
+PWM_0A	driveTrain.h	12;"	d
+PWM_0B	driveTrain.h	13;"	d
+PWM_FREQUENCY	driveTrain.h	14;"	d
+RegDataA	lineSensor.c	25;"	d	file:
+RegDataB	lineSensor.c	26;"	d	file:
+RegDirA	lineSensor.c	17;"	d	file:
+RegDirB	lineSensor.c	18;"	d	file:
+RegHighInputA	lineSensor.c	33;"	d	file:
+RegHighInputB	lineSensor.c	34;"	d	file:
+STATE_FOUR	fsm.h	/^    INIT=0, STATE_ONE=1, STATE_TWO=2, STATE_THREE=3, STATE_FOUR=4, NUM_STATES=5$/;"	e	enum:MULTI_STATE
+STATE_ONE	fsm.h	/^    INIT=0, STATE_ONE=1, STATE_TWO=2, STATE_THREE=3, STATE_FOUR=4, NUM_STATES=5$/;"	e	enum:MULTI_STATE
+STATE_THREE	fsm.h	/^    INIT=0, STATE_ONE=1, STATE_TWO=2, STATE_THREE=3, STATE_FOUR=4, NUM_STATES=5$/;"	e	enum:MULTI_STATE
+STATE_TWO	fsm.h	/^    INIT=0, STATE_ONE=1, STATE_TWO=2, STATE_THREE=3, STATE_FOUR=4, NUM_STATES=5$/;"	e	enum:MULTI_STATE
+SUBSTATE	driveTrain.c	/^int SUBSTATE = 0;$/;"	v
+TERMINUS_H	terminus.h	2;"	d
+backSensor	lineSensor.c	/^int backSensor[LINE_SENSOR_LEN];$/;"	v
+bool	lineSensor.c	/^enum bool { false, true };$/;"	g	file:
+bool	lineSensor.c	/^typedef int bool;$/;"	t	file:
+drive	driveTrain.c	/^void drive(int lSpeed, int rSpeed) {$/;"	f
+false	lineSensor.c	/^enum bool { false, true };$/;"	e	enum:bool	file:
+frontSensor	lineSensor.c	/^int frontSensor[LINE_SENSOR_LEN];$/;"	v
+getch	terminus.c	/^char getch(void){$/;"	f
+getch_	terminus.c	/^char getch_(int echo){$/;"	f
+getche	terminus.c	/^char getche(void){$/;"	f
+holdTrigger	driveTrain.c	/^void holdTrigger() {$/;"	f
+initTermios	terminus.c	/^void initTermios(int echo){$/;"	f
+initialization	fsm.c	/^MULTI_STATE initialization(){$/;"	f
+initializeDrivePins	driveTrain.c	/^void initializeDrivePins(){$/;"	f
+initializeDriveTest	driveTrain.c	/^void initializeDriveTest(pthread_t pThread) {$/;"	f
+initializeIRSensors	lineSensor.c	/^void initializeIRSensors() {$/;"	f
+initializeSubState	driveTrain.c	/^void initializeSubState(pthread_t pThread) {$/;"	f
+left	driveTrain.c	/^int left = 50;$/;"	v
+lineFollowBackward	driveTrain.c	/^void lineFollowBackward(void) {$/;"	f
+lineFollowForward	driveTrain.c	/^void lineFollowForward(void) {$/;"	f
+main	main.c	/^int main(){$/;"	f
+new	terminus.c	/^static struct termios old, new;$/;"	v	typeref:struct:	file:
+old	terminus.c	/^static struct termios old, new;$/;"	v	typeref:struct:termios	file:
+parseKeyboardInput	driveTrain.c	/^void *parseKeyboardInput(void * param){$/;"	f
+printDriveInstructions	terminus.c	/^void printDriveInstructions(){$/;"	f
+releaseTrigger	driveTrain.c	/^void releaseTrigger() {$/;"	f
+resetTermios	terminus.c	/^void resetTermios(void){$/;"	f
+right	driveTrain.c	/^int right = 50;$/;"	v
+rotateCCW	driveTrain.c	/^void rotateCCW(void) {$/;"	f
+rotateCW	driveTrain.c	/^void rotateCW(void) {$/;"	f
+runFSM	fsm.c	/^void runFSM(){$/;"	f
+simpleLeftBiasBack	lineSensor.c	/^int simpleLeftBiasBack(void) {$/;"	f
+simpleLeftBiasForward	lineSensor.c	/^int simpleLeftBiasForward(void) {$/;"	f
+simpleRightBiasBack	lineSensor.c	/^int simpleRightBiasBack(void) {$/;"	f
+simpleRightBiasForward	lineSensor.c	/^int simpleRightBiasForward(void) {$/;"	f
+stateFour	fsm.c	/^MULTI_STATE stateFour(){$/;"	f
+stateOne	fsm.c	/^MULTI_STATE stateOne() {$/;"	f
+stateThree	fsm.c	/^MULTI_STATE stateThree(){$/;"	f
+stateTwo	fsm.c	/^MULTI_STATE stateTwo() {$/;"	f
+state_ptr	fsm.h	/^typedef MULTI_STATE (*state_ptr)( void );$/;"	t
+trigger	driveTrain.c	/^float trigger= 0.0;$/;"	v
+true	lineSensor.c	/^enum bool { false, true };$/;"	e	enum:bool	file:
+trySubstate	driveTrain.c	/^void *trySubstate(void * param) {$/;"	f
+updateLineData	lineSensor.c	/^void updateLineData() {$/;"	f
+weightMap	lineSensor.c	/^int weightMap[LINE_SENSOR_LEN] = { 50, 15, 10, 0, 0, 10, 15, 50};$/;"	v

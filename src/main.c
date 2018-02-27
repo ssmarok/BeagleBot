@@ -6,6 +6,7 @@
 int main(){
     pthread_t pThread = 0;
     pthread_t subPThread = 0;
+    pthread_t shootPThread = 0;
 
     /*
      * Implicitly loops in parallel
@@ -14,6 +15,7 @@ int main(){
      */
     initializeDriveTest(pThread);
     initializeSubState(subPThread);
+    initializeShootState(shootPThread);
 
     while(1) {
         /*
@@ -24,6 +26,10 @@ int main(){
          */
         runFSM();
     }
+	pthread_join(pThread, NULL);
+	pthread_join(subPThread, NULL);
+	pthread_join(shootPThread, NULL);
+    rc_cleanup();
     return 0;
 }
 

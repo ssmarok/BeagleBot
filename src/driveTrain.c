@@ -8,8 +8,9 @@ int left = 50;
 int right = 50;
 int SUBSTATE = 0;
 float trigger= 0.0;
+int shootState = 0;
 
-#define BASE_SPEED 75
+#define BASE_SPEED 50
 
 void initializeDriveTest(pthread_t pThread) {
 	if(rc_initialize()){
@@ -25,8 +26,12 @@ void initializeSubState(pthread_t pThread) {
 	pthread_create(&pThread, NULL, trySubstate, NULL);
 }
 
+void initializeShootState(pthread_t pThread) {
+	pthread_create(&pThread, NULL, tryShootState, NULL);
+}
+
 void initializeDrivePins(){
-    int driveMotorPins[] = { MOTOR_A_0, MOTOR_A_1, MOTOR_B_0, MOTOR_B_1, MOTOR_TRIGGER, MOTOR_TRIGGER_2};
+    int driveMotorPins[] = { MOTOR_A_0, MOTOR_A_1, MOTOR_FIRE};
     for (int i=0; i < 4; i++) {
         rc_gpio_export(driveMotorPins[i]);
         rc_gpio_set_dir(driveMotorPins[i], OUTPUT_PIN);
@@ -48,31 +53,31 @@ void initializeDrivePins(){
 
 void *trySubstate(void * param) {
     while (1) {
-        printf("SubState: %d\n", SUBSTATE);
         switch (SUBSTATE) {
             case 0:
-                drive(0, 0);
-                usleep(1000);
-                SUBSTATE = 0;
+                //drive(0, 0);
+                usleep(2000);
                 break;
             case 1:
-                usleep(1000);
-                lineFollowForward();
+                //lineFollowForward();
+                drive(left, right);
                 break;
             case 2:
-                usleep(1000);
                 lineFollowBackward();
                 break;
             case 3:
-                usleep(1000);
+                usleep(2000);
+                rotateCCW();
                 break;
             case 4:
-                usleep(1000);
+                usleep(2000);
+                rotateCW();
                 break;
             default:
-                usleep(1000);
+                usleep(2000);
                 break;
         }
+	usleep(10000);
     }
 	return 0; // Exits void thread
 }
@@ -83,10 +88,10 @@ void *parseKeyboardInput(void * param){
         printf("---");
         switch (nextChar) {
             case 'w':
-                //drive(left, right);
+                drive(left, right);
                 printf("Forward");
                 //lineFollowForward();
-                SUBSTATE = 1;
+                //SUBSTATE = 1;
                 break;
             case 's':
                 //drive(-1*left, -1*right);
@@ -112,6 +117,8 @@ void *parseKeyboardInput(void * param){
             case 'q':
                 drive(0, 0);
                 printf("System Exit---\n\n");
+                SUBSTATE = 0;
+                rc_cleanup();
                 exit(0);
             case 'o':
                 left = (left < 100 ? left+1 : 100);
@@ -143,29 +150,59 @@ void *parseKeyboardInput(void * param){
                 break;
             case 'f':
                 printf("FIRE");
-                releaseTrigger();
+		shootState = 1;
+                //releaseTrigger();
+                //releaseServo();
                 break;
             case 'h':
                 printf("HOLD");
-                holdTrigger();
+		shootState = 0;
+                //holdTrigger();
+                //holdServo();
                 break;
             default:
                 printf("Running Thread");
                 break;
         }
         printf("\n");
+	usleep(5000);
 	}
 	return 0; // Exits void thread
 }
 
+void *tryShootState(void * param) {
+    while(1) {
+	switch(shootState){
+	    case 0:
+		holdTrigger();
+		holdServo();
+		break;
+	    case 1:
+		releaseTrigger();
+		releaseServo();
+		break;
+	}
+	usleep(10000);
+    }
+    return 0;
+}
+
 void lineFollowForward(void) {
     updateLineData();
-    drive(BASE_SPEED-simpleLeftBias(), BASE_SPEED-simpleRightBias());
+    drive(BASE_SPEED+simpleLeftBiasForward(), BASE_SPEED+simpleRightBiasForward());
 }
 
 void lineFollowBackward(void) {
     updateLineData();
-    drive(-1*BASE_SPEED+simpleLeftBiasBack(), -1*BASE_SPEED+simpleRightBiasBack());
+    drive(-1*BASE_SPEED-simpleLeftBiasBack(), -1*BASE_SPEED-simpleRightBiasBack());
+}
+
+void rotateCCW(void) {
+    drive(-1*BASE_SPEED, BASE_SPEED);
+}
+
+void rotateCW(void) {
+    drive(BASE_SPEED, -1*BASE_SPEED);
 }
 
 void drive(int lSpeed, int rSpeed) {
@@ -180,13 +217,37 @@ void drive(int lSpeed, int rSpeed) {
 }
 
 void releaseTrigger() {
+    rc_gpio_set_value_mmap(MOTOR_FIRE, HIGH);
+    //usleep(10000);
+    //rc_send_servo_pulse_normalized_all(-1.5);
+    //rc_send_servo_pulse_us_all(1500);
+/*
     rc_gpio_set_value_mmap(MOTOR_TRIGGER, HIGH);
     rc_gpio_set_value_mmap(MOTOR_TRIGGER_2, HIGH);
     rc_set_led(GREEN, HIGH);
+*/
 }
 
 void holdTrigger() {
-    rc_gpio_set_value_mmap(MOTOR_TRIGGER, LOW);
-    rc_gpio_set_value_mmap(MOTOR_TRIGGER_2, LOW);
-    rc_set_led(GREEN, LOW);
+    rc_gpio_set_value_mmap(MOTOR_FIRE, LOW);
+    //usleep(10000);
+    //rc_send_servo_pulse_normalized_all(-0.5);
+    //rc_send_servo_pulse_us_all(2500);
+    //rc_set_led(GREEN, LOW);
 }
+
+void releaseServo(){
+    rc_send_servo_pulse_normalized(1, -1);
+    //usleep(22000);
+}
+
+void holdServo(){
+    rc_send_servo_pulse_normalized(1, -0.5);
+    //usleep(22000);
+}
+
+
+
+
+
+

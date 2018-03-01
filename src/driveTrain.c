@@ -1,16 +1,16 @@
 #include <rc_usefulincludes.h>
 #include <roboticscape.h>
+#include "pinMap.h"
 #include "terminus.h"
 #include "driveTrain.h"
 #include "lineSensor.h"
+#include "shootingMechanism.h"
 
 int left = 50;
 int right = 50;
 int SUBSTATE = 0;
 float trigger= 0.0;
-int shootState = 0;
 
-#define BASE_SPEED 50
 
 void initializeDriveTest(pthread_t pThread) {
 	if(rc_initialize()){
@@ -22,12 +22,8 @@ void initializeDriveTest(pthread_t pThread) {
 	initializeDrivePins();
 }
 
-void initializeSubState(pthread_t pThread) {
-	pthread_create(&pThread, NULL, trySubstate, NULL);
-}
-
-void initializeShootState(pthread_t pThread) {
-	pthread_create(&pThread, NULL, tryShootState, NULL);
+void initializeDriveThread(pthread_t pThread) {
+	pthread_create(&pThread, NULL, runDriveThread, NULL);
 }
 
 void initializeDrivePins(){
@@ -51,35 +47,60 @@ void initializeDrivePins(){
     initializeIRSensors();
 }
 
-void *trySubstate(void * param) {
+void setSubState(int subState) {
+    SUBSTATE = subState;
+}
+
+void *runDriveThread(void * param) {
     while (1) {
         switch (SUBSTATE) {
             case 0:
-                //drive(0, 0);
-                usleep(2000);
+                drive(0, 0);
                 break;
             case 1:
-                //lineFollowForward();
-                drive(left, right);
+                /*
+                if (isFullLine()) {
+                    SUBSTATE = 0;
+                }
+                */
+                lineFollowForward();
                 break;
             case 2:
+                //drive(-50, -50);
                 lineFollowBackward();
                 break;
             case 3:
-                usleep(2000);
-                rotateCCW();
+                turn(-90);
+                SUBSTATE = 0;
                 break;
             case 4:
-                usleep(2000);
-                rotateCW();
+                turn(90);
+                SUBSTATE = 0;
                 break;
             default:
                 usleep(2000);
                 break;
         }
-	usleep(10000);
+	usleep(50);
     }
 	return 0; // Exits void thread
+}
+
+
+void turn(int degrees) {
+    switch (degrees) {
+        case -90:
+            drive(-100, 80);
+            usleep(650000);
+            break;
+        case 90:
+            drive(80, -100);
+            usleep(650000);
+            break;
+        default:
+            break;
+    }
+    drive(0,0);
 }
 
 void *parseKeyboardInput(void * param){
@@ -88,15 +109,11 @@ void *parseKeyboardInput(void * param){
         printf("---");
         switch (nextChar) {
             case 'w':
-                drive(left, right);
                 printf("Forward");
-                //lineFollowForward();
-                //SUBSTATE = 1;
+                SUBSTATE = 1;
                 break;
             case 's':
-                //drive(-1*left, -1*right);
                 printf("Reverse");
-                //lineFollowBackward();
                 SUBSTATE = 2;
                 break;
             case 'd':
@@ -122,8 +139,6 @@ void *parseKeyboardInput(void * param){
                 exit(0);
             case 'o':
                 left = (left < 100 ? left+1 : 100);
-                //trigger = (trigger < 1.0 ? trigger +0.5 : 1.0);
-                //printf("Increase left: %d", left);
                 printf("Increase trigger: %f", trigger);
                 break;
             case 'p':
@@ -132,8 +147,6 @@ void *parseKeyboardInput(void * param){
                 break;
             case 'k':
                 left = (left > 0 ? left-1 : 0);
-                //trigger = (trigger > -1.0 ? trigger-0.5 : -1.0);
-                //printf("Decrease left: %d", left);
                 printf("Decrease trigger: %f", trigger);
                 break;
             case 'l':
@@ -150,15 +163,11 @@ void *parseKeyboardInput(void * param){
                 break;
             case 'f':
                 printf("FIRE");
-		shootState = 1;
-                //releaseTrigger();
-                //releaseServo();
+                setShootingMechanism();
                 break;
             case 'h':
                 printf("HOLD");
-		shootState = 0;
-                //holdTrigger();
-                //holdServo();
+                resetShootingMechanism();
                 break;
             default:
                 printf("Running Thread");
@@ -170,39 +179,20 @@ void *parseKeyboardInput(void * param){
 	return 0; // Exits void thread
 }
 
-void *tryShootState(void * param) {
-    while(1) {
-	switch(shootState){
-	    case 0:
-		holdTrigger();
-		holdServo();
-		break;
-	    case 1:
-		releaseTrigger();
-		releaseServo();
-		break;
-	}
-	usleep(10000);
-    }
-    return 0;
+void driveForward(void) {
+    drive(BASE_SPEED, BASE_SPEED);
 }
 
-void lineFollowForward(void) {
-    updateLineData();
-    drive(BASE_SPEED+simpleLeftBiasForward(), BASE_SPEED+simpleRightBiasForward());
-}
-
-void lineFollowBackward(void) {
-    updateLineData();
-    drive(-1*BASE_SPEED-simpleLeftBiasBack(), -1*BASE_SPEED-simpleRightBiasBack());
+void driveBackward(void) {
+    drive(-1*BASE_SPEED, -1*BASE_SPEED);
 }
 
 void rotateCCW(void) {
-    drive(-1*BASE_SPEED, BASE_SPEED);
+    drive(-1*BASE_SPEED/2, BASE_SPEED/2);
 }
 
 void rotateCW(void) {
-    drive(BASE_SPEED, -1*BASE_SPEED);
+    drive(BASE_SPEED/2, -1*BASE_SPEED/2);
 }
 
 void drive(int lSpeed, int rSpeed) {
@@ -215,39 +205,4 @@ void drive(int lSpeed, int rSpeed) {
     rc_pwm_set_duty_mmap(0, 'A', (lSpeed/100.0) >= 1.0 ? MAX_DRIVE_SPEED : lSpeed/100.0);
     rc_pwm_set_duty_mmap(0, 'B', (rSpeed/100.0) >= 1.0 ? MAX_DRIVE_SPEED : rSpeed/100.0);
 }
-
-void releaseTrigger() {
-    rc_gpio_set_value_mmap(MOTOR_FIRE, HIGH);
-    //usleep(10000);
-    //rc_send_servo_pulse_normalized_all(-1.5);
-    //rc_send_servo_pulse_us_all(1500);
-/*
-    rc_gpio_set_value_mmap(MOTOR_TRIGGER, HIGH);
-    rc_gpio_set_value_mmap(MOTOR_TRIGGER_2, HIGH);
-    rc_set_led(GREEN, HIGH);
-*/
-}
-
-void holdTrigger() {
-    rc_gpio_set_value_mmap(MOTOR_FIRE, LOW);
-    //usleep(10000);
-    //rc_send_servo_pulse_normalized_all(-0.5);
-    //rc_send_servo_pulse_us_all(2500);
-    //rc_set_led(GREEN, LOW);
-}
-
-void releaseServo(){
-    rc_send_servo_pulse_normalized(1, -1);
-    //usleep(22000);
-}
-
-void holdServo(){
-    rc_send_servo_pulse_normalized(1, -0.5);
-    //usleep(22000);
-}
-
-
-
-
-
 

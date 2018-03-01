@@ -1,11 +1,14 @@
 #include <rc_usefulincludes.h>
 #include <roboticscape.h>
 #include "driveTrain.h"
+#include "shootingMechanism.h"
 #include "fsm.h"
+
+#define DEBUG 1
 
 int main(){
     pthread_t pThread = 0;
-    pthread_t subPThread = 0;
+    pthread_t drivePThread = 0;
     pthread_t shootPThread = 0;
 
     /*
@@ -13,9 +16,18 @@ int main(){
      * Initializes Motor GPIO Pins
      * Uses stdio file for manual testing of drive
      */
-    initializeDriveTest(pThread);
-    initializeSubState(subPThread);
-    initializeShootState(shootPThread);
+    if (DEBUG) {
+        initializeDriveTest(pThread);
+    }
+    else {
+        if(rc_initialize()){
+            fprintf(stderr,"Initialization failed. Are you root?\n");
+            exit(-1);
+        }
+        initializeDrivePins();
+    }
+    initializeDriveThread(drivePThread);
+    initializeServoThread(shootPThread);
 
     while(1) {
         /*
@@ -24,10 +36,14 @@ int main(){
          * Fills stdio buffer with current state
          * TODO: Delete stdio access when no longer necessary (FSM filled)
          */
-        runFSM();
+        if (!DEBUG) {
+            runFSM();
+        }
     }
-	pthread_join(pThread, NULL);
-	pthread_join(subPThread, NULL);
+    if (DEBUG) {
+        pthread_join(pThread, NULL);
+    }
+	pthread_join(drivePThread, NULL);
 	pthread_join(shootPThread, NULL);
     rc_cleanup();
     return 0;

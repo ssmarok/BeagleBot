@@ -5,46 +5,17 @@
 #include "lineSensor.h"
 #include "driveTrain.h"
 
-#define I2C_BUS 1
-#define PORT_EXPANDER_ONE 0x3E
-#define LINE_SENSOR_LEN 8
-
-/*
-Configures direction for each IO.
-0 : IO is configured as an output
-1 : IO is configured as an input
-*/
-#define RegDirA 0x0F
-#define RegDirB 0x0E
-#define FULL_MASK 0xFF
-
-/*
-Write: Data to be output to the output-configured IOs
-Read: Data seen at the IOs, independent of the direction configured.
-*/
-#define RegDataA 0x10 // Back Sensor
-#define RegDataB 0x11 // Front Sensor
-
-/*
-Enables high input mode for each [input-configured] IO
-0 : OFF. VIH max = 3.6V and VCCx min = 1.2V
-1 : ON. VIH max = 5.5V and VCCx min = 1.65V
-*/
-#define RegHighInputA 0x6A
-#define RegHighInputB 0x69
-
-/*
-00 0x3E (0111110) First address of the 2-wire interface
-01 0x3F (0111111) Second address of the 2-wire interface
-10 0x70 (1110000) Third address of the 2-wire interface
-11 0x71 (1110001) Fourth address of the 2-wire interface
-*/
-
 typedef int bool;
 enum bool { false, true };
+int offPath = 0;
 int frontSensor[LINE_SENSOR_LEN];
 int backSensor[LINE_SENSOR_LEN];
-int weightMap[LINE_SENSOR_LEN] = { 50, 15, 10, 0, 0, 10, 15, 50};
+
+int leftWeightMap[LINE_SENSOR_LEN] = { 60, 15, 10, 0, 0, -5, -10, -60};
+int rightWeightMap[LINE_SENSOR_LEN] = { -60, -10, -5, 0, 0, 10, 15, 60};
+
+int prevLBias = 0;
+int prevRBias = 0;
 
 void initializeIRSensors() {
     rc_i2c_init(I2C_BUS, PORT_EXPANDER_ONE);
@@ -57,66 +28,98 @@ void initializeIRSensors() {
 
 void updateLineData() {
     rc_i2c_claim_bus(I2C_BUS);
-
     int mask = 0x01;
 
     uint8_t frontRegisterVal = 0;
-    rc_i2c_read_byte(I2C_BUS, RegDataB, &frontRegisterVal);
-    printf("val:%d", frontRegisterVal);
     uint8_t backRegisterVal = 0;
+    rc_i2c_read_byte(I2C_BUS, RegDataB, &frontRegisterVal);
     rc_i2c_read_byte(I2C_BUS, RegDataA, &backRegisterVal);
-    if (frontRegisterVal >= 1) {
+    if (frontRegisterVal > 0) {
         for (int i=0; i<LINE_SENSOR_LEN; i++) {
-            frontSensor[i] = (mask & frontRegisterVal) ? true: false;
+            frontSensor[LINE_SENSOR_LEN-i-1] = ((mask & frontRegisterVal)>0) ? true: false;
             mask <<= 1;
         }
     }
-    mask = 0x01;
-    if (backRegisterVal >= 1) {
+    if (backRegisterVal > 0) {
+        mask = 0x01;
         for (int i=0; i<LINE_SENSOR_LEN; i++) {
-            backSensor[i] = (mask & backRegisterVal) ? true: false;
+            backSensor[LINE_SENSOR_LEN-i-1] = ((mask & backRegisterVal)>0) ? true: false;
             mask <<= 1;
         }
-    }
-
-    for (int i=0; i<LINE_SENSOR_LEN; i++) {
-        printf("FrontBuffer[%d]: %d\n", i, frontSensor[i]);
-    }
-    for (int i=0; i<LINE_SENSOR_LEN; i++) {
-        printf("BackBuffer[%d]: %d\n", i, backSensor[i]);
     }
 
     rc_i2c_release_bus(I2C_BUS);
+    usleep(1000);
 }
 
-int simpleLeftBiasBack(void) {
-    int bias = 0;
-    for (int i=0; i<4; i++) {
-        bias += backSensor[i] ? weightMap[i] : 0;
+int sensorCount(int sensor[]) {
+    int count = 0;
+    for (int i=0; i<LINE_SENSOR_LEN; i++) {
+        count += sensor[i] ? 1 : 0;
     }
-    return bias;
+    return count;
 }
 
-int simpleRightBiasBack(void) {
-    int bias = 0;
-    for (int i=4; i<LINE_SENSOR_LEN; i++) {
-        bias += backSensor[i] ? weightMap[i] : 0;
+int frontSensorCount(void) {
+    int count = 0;
+    for (int i=0; i<LINE_SENSOR_LEN; i++) {
+        count += frontSensor[i] ? 1 : 0;
     }
-    return bias;
+    return count;
 }
 
-int simpleLeftBiasForward(void) {
-    int bias = 0;
-    for (int i=0; i<4; i++) {
-        bias += frontSensor[i] ? weightMap[i] : 0;
-    }
-    return bias;
+int centerBias(void) {
+    return ((frontSensorCount() == 2 || frontSensorCount() == 3) && frontSensor[3]
+    && frontSensor[4]) ? 1000: 0;
 }
 
-int simpleRightBiasForward(void) {
+int isCentered(void) {
+    return (frontSensorCount() == 2 && frontSensor[3] & frontSensor[4]);
+}
+
+int isFullLine(void) {
+    return (frontSensorCount() > 6);
+}
+
+int calculateBias(int sensor[], int weightMap[]) {
     int bias = 0;
-    for (int i=4; i<LINE_SENSOR_LEN; i++) {
-        bias += frontSensor[i] ? weightMap[i] : 0;
+    for (int i=0; i<LINE_SENSOR_LEN; i++) {
+        bias += sensor[i] ? weightMap[i] : 0;
     }
-    return bias;
+    if (frontSensorCount() > 1) {
+        return bias;
+    }
+    return prevLBias;
+}
+
+int rightBias(void) {
+    int bias = 0;
+    for (int i=0; i<LINE_SENSOR_LEN; i++) {
+        bias += frontSensor[i] ? rightWeightMap[i] : 0;
+    }
+    if (frontSensorCount() > 1) {
+        return bias;
+    }
+    return prevRBias;
+}
+
+void lineFollowForward(void) {
+    updateLineData();
+    int lBias = calculateBias(frontSensor, leftWeightMap);
+    int rBias = calculateBias(frontSensor, rightWeightMap);
+
+    drive(BASE_SPEED-lBias, BASE_SPEED-rBias);
+    prevLBias = lBias;
+    prevRBias = rBias;
+}
+
+void lineFollowBackward(void) {
+    updateLineData();
+    // Sensor is in reverse
+    int lBias = calculateBias(backSensor, rightWeightMap);
+    int rBias = calculateBias(backSensor, leftWeightMap);
+
+    drive(-1*(BASE_SPEED-lBias), -1*(BASE_SPEED-rBias));
+    prevLBias = lBias;
+    prevRBias = rBias;
 }

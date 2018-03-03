@@ -50,6 +50,7 @@ void updateLineData() {
             else {
                // printf("Boo");
             }
+            //backSensor[LINE_SENSOR_LEN-i-1] = ((mask & backRegisterVal)>0) ? true: false;
             mask <<= 1;
         }
     }

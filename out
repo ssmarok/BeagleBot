@@ -1,0 +1,2763 @@
+
+Hello from BeagleBot!
+-----------------------
+|       Controls      |
+-----------------------
+| w - Forward         |
+| s - Back            |
+| a - Left            |
+| d - Right           |
+| p - Half            |
+| q - Sys Exit        |
+-----------------------
+Initialization of IR Sensors Complete
+---Forward
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0
+---System Exit---
+
+
+Exiting Cleanly
+val:0
+FrontBuffer[0]: 0
+FrontBuffer[1]: 0
+FrontBuffer[2]: 0
+FrontBuffer[3]: 0
+FrontBuffer[4]: 0
+FrontBuffer[5]: 0
+FrontBuffer[6]: 0
+FrontBuffer[7]: 0

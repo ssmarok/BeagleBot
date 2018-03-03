@@ -5,7 +5,7 @@ TARGET = main
 
 CC		:= gcc
 LINKER		:= gcc -o
-CFLAGS		:= -c -Wall -g
+CFLAGS		:= -c -Wall -g -std=c99
 LFLAGS		:= -lm -lrt -lpthread -lroboticscape
 
 SRCDIR		= src

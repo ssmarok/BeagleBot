@@ -1,5 +1,11 @@
 #include <rc_usefulincludes.h>
 #include "fsm.h"
+#include "lineSensor.h"
+#include "driveTrain.h"
+#include "shootingMechanism.h"
+
+typedef int DRIVESTATE;
+enum DRIVESTATE { FOLLOW_FORWARD, FOLLOW_BACKWARD, TURN_POS_90, TURN_NEG_90 };
 
 MULTI_STATE initialization();
 MULTI_STATE stateOne();
@@ -28,12 +34,17 @@ MULTI_STATE initialization(){
 }
 
 MULTI_STATE stateOne() {
-    //putchar('1');
+    setSubState(1);
+    if (!isFullLine()) {
+        return STATE_ONE;
+    }
+    setSubState(0);
     return STATE_TWO;
 }
 
 MULTI_STATE stateTwo() {
     //putchar('2');
+    drive(0,0);
     return STATE_THREE;
 }
 
@@ -44,6 +55,7 @@ MULTI_STATE stateThree(){
 
 MULTI_STATE stateFour(){
     //putchar('4');
-    return STATE_ONE;
+    usleep(10000);
+    return STATE_FOUR;
 }
 

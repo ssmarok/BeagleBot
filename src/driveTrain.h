@@ -27,6 +27,7 @@ void rotateCW(void);
 void rotateCCW(void);
 void turn(int degrees);
 
+void turnRight90(void);
 void setBaseSpeed(int baseSpeed);
 
 #endif

@@ -38,11 +38,10 @@ Enables high input mode for each [input-configured] IO
 
 void initializeIRSensors();
 void updateLineData();
-int leftBias(void);
-int rightBias(void);
 int frontSensorCount(void);
-int isCentered(void);
-int isFullLine(void);
+int isCentered(int sensor[]);
+int isFullLineForward(void);
+int isFullLineBack(void);
 
 void lineFollowForward(void);
 void lineFollowBackward(void);

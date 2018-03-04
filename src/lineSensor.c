@@ -43,20 +43,11 @@ void updateLineData() {
     if (backRegisterVal > 0) {
         mask = 0x01;
         for (int i=0; i<LINE_SENSOR_LEN; i++) {
-            backSensor[i] = (mask & backRegisterVal) ? true: false;
-            if (backSensor[i]) {
-               // printf("Cool");
-            }
-            else {
-               // printf("Boo");
-            }
-            //backSensor[LINE_SENSOR_LEN-i-1] = ((mask & backRegisterVal)>0) ? true: false;
+            backSensor[LINE_SENSOR_LEN-i-1] = ((mask & backRegisterVal)>0) ? true: false;
             mask <<= 1;
         }
     }
-
     rc_i2c_release_bus(I2C_BUS);
-    usleep(1000);
 }
 
 int sensorCount(int sensor[]) {
@@ -80,40 +71,29 @@ int centerBias(void) {
     && frontSensor[4]) ? 1000: 0;
 }
 
-int isCentered(void) {
-    return (frontSensorCount() == 2 && frontSensor[3] & frontSensor[4]);
+int isCentered(int sensor[]) {
+    return (sensorCount(sensor) == 2 && sensor[3] & sensor[4]);
 }
 
 int isFullLine(void) {
     return (frontSensorCount() > 6);
 }
 
-int calculateBias(int sensor[], int weightMap[]) {
+int calculateBias(int sensor[], int weightMap[], int prevBias) {
     int bias = 0;
     for (int i=0; i<LINE_SENSOR_LEN; i++) {
         bias += sensor[i] ? weightMap[i] : 0;
     }
-    if (frontSensorCount() > 1) {
+    if (sensorCount(sensor) > 1) {
         return bias;
     }
-    return prevLBias;
-}
-
-int rightBias(void) {
-    int bias = 0;
-    for (int i=0; i<LINE_SENSOR_LEN; i++) {
-        bias += frontSensor[i] ? rightWeightMap[i] : 0;
-    }
-    if (frontSensorCount() > 1) {
-        return bias;
-    }
-    return prevRBias;
+    return prevBias;
 }
 
 void lineFollowForward(void) {
     updateLineData();
-    int lBias = calculateBias(frontSensor, leftWeightMap);
-    int rBias = calculateBias(frontSensor, rightWeightMap);
+    int lBias = calculateBias(frontSensor, leftWeightMap, prevLBias);
+    int rBias = calculateBias(frontSensor, rightWeightMap, prevRBias);
 
     drive(BASE_SPEED-lBias, BASE_SPEED-rBias);
     prevLBias = lBias;
@@ -123,10 +103,10 @@ void lineFollowForward(void) {
 void lineFollowBackward(void) {
     updateLineData();
     // Sensor is in reverse
-    int lBias = calculateBias(backSensor, rightWeightMap);
-    int rBias = calculateBias(backSensor, leftWeightMap);
+    int lBias = calculateBias(backSensor, rightWeightMap, prevLBias);
+    int rBias = calculateBias(backSensor, leftWeightMap, prevRBias);
 
-    drive(-1*(BASE_SPEED-lBias), -1*(BASE_SPEED-rBias));
+    drive(-1*(BASE_SPEED-lBias)*1.15, -1*(BASE_SPEED-rBias)*1.15);
     prevLBias = lBias;
     prevRBias = rBias;
 }

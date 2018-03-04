@@ -7,11 +7,8 @@
 #include "shootingMechanism.h"
 #include "encoders.h"
 
-int left = 50;
-int right = 50;
 int SUBSTATE = 0;
 float trigger= 0.0;
-
 
 void initializeDriveTest(pthread_t pThread) {
 	if(rc_initialize()){
@@ -55,27 +52,33 @@ void setSubState(int subState) {
 void *runDriveThread(void * param) {
     while (1) {
         switch (SUBSTATE) {
+            case -1:
+                break;
             case 0:
                 drive(0, 0);
                 break;
             case 1:
-                /*
-                if (isFullLine()) {
-                    SUBSTATE = 0;
-                }
-                */
                 lineFollowForward();
                 break;
             case 2:
-                //drive(-50, -50);
                 lineFollowBackward();
                 break;
             case 3:
-                turn(-90);
+                //turn(-90);
+                resetEncoder(FRONT_LEFT);
+                resetEncoder(FRONT_RIGHT);
+                while (getEncoder(FRONT_LEFT) > -10500) {
+                    drive(-70, 70);
+                }
                 SUBSTATE = 0;
                 break;
             case 4:
-                turn(90);
+                //turn(90);
+                resetEncoder(FRONT_LEFT);
+                resetEncoder(FRONT_RIGHT);
+                while (getEncoder(FRONT_RIGHT) > -4500) {
+                    drive(70, -70);
+                }
                 SUBSTATE = 0;
                 break;
             default:
@@ -87,16 +90,21 @@ void *runDriveThread(void * param) {
 	return 0; // Exits void thread
 }
 
-
 void turn(int degrees) {
     switch (degrees) {
         case -90:
-            drive(-100, 80);
-            usleep(650000);
+            //resetEncoder(FRONT_RIGHT);
+            while (getEncoder(FRONT_RIGHT) < 5000) {
+                //drive(-100, 80);
+                drive(-80, 80);
+            }
             break;
         case 90:
-            drive(80, -100);
-            usleep(650000);
+            //resetEncoder(FRONT_RIGHT);
+            while (getEncoder(FRONT_LEFT) > -5000) {
+                drive(80, -80);
+                //drive(80, -100);
+            }
             break;
         default:
             break;
@@ -109,23 +117,41 @@ void *parseKeyboardInput(void * param){
         char nextChar = getch();
         printf("---");
         switch (nextChar) {
+            case 'r':
+                resetEncoder(FRONT_LEFT);
+                resetEncoder(FRONT_RIGHT);
+                break;
             case 'w':
                 printf("Forward");
                 SUBSTATE = 1;
+                break;
+            case 'W':
+                drive(BASE_SPEED, BASE_SPEED);
+                SUBSTATE = -1;
                 break;
             case 's':
                 printf("Reverse");
                 SUBSTATE = 2;
                 break;
+            case 'S':
+                drive(-1*BASE_SPEED, -1*BASE_SPEED);
+                SUBSTATE = -1;
+                break;
             case 'd':
-                drive(left, -1*right);
                 printf("Right Turn");
                 SUBSTATE = 4;
                 break;
             case 'a':
-                drive(-1*left, right);
                 printf("Left Turn");
                 SUBSTATE = 3;
+                break;
+            case 'D':
+                drive(BASE_SPEED, -1*BASE_SPEED);
+                SUBSTATE = -1;
+                break;
+            case 'A':
+                drive(-1*BASE_SPEED, BASE_SPEED);
+                SUBSTATE = -1;
                 break;
             case 'P':
                 drive(0, 0);
@@ -138,22 +164,6 @@ void *parseKeyboardInput(void * param){
                 SUBSTATE = 0;
                 rc_cleanup();
                 exit(0);
-            case 'o':
-                left = (left < 100 ? left+1 : 100);
-                printf("Increase trigger: %f", trigger);
-                break;
-            case 'p':
-                right = (right < 100 ? right+1 : 100);
-                printf("Increase right: %d", right);
-                break;
-            case 'k':
-                left = (left > 0 ? left-1 : 0);
-                printf("Decrease trigger: %f", trigger);
-                break;
-            case 'l':
-                right = (right > 0 ? right-1 : 0);
-                printf("Decrease right: %d", right);
-                break;
             case 'y':
                 rc_send_servo_pulse_normalized_all(-1.0);
                 usleep(10000);
@@ -172,8 +182,8 @@ void *parseKeyboardInput(void * param){
                 resetShootingMechanism();
                 break;
             case 'e':
-                printf("Front Right: %d\n", getEncoder(FRONT_RIGHT));
-                printf("Back Right: %d\n", getEncoder(BACK_RIGHT));
+                printf("Front Right: %d\t", getEncoder(FRONT_RIGHT));
+                printf("Front Left: %d", getEncoder(FRONT_LEFT));
                 break;
             default:
                 printf("Running Thread");

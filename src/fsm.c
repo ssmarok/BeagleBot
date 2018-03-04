@@ -84,6 +84,10 @@ MULTI_STATE stateFive(){
     return STATE_SIX;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> db7982d62ecae3c6729fb605ca4a179701642cbb
 // #1 Drive forward until detecting a full line on the FRONT line sensor. Then, turn right 90 degrees
 MULTI_STATE stateSix(){
     return STATE_SEVEN;
@@ -105,6 +109,10 @@ MULTI_STATE stateNine(){
     return STATE_TEN;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> db7982d62ecae3c6729fb605ca4a179701642cbb
 // SHOOT ALL THE BALLS (includes necessary wait). Then, turn 90 degrees.
 MULTI_STATE stateTen(){
     return STATE_ELEVEN;
@@ -113,8 +121,12 @@ MULTI_STATE stateTen(){
 // #1 Drive forward until detecting a full line on the FRONT line sensor.
 // #2 Drive forward until detecting a full line on the BACK line sensor.
 // This gets past the little line on the middle platform of the field
+<<<<<<< HEAD
 // Reset to state #1
+=======
+>>>>>>> db7982d62ecae3c6729fb605ca4a179701642cbb
 MULTI_STATE stateEleven(){
     return STATE_ONE;
 }
 
+// Reset to state #1

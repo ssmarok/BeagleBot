@@ -12,4 +12,7 @@ void setShootingServo();
 void setShootingMechanism();
 void resetShootingMechanism();
 
+void releaseBucket();
+void holdBucket();
+
 #endif

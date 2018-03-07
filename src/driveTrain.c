@@ -58,7 +58,8 @@ void *runDriveThread(void * param) {
                 drive(0, 0);
                 break;
             case 1:
-                lineFollowForward();
+                //lineFollowForward();
+                lineFollowForwardFast();
                 break;
             case 2:
                 lineFollowBackward();
@@ -146,11 +147,11 @@ void *parseKeyboardInput(void * param){
                 SUBSTATE = 3;
                 break;
             case 'D':
-                drive(BASE_SPEED, -1*BASE_SPEED);
+                drive(MAX_SPEED, -1*MAX_SPEED);
                 SUBSTATE = -1;
                 break;
             case 'A':
-                drive(-1*BASE_SPEED, BASE_SPEED);
+                drive(-1*MAX_SPEED, MAX_SPEED);
                 SUBSTATE = -1;
                 break;
             case 'P':

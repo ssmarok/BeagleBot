@@ -104,6 +104,16 @@ void lineFollowForward(void) {
     prevRBias = rBias;
 }
 
+void lineFollowForwardFast(void) {
+    updateLineData();
+    int lBias = calculateBias(frontSensor, leftWeightMap, prevLBias);
+    int rBias = calculateBias(frontSensor, rightWeightMap, prevRBias);
+
+    drive(2*BASE_SPEED-2*lBias, 2*BASE_SPEED-2*rBias);
+    prevLBias = lBias;
+    prevRBias = rBias;
+}
+
 void lineFollowBackward(void) {
     updateLineData();
     // Sensor is in reverse

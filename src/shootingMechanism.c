@@ -14,10 +14,14 @@ void *runServoThread(void * param) {
                 break;
             case 1:
                 releaseTrigger();
+                //usleep(1000000);
                 break;
             case 2: 
                 releaseTrigger();
                 releaseServo();
+                // IMPORTANT SHOOT
+                releaseBucket();
+                //usleep(10000);
                 break;
         }
         usleep(SERVO_SLEEP_TIME);
@@ -30,7 +34,7 @@ void initializeServoThread(pthread_t pThread) {
 }
 
 void setShootingServo() {
-    usleep(1000000);
+    //usleep(1000000);
     shootState = 2;
 }
 void setShootingMechanism() {
@@ -44,5 +48,6 @@ void resetShootingMechanism() {
 void releaseTrigger() { rc_gpio_set_value_mmap(MOTOR_FIRE, HIGH); }
 void holdTrigger() { rc_gpio_set_value_mmap(MOTOR_FIRE, LOW); }
 void releaseServo(){ rc_send_servo_pulse_normalized(1, -1); }
-void holdServo(){ rc_send_servo_pulse_normalized(1, -0.5); }
+void holdServo(){ rc_send_servo_pulse_normalized(1, -0.60); }
 
+void releaseBucket(){ rc_send_servo_pulse_normalized(7, 1.5); }

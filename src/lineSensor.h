@@ -40,9 +40,10 @@ void initializeIRSensors();
 void updateLineData();
 int frontSensorCount(void);
 int isCentered(int sensor[]);
-int isFullLineForward(void);
+int isFullLineFront(void);
 int isFullLineBack(void);
 
 void lineFollowForward(void);
+void lineFollowForwardFast(void);
 void lineFollowBackward(void);
 #endif

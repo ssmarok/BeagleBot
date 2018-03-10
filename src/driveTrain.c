@@ -186,6 +186,13 @@ void *parseKeyboardInput(void * param){
                 printf("Front Right: %d\t", getEncoder(FRONT_RIGHT));
                 printf("Front Left: %d", getEncoder(FRONT_LEFT));
                 break;
+            case 'l':
+                printOutLineData();
+                break;
+            case 'c':
+                printf("\033[0;0H");
+                printf("\033[2J");
+                break;
             default:
                 printf("Running Thread");
                 break;
@@ -215,7 +222,26 @@ void rotateCW(void) {
     drive(BASE_SPEED/2, -1*BASE_SPEED/2);
 }
 
+int bufferSpeed(int speed, int buffer) {
+    if (speed == 0) {
+        return speed;
+    }
+    if (speed < 0) {
+        if (speed > -1*buffer) {
+            return -1*buffer;
+        }
+    }
+    else {
+        if (speed < buffer) {
+            return buffer;
+        }
+    }
+    return speed;
+}
+
 void drive(int lSpeed, int rSpeed) {
+    lSpeed = bufferSpeed(lSpeed, 20);
+    rSpeed = bufferSpeed(rSpeed, 20);
     rc_gpio_set_value_mmap(MOTOR_A_0, lSpeed >= 0 ? LOW: HIGH);
     rc_gpio_set_value_mmap(MOTOR_A_1, rSpeed >= 0 ? HIGH: LOW);
 

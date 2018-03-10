@@ -38,6 +38,7 @@ Enables high input mode for each [input-configured] IO
 
 void initializeIRSensors();
 void updateLineData();
+void printOutLineData(void);
 int frontSensorCount(void);
 int isCentered(int sensor[]);
 int isFullLineFront(void);

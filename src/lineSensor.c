@@ -44,6 +44,7 @@ void updateLineData() {
         mask = 0x01;
         for (int i=0; i<LINE_SENSOR_LEN; i++) {
             backSensor[LINE_SENSOR_LEN-i-1] = ((mask & backRegisterVal)>0) ? true: false;
+            //backSensor[i] = ((mask & backRegisterVal)>0) ? true: false;
             mask <<= 1;
         }
     }
@@ -109,7 +110,7 @@ void lineFollowForwardFast(void) {
     int lBias = calculateBias(frontSensor, leftWeightMap, prevLBias);
     int rBias = calculateBias(frontSensor, rightWeightMap, prevRBias);
 
-    drive(2*BASE_SPEED-2*lBias, 2*BASE_SPEED-2*rBias);
+    drive(1.25*BASE_SPEED-2*lBias, 1.25*BASE_SPEED-2*rBias);
     prevLBias = lBias;
     prevRBias = rBias;
 }
@@ -123,4 +124,17 @@ void lineFollowBackward(void) {
     drive(-1*(BASE_SPEED-lBias)*1.15, -1*(BASE_SPEED-rBias)*1.15);
     prevLBias = lBias;
     prevRBias = rBias;
+}
+
+void printOutLineData(void) {
+    updateLineData();
+    printf("\n{ ");
+    for (int i=0; i<LINE_SENSOR_LEN; i++) {
+        printf("[%d]%c", frontSensor[i], i!= LINE_SENSOR_LEN-1 ? '-' : ' ');
+    }
+    printf("}: Front Sensor\n{ ");
+    for (int i=0; i<LINE_SENSOR_LEN; i++) {
+        printf("[%d]%c", backSensor[i], i!= LINE_SENSOR_LEN-1 ? '-' : ' ');
+    }
+    printf("}: Back Sensor\n");
 }

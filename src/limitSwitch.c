@@ -23,3 +23,17 @@ int isFrontCollision(void) {
 int isBackCollision(void) {
     return isSwitchClosed(BACK_LEFT_LIMIT) && isSwitchClosed(BACK_RIGHT_LIMIT);
 }
+
+
+void printOutLimitSwitchData(void) {
+    int limitSwitchArray[4] = {FRONT_LEFT_LIMIT, FRONT_RIGHT_LIMIT, BACK_LEFT_LIMIT, BACK_RIGHT_LIMIT};
+    printf("\n");
+    for (int i=0; i<2; i++) {
+        printf("[%d]%c", isSwitchClosed(limitSwitchArray[i]), i!= 1 ? '-' : ' ');
+    }
+    printf("}: Front Limit Switches\n{ ");
+    for (int i=2; i<4; i++) {
+        printf("[%d]%c", isSwitchClosed(limitSwitchArray[i]), i!= 3 ? '-' : ' ');
+    }
+    printf("}: Back Limit Switches\n");
+}

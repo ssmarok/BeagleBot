@@ -6,6 +6,7 @@
 #include "lineSensor.h"
 #include "shootingMechanism.h"
 #include "encoders.h"
+#include "limitSwitch.h"
 
 int SUBSTATE = 0;
 float trigger= 0.0;
@@ -188,6 +189,9 @@ void *parseKeyboardInput(void * param){
                 break;
             case 'l':
                 printOutLineData();
+                break;
+            case 'i':
+                printOutLimitSwitchData();
                 break;
             case 'c':
                 printf("\033[0;0H");

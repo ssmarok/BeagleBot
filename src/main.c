@@ -2,6 +2,7 @@
 #include <roboticscape.h>
 #include "driveTrain.h"
 #include "shootingMechanism.h"
+#include "limitSwitch.h"
 #include "fsm.h"
 
 #define DEBUG 1
@@ -17,15 +18,21 @@ int main(){
      * Uses stdio file for manual testing of drive
      */
     if (DEBUG) {
+        // Pins for debugging and taking in keyboard input
         initializeDriveTest(pThread);
     }
     else {
+        // TODO: Put this stuff into initializaDrivePins and possible rename it
         if(rc_initialize()){
             fprintf(stderr,"Initialization failed. Are you root?\n");
             exit(-1);
         }
         initializeDrivePins();
     }
+    // Other initializations
+    initLimitSwitches();
+
+    // Initialize Threads
     initializeDriveThread(drivePThread);
     initializeServoThread(shootPThread);
 

@@ -7,7 +7,10 @@
 #include "shootingMechanism.h"
 #include "encoders.h"
 #include "limitSwitch.h"
+<<<<<<< HEAD
 #include "runMode.h"
+=======
+>>>>>>> c4b055c4391630a73085a26d3880903f31ea9e77
 
 int SUBSTATE = 0;
 float trigger= 0.0;

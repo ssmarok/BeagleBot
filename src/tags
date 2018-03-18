@@ -104,6 +104,7 @@ isFullLineFront	lineSensor.c	/^int isFullLineFront(void) {$/;"	f
 isSwitchClosed	limitSwitch.c	/^int isSwitchClosed(int limitSwitch) {$/;"	f
 leftFrontEncoder	encoders.c	/^int leftFrontEncoder = 0;$/;"	v
 leftWeightMap	lineSensor.c	/^int leftWeightMap[LINE_SENSOR_LEN] = { 60, 15, 10, 0, 0, -5, -10, -60};$/;"	v
+limitSwitchArrayNames	limitSwitch.h	/^const char *limitSwitchArrayNames[4] = {"FRONT_LEFT_LIMIT", "FRONT_RIGHT_LIMIT", "BACK_LEFT_LIMIT", "BACK_RIGHT_LIMIT"};$/;"	v
 lineFollowBackward	lineSensor.c	/^void lineFollowBackward(void) {$/;"	f
 lineFollowForward	lineSensor.c	/^void lineFollowForward(void) {$/;"	f
 lineFollowForwardFast	lineSensor.c	/^void lineFollowForwardFast(void) {$/;"	f

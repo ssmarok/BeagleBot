@@ -48,25 +48,6 @@ int main(){
      * Uses stdio file for manual testing of drive
      */
     while(rc_get_state()!=EXITING) {
-    if (DEBUG) {
-        // Pins for debugging and taking in keyboard input
-        initializeDriveTest(pThread);
-    }
-    else {
-        // TODO: Put this stuff into initializaDrivePins and possible rename it
-        if(rc_initialize()){
-            fprintf(stderr,"Initialization failed. Are you root?\n");
-            exit(-1);
-        }
-        initializeDrivePins();
-    }
-    // Other initializations
-    initLimitSwitches();
-
-    // Initialize Threads
-    initializeDriveThread(drivePThread);
-    initializeServoThread(shootPThread);
-
         if(rc_get_state()==RUNNING){
             if(getRunMode() == MANUAL){
                 rc_set_led(GREEN, OFF);

@@ -42,12 +42,27 @@ void printDriveInstructions(){
 	printf("-----------------------\n");
 	printf("|       Controls      |\n");
 	printf("-----------------------\n");
+	printf("                       \n");
+	printf("----------Mode---------\n");
+    printf("| 1 - Manual          |\n");
+    printf("| 2 - Autonomous      |\n");
+	printf("---------Drive---------\n");
     printf("| w - Forward         |\n");
     printf("| s - Back            |\n");
     printf("| a - Left            |\n");
     printf("| d - Right           |\n");
-    printf("| p - Half            |\n");
+    printf("| P - STOP ALL        |\n");
+	printf("---------Shoot---------\n");
+    printf("| f - Fire            |\n");
+    printf("| h - Stop Firing     |\n");
+	printf("---------Debug---------\n");
+    printf("| e - Encoders        |\n");
+    printf("| l - Line Sensors    |\n");
+    printf("| i - Limit Switches  |\n");
+	printf("---------System---------\n");
+    printf("| c - Clear           |\n");
     printf("| q - Sys Exit        |\n");
+    printf("| ? - Help            |\n");
 	printf("-----------------------\n");
 }
 

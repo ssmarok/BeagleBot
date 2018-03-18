@@ -5,6 +5,11 @@
 
 int shootState = 0;
 
+void initializeServoThread(pthread_t pThread) {
+	pthread_create(&pThread, NULL, runServoThread, NULL);
+}
+
+
 void *runServoThread(void * param) {
     while(1) {
         switch(shootState){
@@ -27,10 +32,6 @@ void *runServoThread(void * param) {
         usleep(SERVO_SLEEP_TIME);
     }
     return 0;
-}
-
-void initializeServoThread(pthread_t pThread) {
-	pthread_create(&pThread, NULL, runServoThread, NULL);
 }
 
 void setShootingServo() {

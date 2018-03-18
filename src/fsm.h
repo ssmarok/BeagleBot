@@ -1,6 +1,7 @@
 #ifndef FSM_H
 #define FSM_H
 
+// FSM States
 typedef enum MULTI_STATE{
     INIT=0,
     STATE_ONE=1,

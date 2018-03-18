@@ -6,22 +6,18 @@
 #include "lineSensor.h"
 #include "shootingMechanism.h"
 #include "encoders.h"
+#include "limitSwitch.h"
+#include "runMode.h"
 
 int SUBSTATE = 0;
 float trigger= 0.0;
 
-void initializeDriveTest(pthread_t pThread) {
-	if(rc_initialize()){
-		fprintf(stderr,"Initialization failed. Are you root?\n");
-		exit(-1);
-	}
-    printDriveInstructions();
-	pthread_create(&pThread, NULL, parseKeyboardInput, NULL);
-	initializeDrivePins();
-}
-
 void initializeDriveThread(pthread_t pThread) {
 	pthread_create(&pThread, NULL, runDriveThread, NULL);
+}
+
+void initializeKeyboardThread(pthread_t pThread) {
+	pthread_create(&pThread, NULL, parseKeyboardInput, NULL);
 }
 
 void initializeDrivePins(){
@@ -163,6 +159,7 @@ void *parseKeyboardInput(void * param){
                 drive(0, 0);
                 printf("System Exit---\n\n");
                 SUBSTATE = 0;
+	            rc_set_state(EXITING); 
                 rc_cleanup();
                 exit(0);
             case 'y':
@@ -189,9 +186,23 @@ void *parseKeyboardInput(void * param){
             case 'l':
                 printOutLineData();
                 break;
+            case 'i':
+                printOutLimitSwitchData();
+                break;
             case 'c':
                 printf("\033[0;0H");
                 printf("\033[2J");
+                break;
+            case '1':
+                setRunMode(MANUAL);
+                printf("Operational Mode: Manual");
+                break;
+            case '2':
+                setRunMode(AUTONOMOUS);
+                printf("Operational Mode: Autonomous");
+                break;
+            case '?':
+                printDriveInstructions();
                 break;
             default:
                 printf("Running Thread");

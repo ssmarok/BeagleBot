@@ -14,9 +14,9 @@
 #define PWM_FREQUENCY 20000
 */
 
-void initializeDriveTest(pthread_t pThread);
 void initializeDriveThread(pthread_t pThread);
 void initializeDrivePins();
+void initializeKeyboardThread(pthread_t pThread);
 void *parseKeyboardInput(void * param);
 void *runDriveThread(void * param);
 void drive(int lSpeed, int rSpeed);

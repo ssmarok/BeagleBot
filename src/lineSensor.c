@@ -66,6 +66,21 @@ int frontSensorCount(void) {
     }
     return count;
 }
+int backSensorCount(void) {
+    int count = 0;
+    for (int i=0; i<LINE_SENSOR_LEN; i++) {
+        count += backSensor[i] ? 1 : 0;
+    }
+    return count;
+}
+
+int *getFrontLineSensor(){
+    return frontSensor;
+}
+
+int *getBackLineSensor(){
+    return backSensor;
+}
 
 int centerBias(void) {
     return ((frontSensorCount() == 2 || frontSensorCount() == 3) && frontSensor[3]
@@ -81,7 +96,7 @@ int isFullLineFront(void) {
 }
 
 int isFullLineBack(void) {
-    return (frontSensorCount() > 6);
+    return (backSensorCount() > 6);  // TODO: Change to be back line sensor
 }
 
 int calculateBias(int sensor[], int weightMap[], int prevBias) {

@@ -20,6 +20,12 @@ typedef enum MULTI_STATE{
 
 typedef MULTI_STATE (*state_ptr)( void );
 
+typedef int DRIVESTATE;
+// ** STARTS at -1
+enum DRIVESTATE { NOP=-1, DRIVE_STOP=0, FOLLOW_FORWARD, FOLLOW_BACKWARD, TURN_NEG_90, TURN_POS_90 };
+
 void runFSM();
+void resetFSM();
+void printFSMState();
 
 #endif

@@ -1,6 +1,7 @@
 #include <rc_usefulincludes.h>
 #include <roboticscape.h>
 
+// TODO: Make static 
 int encoderHistory[] = {0, 0, 0, 0};
 int leftFrontEncoder = 0;
 int rightFrontEncoder = 0;

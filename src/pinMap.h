@@ -10,7 +10,6 @@
 
 // Shooting Mechanism Definitions
 #define MOTOR_FIRE BLUE_GP0_PIN_5
-#define SERVO_SLEEP_TIME 100000
 
 // Limit Switch Definitions
 #define FRONT_LEFT_LIMIT BLUE_SPI_PIN_6_SS2 

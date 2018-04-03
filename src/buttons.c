@@ -52,8 +52,10 @@ void on_mode_pressed(){
 		rc_usleep(us_wait/samples);
 		if(rc_get_mode_button() == RELEASED) return;
 	}
-	printf("Resetting autonomous mode back to state initial state\n");
+	printf("Resetting autonomous mode back to initial state\n");
     // TODO: RESET FSM HERE
+	while(rc_get_mode_button() == PRESSED); // Wait until button is released to reset FSM (Already over 2 seconds)
+    resetFSM();
 	return;
 }
 /*******************************************************************************

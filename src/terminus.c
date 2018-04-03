@@ -57,8 +57,10 @@ void printDriveInstructions(){
     printf("| h - Stop Firing     |\n");
 	printf("---------Debug---------\n");
     printf("| e - Encoders        |\n");
+    printf("| x - FSM State       |\n");
     printf("| l - Line Sensors    |\n");
     printf("| i - Limit Switches  |\n");
+    printf("| o - Odometry        |\n");
 	printf("---------System---------\n");
     printf("| c - Clear           |\n");
     printf("| q - Sys Exit        |\n");

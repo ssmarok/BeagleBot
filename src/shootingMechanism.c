@@ -34,7 +34,7 @@ void *runServoThread(void * param) {
                 if(rc_nanos_since_boot() - startTime > 2000000000){
                     startTime = rc_nanos_since_boot();
                     servoDirection = !servoDirection;
-                    printf("Changing direction, now is: %s\n", servoDirection ? "FORWARD" : "BACKWARD");
+                    //printf("Changing direction, now is: %s\n", servoDirection ? "FORWARD" : "BACKWARD");
                 }
                 releaseBucket(servoDirection);
                 break;

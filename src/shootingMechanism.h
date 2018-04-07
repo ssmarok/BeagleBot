@@ -2,7 +2,7 @@
 #define SHOOTINGMECHANISM_H
 
 #define TUBE_SERVO_CHANNEL 1
-#define BUCKET_SERVO_CHANNEL 3
+#define BUCKET_SERVO_CHANNEL 8
 #define SERVO_SLEEP_TIME 100000     // In Microseconds
 #define SHOOT_ROUTINE_TIME 5000000  // In microseconds
 

@@ -49,21 +49,16 @@ int main(){
         if(rc_get_state()==RUNNING){
             if(getRunMode() == MANUAL){
                 rc_set_led(GREEN, OFF);
-                rc_set_led(RED, OFF);
+                rc_set_led(RED, ON);
+                /* Wait for key presses in other thread */
             } else if(getRunMode() == AUTONOMOUS){
                 rc_set_led(GREEN, ON);
                 rc_set_led(RED, OFF);
-                /*
-                 * Runs empty FSM functions
-                 * TODO: Fill in FSM
-                 * Fills stdio buffer with current state
-                 * TODO: Delete stdio access when no longer necessary (FSM filled)
-                 */
+                /* Run FSM loop */
                 runFSM();
             }
-
         } else if (rc_get_state() == PAUSED){
-            rc_set_led(GREEN, OFF);
+            rc_set_led(GREEN, ON);
             rc_set_led(RED, ON); 
         }
         // Sleep at some point

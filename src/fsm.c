@@ -70,7 +70,12 @@ MULTI_STATE stateOne() {
         return STATE_ONE;
     }
     //rotateCW(); 
-    setSubState(TURN_POS_90);
+    resetEncoder(FRONT_LEFT_ENCODER);
+    resetEncoder(FRONT_RIGHT_ENCODER);
+    while(FRONT_LEFT_ENCODER > -500 || FRONT_RIGHT_ENCODER > -500){
+        setSubState(FOLLOW_BACKWARD);
+    }
+    setSubState(TURN_NEG_90);
     //setSubState(DRIVE_STOP);
     return STATE_TWO;
 }
@@ -108,10 +113,25 @@ MULTI_STATE stateThree(){
 MULTI_STATE stateFour(){
     //drive(0,0);
     //printf("State: FOUR\n");
+    int * backSensorPtr = getBackLineSensor();
+    int count = 0;
+    // Check first 4 sensors
+    int i;
+    for(i = 0; i < LINE_SENSOR_LEN-4; i++){
+        count = count + backSensorPtr[i];
+    }
+    
+    if(count < 3){
+        setSubState(FOLLOW_BACKWARD);
+        return STATE_FOUR;
+    }
+    /*
     if(getEncoder(FRONT_LEFT_ENCODER) > -8200){
         setSubState(FOLLOW_BACKWARD);
         return STATE_FOUR;
     }
+    */
+
     /*
     if(getEncoder(FRONT_LEFT_ENCODER) > leftEncoderWaypoint || getEncoder(FRONT_RIGHT_ENCODER) > rightEncoderWaypoint){
         return STATE_FOUR;
@@ -122,7 +142,7 @@ MULTI_STATE stateFour(){
         return STATE_FOUR;
     }
     */
-    setSubState(TURN_POS_90);
+    setSubState(TURN_NEG_90);
     //setSubState(DRIVE_STOP);
     usleep(100000);
     return STATE_FIVE;

@@ -75,10 +75,12 @@ int backSensorCount(void) {
 }
 
 int *getFrontLineSensor(){
+    updateLineData();
     return frontSensor;
 }
 
 int *getBackLineSensor(){
+    updateLineData();
     return backSensor;
 }
 

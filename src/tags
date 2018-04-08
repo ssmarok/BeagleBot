@@ -9,17 +9,18 @@ BACK_LEFT_ENCODER	encoders.h	/^typedef enum ENCODER {FRONT_LEFT_ENCODER=1, FRONT
 BACK_LEFT_LIMIT	pinMap.h	17;"	d
 BACK_RIGHT_ENCODER	encoders.h	/^typedef enum ENCODER {FRONT_LEFT_ENCODER=1, FRONT_RIGHT_ENCODER=2, BACK_LEFT_ENCODER=3, BACK_RIGHT_ENCODER=4} ENCODER;$/;"	e	enum:ENCODER
 BACK_RIGHT_LIMIT	pinMap.h	18;"	d
-BASE_SPEED	driveTrain.h	4;"	d
-DEBUG	main.c	13;"	d	file:
-DRIVESTATE	fsm.h	/^enum DRIVESTATE { NOP=-1, DRIVE_STOP=0, FOLLOW_FORWARD, FOLLOW_BACKWARD, TURN_NEG_90, TURN_POS_90 };$/;"	g
+BASE_SPEED	driveTrain.h	15;"	d
+BUCKET_SERVO_CHANNEL	shootingMechanism.h	5;"	d
+DEBUG	main.c	14;"	d	file:
+DRIVESTATE	fsm.h	/^enum DRIVESTATE { NOP=-1, DRIVE_STOP=0, FOLLOW_FORWARD, FOLLOW_BACKWARD, TURN_POS_90, TURN_NEG_90 };$/;"	g
 DRIVESTATE	fsm.h	/^typedef int DRIVESTATE;$/;"	t
-DRIVETRAIN_H	driveTrain.h	2;"	d
-DRIVE_STOP	fsm.h	/^enum DRIVESTATE { NOP=-1, DRIVE_STOP=0, FOLLOW_FORWARD, FOLLOW_BACKWARD, TURN_NEG_90, TURN_POS_90 };$/;"	e	enum:DRIVESTATE
+DRIVETRAIN_H	driveTrain.h	12;"	d
+DRIVE_STOP	fsm.h	/^enum DRIVESTATE { NOP=-1, DRIVE_STOP=0, FOLLOW_FORWARD, FOLLOW_BACKWARD, TURN_POS_90, TURN_NEG_90 };$/;"	e	enum:DRIVESTATE
 ENCODER	encoders.h	/^typedef enum ENCODER {FRONT_LEFT_ENCODER=1, FRONT_RIGHT_ENCODER=2, BACK_LEFT_ENCODER=3, BACK_RIGHT_ENCODER=4} ENCODER;$/;"	g
 ENCODER	encoders.h	/^typedef enum ENCODER {FRONT_LEFT_ENCODER=1, FRONT_RIGHT_ENCODER=2, BACK_LEFT_ENCODER=3, BACK_RIGHT_ENCODER=4} ENCODER;$/;"	t	typeref:enum:ENCODER
 ENCODERS_H	encoders.h	2;"	d
-FOLLOW_BACKWARD	fsm.h	/^enum DRIVESTATE { NOP=-1, DRIVE_STOP=0, FOLLOW_FORWARD, FOLLOW_BACKWARD, TURN_NEG_90, TURN_POS_90 };$/;"	e	enum:DRIVESTATE
-FOLLOW_FORWARD	fsm.h	/^enum DRIVESTATE { NOP=-1, DRIVE_STOP=0, FOLLOW_FORWARD, FOLLOW_BACKWARD, TURN_NEG_90, TURN_POS_90 };$/;"	e	enum:DRIVESTATE
+FOLLOW_BACKWARD	fsm.h	/^enum DRIVESTATE { NOP=-1, DRIVE_STOP=0, FOLLOW_FORWARD, FOLLOW_BACKWARD, TURN_POS_90, TURN_NEG_90 };$/;"	e	enum:DRIVESTATE
+FOLLOW_FORWARD	fsm.h	/^enum DRIVESTATE { NOP=-1, DRIVE_STOP=0, FOLLOW_FORWARD, FOLLOW_BACKWARD, TURN_POS_90, TURN_NEG_90 };$/;"	e	enum:DRIVESTATE
 FRONT_LEFT_ENCODER	encoders.h	/^typedef enum ENCODER {FRONT_LEFT_ENCODER=1, FRONT_RIGHT_ENCODER=2, BACK_LEFT_ENCODER=3, BACK_RIGHT_ENCODER=4} ENCODER;$/;"	e	enum:ENCODER
 FRONT_LEFT_LIMIT	pinMap.h	15;"	d
 FRONT_RIGHT_ENCODER	encoders.h	/^typedef enum ENCODER {FRONT_LEFT_ENCODER=1, FRONT_RIGHT_ENCODER=2, BACK_LEFT_ENCODER=3, BACK_RIGHT_ENCODER=4} ENCODER;$/;"	e	enum:ENCODER
@@ -28,22 +29,22 @@ FSM_H	fsm.h	2;"	d
 FULL_MASK	lineSensor.h	15;"	d
 FUNC_LUT	fsm.c	/^state_ptr FUNC_LUT[NUM_STATES] =$/;"	v
 I2C_BUS	lineSensor.h	4;"	d
-IMU_MAGNETOMETER_STATUS	imu.h	6;"	d
-IMU_SAMPLE_RATE	imu.h	5;"	d
-IMU_SHOW_WARNINGS	imu.h	7;"	d
+IMU_MAGNETOMETER_STATUS	imu.h	5;"	d
+IMU_SAMPLE_RATE	imu.h	4;"	d
+IMU_SHOW_WARNINGS	imu.h	6;"	d
 INIT	fsm.h	/^    INIT=0,$/;"	e	enum:MULTI_STATE
 LIMITSWITCH_H	limitSwitch.h	2;"	d
 LINESENSOR_H	lineSensor.h	2;"	d
 LINE_SENSOR_LEN	lineSensor.h	6;"	d
 MANUAL	runMode.h	/^enum RUN_MODE { MANUAL=0, AUTONOMOUS=1};$/;"	e	enum:RUN_MODE
-MAX_DRIVE_SPEED	driveTrain.h	7;"	d
-MAX_SPEED	driveTrain.h	5;"	d
+MAX_DRIVE_SPEED	driveTrain.h	17;"	d
+MAX_SPEED	driveTrain.h	16;"	d
 MOTOR_A_0	pinMap.h	5;"	d
 MOTOR_A_1	pinMap.h	6;"	d
 MOTOR_FIRE	pinMap.h	12;"	d
 MULTI_STATE	fsm.h	/^typedef enum MULTI_STATE{$/;"	g
 MULTI_STATE	fsm.h	/^}MULTI_STATE;$/;"	t	typeref:enum:MULTI_STATE
-NOP	fsm.h	/^enum DRIVESTATE { NOP=-1, DRIVE_STOP=0, FOLLOW_FORWARD, FOLLOW_BACKWARD, TURN_NEG_90, TURN_POS_90 };$/;"	e	enum:DRIVESTATE
+NOP	fsm.h	/^enum DRIVESTATE { NOP=-1, DRIVE_STOP=0, FOLLOW_FORWARD, FOLLOW_BACKWARD, TURN_POS_90, TURN_NEG_90 };$/;"	e	enum:DRIVESTATE
 NUM_STATES	fsm.h	/^    NUM_STATES=12$/;"	e	enum:MULTI_STATE
 PINMAP_H	pinMap.h	2;"	d
 PORT_EXPANDER_ONE	lineSensor.h	5;"	d
@@ -58,8 +59,9 @@ RegDirA	lineSensor.h	13;"	d
 RegDirB	lineSensor.h	14;"	d
 RegHighInputA	lineSensor.h	29;"	d
 RegHighInputB	lineSensor.h	30;"	d
-SERVO_SLEEP_TIME	shootingMechanism.h	4;"	d
+SERVO_SLEEP_TIME	shootingMechanism.h	6;"	d
 SHOOTINGMECHANISM_H	shootingMechanism.h	2;"	d
+SHOOT_ROUTINE_TIME	shootingMechanism.h	7;"	d
 STATE_EIGHT	fsm.h	/^    STATE_EIGHT=8,$/;"	e	enum:MULTI_STATE
 STATE_ELEVEN	fsm.h	/^    STATE_ELEVEN=11,$/;"	e	enum:MULTI_STATE
 STATE_FIVE	fsm.h	/^    STATE_FIVE=5,$/;"	e	enum:MULTI_STATE
@@ -73,33 +75,39 @@ STATE_THREE	fsm.h	/^    STATE_THREE=3,$/;"	e	enum:MULTI_STATE
 STATE_TWO	fsm.h	/^    STATE_TWO=2,$/;"	e	enum:MULTI_STATE
 SUBSTATE	driveTrain.c	/^int SUBSTATE = 0;$/;"	v
 TERMINUS_H	terminus.h	2;"	d
-TURN_NEG_90	fsm.h	/^enum DRIVESTATE { NOP=-1, DRIVE_STOP=0, FOLLOW_FORWARD, FOLLOW_BACKWARD, TURN_NEG_90, TURN_POS_90 };$/;"	e	enum:DRIVESTATE
-TURN_POS_90	fsm.h	/^enum DRIVESTATE { NOP=-1, DRIVE_STOP=0, FOLLOW_FORWARD, FOLLOW_BACKWARD, TURN_NEG_90, TURN_POS_90 };$/;"	e	enum:DRIVESTATE
-__BUTTONS_H__	buttons.h	2;"	d
+TUBE_SERVO_CHANNEL	shootingMechanism.h	4;"	d
+TURN_NEG_90	fsm.h	/^enum DRIVESTATE { NOP=-1, DRIVE_STOP=0, FOLLOW_FORWARD, FOLLOW_BACKWARD, TURN_POS_90, TURN_NEG_90 };$/;"	e	enum:DRIVESTATE
+TURN_POS_90	fsm.h	/^enum DRIVESTATE { NOP=-1, DRIVE_STOP=0, FOLLOW_FORWARD, FOLLOW_BACKWARD, TURN_POS_90, TURN_NEG_90 };$/;"	e	enum:DRIVESTATE
+__BUTTONS_H__	buttons.h	12;"	d
 __IMU_H__	imu.h	2;"	d
+__ODOMETRY_H__	odometry.h	2;"	d
 __RUNMODE__	runMode.h	2;"	d
 backSensor	lineSensor.c	/^int backSensor[LINE_SENSOR_LEN];$/;"	v
+backSensorCount	lineSensor.c	/^int backSensorCount(void) {$/;"	f
 bool	lineSensor.c	/^enum bool { false, true };$/;"	g	file:
 bool	lineSensor.c	/^typedef int bool;$/;"	t	file:
 bufferSpeed	driveTrain.c	/^int bufferSpeed(int speed, int buffer) {$/;"	f
 calculateBias	lineSensor.c	/^int calculateBias(int sensor[], int weightMap[], int prevBias) {$/;"	f
 centerBias	lineSensor.c	/^int centerBias(void) {$/;"	f
 drive	driveTrain.c	/^void drive(int lSpeed, int rSpeed) {$/;"	f
-driveBackward	driveTrain.c	/^void driveBackward(void) {$/;"	f
-driveForward	driveTrain.c	/^void driveForward(void) {$/;"	f
 encoderHistory	encoders.c	/^int encoderHistory[] = {0, 0, 0, 0};$/;"	v
 false	lineSensor.c	/^enum bool { false, true };$/;"	e	enum:bool	file:
 frontSensor	lineSensor.c	/^int frontSensor[LINE_SENSOR_LEN];$/;"	v
 frontSensorCount	lineSensor.c	/^int frontSensorCount(void) {$/;"	f
+getBackLineSensor	lineSensor.c	/^int *getBackLineSensor(){$/;"	f
 getEncoder	encoders.c	/^int getEncoder(int encoder){$/;"	f
-getIMUData	imu.c	/^rc_imu_data_t getIMUData(){$/;"	f
+getFrontLineSensor	lineSensor.c	/^int *getFrontLineSensor(){$/;"	f
+getIMUData	imu.c	/^rc_imu_data_t* getIMUData(){$/;"	f
 getIMUNewDataFlag	imu.c	/^int getIMUNewDataFlag(){$/;"	f
 getLastEncoder	encoders.c	/^int getLastEncoder(int encoder){$/;"	f
+getOrientation	odometry.c	/^double getOrientation(){$/;"	f
 getRunMode	runMode.c	/^int getRunMode(){$/;"	f
+getXPosition	odometry.c	/^double getXPosition(){$/;"	f
+getYPosition	odometry.c	/^double getYPosition(){$/;"	f
 getch	terminus.c	/^char getch(void){$/;"	f
 getch_	terminus.c	/^char getch_(int echo){$/;"	f
 getche	terminus.c	/^char getche(void){$/;"	f
-holdServo	shootingMechanism.c	/^void holdServo(){ rc_send_servo_pulse_normalized(1, -0.60); }$/;"	f
+holdServo	shootingMechanism.c	/^void holdServo(){ rc_send_servo_pulse_normalized(TUBE_SERVO_CHANNEL, -0.60); }$/;"	f
 holdTrigger	shootingMechanism.c	/^void holdTrigger() { rc_gpio_set_value_mmap(MOTOR_FIRE, LOW); }$/;"	f
 imuData	imu.c	/^static rc_imu_data_t imuData; $/;"	v	file:
 imuInterruptFunc	imu.c	/^void imuInterruptFunc(){$/;"	f
@@ -112,6 +120,7 @@ initializeDriveThread	driveTrain.c	/^void initializeDriveThread(pthread_t pThrea
 initializeIMU	imu.c	/^void initializeIMU(){$/;"	f
 initializeIRSensors	lineSensor.c	/^void initializeIRSensors() {$/;"	f
 initializeKeyboardThread	driveTrain.c	/^void initializeKeyboardThread(pthread_t pThread) {$/;"	f
+initializeOdometryThread	odometry.c	/^void initializeOdometryThread(pthread_t pThread) {$/;"	f
 initializeServoThread	shootingMechanism.c	/^void initializeServoThread(pthread_t pThread) {$/;"	f
 isBackCollision	limitSwitch.c	/^int isBackCollision(void) {$/;"	f
 isCentered	lineSensor.c	/^int isCentered(int sensor[]) {$/;"	f
@@ -119,6 +128,7 @@ isFrontCollision	limitSwitch.c	/^int isFrontCollision(void) {$/;"	f
 isFullLineBack	lineSensor.c	/^int isFullLineBack(void) {$/;"	f
 isFullLineFront	lineSensor.c	/^int isFullLineFront(void) {$/;"	f
 isSwitchClosed	limitSwitch.c	/^int isSwitchClosed(int limitSwitch) {$/;"	f
+leftEncoderWaypoint	fsm.c	/^int leftEncoderWaypoint = 0;$/;"	v
 leftFrontEncoder	encoders.c	/^int leftFrontEncoder = 0;$/;"	v
 leftWeightMap	lineSensor.c	/^int leftWeightMap[LINE_SENSOR_LEN] = { 60, 15, 10, 0, 0, -5, -10, -60};$/;"	v
 lineFollowBackward	lineSensor.c	/^void lineFollowBackward(void) {$/;"	f
@@ -126,6 +136,7 @@ lineFollowForward	lineSensor.c	/^void lineFollowForward(void) {$/;"	f
 lineFollowForwardFast	lineSensor.c	/^void lineFollowForwardFast(void) {$/;"	f
 main	main.c	/^int main(){$/;"	f
 new	terminus.c	/^static struct termios old, new;$/;"	v	typeref:struct:	file:
+odomPrintData	odometry.c	/^static int odomPrintData = 0;$/;"	v	file:
 offPath	lineSensor.c	/^int offPath = 0;$/;"	v
 old	terminus.c	/^static struct termios old, new;$/;"	v	typeref:struct:termios	file:
 on_mode_pressed	buttons.c	/^void on_mode_pressed(){$/;"	f
@@ -136,29 +147,35 @@ parseKeyboardInput	driveTrain.c	/^void *parseKeyboardInput(void * param){$/;"	f
 prevLBias	lineSensor.c	/^int prevLBias = 0;$/;"	v
 prevRBias	lineSensor.c	/^int prevRBias = 0;$/;"	v
 printDriveInstructions	terminus.c	/^void printDriveInstructions(){$/;"	f
+printFSMState	fsm.c	/^void printFSMState(){$/;"	f
 printOutLimitSwitchData	limitSwitch.c	/^void printOutLimitSwitchData(void) {$/;"	f
 printOutLineData	lineSensor.c	/^void printOutLineData(void) {$/;"	f
-releaseBucket	shootingMechanism.c	/^void releaseBucket(){ rc_send_servo_pulse_normalized(7, -1); }$/;"	f
-releaseServo	shootingMechanism.c	/^void releaseServo(){ rc_send_servo_pulse_normalized(1, -1); }$/;"	f
+releaseBucket	shootingMechanism.c	/^void releaseBucket(int direction){ rc_send_servo_pulse_normalized(BUCKET_SERVO_CHANNEL, direction ? 1.5:-1.5); }$/;"	f
+releaseServo	shootingMechanism.c	/^void releaseServo(){ rc_send_servo_pulse_normalized(TUBE_SERVO_CHANNEL, -1.4); }$/;"	f
 releaseTrigger	shootingMechanism.c	/^void releaseTrigger() { rc_gpio_set_value_mmap(MOTOR_FIRE, HIGH); }$/;"	f
 resetEncoder	encoders.c	/^int resetEncoder(int encoder){$/;"	f
 resetFSM	fsm.c	/^void resetFSM(){$/;"	f
 resetIMUNewDataFlag	imu.c	/^void resetIMUNewDataFlag(){$/;"	f
+resetOdomPrintDataFlag	odometry.c	/^void resetOdomPrintDataFlag(){$/;"	f
 resetShootingMechanism	shootingMechanism.c	/^void resetShootingMechanism() {$/;"	f
 resetTermios	terminus.c	/^void resetTermios(void){$/;"	f
+rightEncoderWaypoint	fsm.c	/^int rightEncoderWaypoint = 0;$/;"	v
 rightFrontEncoder	encoders.c	/^int rightFrontEncoder = 0;$/;"	v
 rightWeightMap	lineSensor.c	/^int rightWeightMap[LINE_SENSOR_LEN] = { -60, -10, -5, 0, 0, 10, 15, 60};$/;"	v
-rotateCCW	driveTrain.c	/^void rotateCCW(void) {$/;"	f
-rotateCW	driveTrain.c	/^void rotateCW(void) {$/;"	f
 runDriveThread	driveTrain.c	/^void *runDriveThread(void * param) {$/;"	f
 runFSM	fsm.c	/^void runFSM(){$/;"	f
 runMode	runMode.c	/^static RUN_MODE runMode = MANUAL;$/;"	v	file:
+runOdometryThread	odometry.c	/^void *runOdometryThread(void * param) {$/;"	f
 runServoThread	shootingMechanism.c	/^void *runServoThread(void * param) {$/;"	f
 sensorCount	lineSensor.c	/^int sensorCount(int sensor[]) {$/;"	f
+setOdomPrintDataFlag	odometry.c	/^void setOdomPrintDataFlag(){$/;"	f
+setOrientation	odometry.c	/^void setOrientation(double newTheta){$/;"	f
 setRunMode	runMode.c	/^void setRunMode(RUN_MODE desiredRunMode) {$/;"	f
 setShootingMechanism	shootingMechanism.c	/^void setShootingMechanism() {$/;"	f
 setShootingServo	shootingMechanism.c	/^void setShootingServo() {$/;"	f
 setSubState	driveTrain.c	/^void setSubState(int subState) {$/;"	f
+setXPosition	odometry.c	/^void setXPosition(double newX){$/;"	f
+setYPosition	odometry.c	/^void setYPosition(double newY){$/;"	f
 shootState	shootingMechanism.c	/^int shootState = 0;$/;"	v
 state	fsm.c	/^static MULTI_STATE state = INIT;$/;"	v	file:
 stateEight	fsm.c	/^MULTI_STATE stateEight(){$/;"	f
@@ -173,7 +190,11 @@ stateTen	fsm.c	/^MULTI_STATE stateTen(){$/;"	f
 stateThree	fsm.c	/^MULTI_STATE stateThree(){$/;"	f
 stateTwo	fsm.c	/^MULTI_STATE stateTwo() {$/;"	f
 state_ptr	fsm.h	/^typedef MULTI_STATE (*state_ptr)( void );$/;"	t
+theta	odometry.c	/^double theta = 0;   \/\/ Radians$/;"	v
 toggleRunMode	runMode.c	/^void toggleRunMode() {$/;"	f
 true	lineSensor.c	/^enum bool { false, true };$/;"	e	enum:bool	file:
-turnRight90	driveTrain.c	/^void turnRight90(void) {$/;"	f
+turnLeft90	driveTrain.c	/^void turnLeft90(){$/;"	f
+turnRight90	driveTrain.c	/^void turnRight90(){$/;"	f
 updateLineData	lineSensor.c	/^void updateLineData() {$/;"	f
+x_pos	odometry.c	/^double x_pos = 0;   \/\/ Meters$/;"	v
+y_pos	odometry.c	/^double y_pos = 0;   \/\/ Meters$/;"	v

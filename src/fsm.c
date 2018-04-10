@@ -72,9 +72,20 @@ MULTI_STATE stateOne() {
     //rotateCW(); 
     resetEncoder(FRONT_LEFT_ENCODER);
     resetEncoder(FRONT_RIGHT_ENCODER);
-    while(FRONT_LEFT_ENCODER > -500 || FRONT_RIGHT_ENCODER > -500){
-        setSubState(FOLLOW_BACKWARD);
+    printf("Reset the encoders\n");
+    while(!isFrontCollision()){
+        drive(BASE_SPEED, BASE_SPEED);
+        setSubState(NOP);
     }
+    printf("Front Left encoder: %d\n", getEncoder(FRONT_LEFT_ENCODER));
+
+    /*
+    while(getEncoder(FRONT_LEFT_ENCODER) < 1000 || getEncoder(FRONT_RIGHT_ENCODER) < 1000){
+        drive(BASE_SPEED, BASE_SPEED);
+        setSubState(NOP);
+    }
+    */
+
     setSubState(TURN_NEG_90);
     //setSubState(DRIVE_STOP);
     return STATE_TWO;
@@ -125,6 +136,7 @@ MULTI_STATE stateFour(){
         setSubState(FOLLOW_BACKWARD);
         return STATE_FOUR;
     }
+    printOutLineData();
     /*
     if(getEncoder(FRONT_LEFT_ENCODER) > -8200){
         setSubState(FOLLOW_BACKWARD);

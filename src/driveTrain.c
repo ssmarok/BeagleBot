@@ -298,7 +298,7 @@ void turnLeft90(){
     double start_orientation = 0; 
     start_orientation = getOrientation();
     /* 1.56 is ~90 degrees in radians */
-    while(getOrientation() < start_orientation + 1.5) { 
+    while(getOrientation() < start_orientation + 1.6) { 
         drive(-70, 70);
     }
 }
@@ -317,7 +317,7 @@ void turnRight90(){
     double start_orientation = 0; 
     start_orientation = getOrientation();
     /* 1.56 is ~90 degrees in radians */
-    while(getOrientation() > start_orientation - 1.5) { 
+    while(getOrientation() > start_orientation - 1.65) { 
         drive(40, -90);
     }
 }

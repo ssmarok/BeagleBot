@@ -60,6 +60,12 @@ int main(){
         } else if (rc_get_state() == PAUSED){
             rc_set_led(GREEN, ON);
             rc_set_led(RED, ON); 
+
+            setSubState(DRIVE_STOP);
+            drive(0,0);
+            setRunMode(MANUAL);
+            resetShootingMechanism();
+            resetFSM();
         }
         // Sleep at some point
         usleep(10000);

@@ -61,6 +61,11 @@ MULTI_STATE initialization(){
     return STATE_ONE;
 }
 
+/* OLD STATE ONE -- CHANGED TO HAVE THE ROBOT START WITH THE BUCKET ALREADY AGAINST 
+ * THE SUPPLY TUBE
+ * ORIGINAL WAS STATE 2
+ */
+/*
 // Drive forward until detecting a full wall of black line on front sensor. Then, turn right 90 degrees
 MULTI_STATE stateOne() {
     //printf("State: ONE\n");
@@ -79,15 +84,21 @@ MULTI_STATE stateOne() {
     }
     printf("Front Left encoder: %d\n", getEncoder(FRONT_LEFT_ENCODER));
 
-    /*
-    while(getEncoder(FRONT_LEFT_ENCODER) < 1000 || getEncoder(FRONT_RIGHT_ENCODER) < 1000){
-        drive(BASE_SPEED, BASE_SPEED);
-        setSubState(NOP);
-    }
-    */
+    
+   // while(getEncoder(FRONT_LEFT_ENCODER) < 1000 || getEncoder(FRONT_RIGHT_ENCODER) < 1000){
+   //     drive(BASE_SPEED, BASE_SPEED);
+   //     setSubState(NOP);
+   // }
+    
 
     setSubState(TURN_NEG_90);
     //setSubState(DRIVE_STOP);
+    return STATE_TWO;
+}
+*/
+
+/* TODO: Temporary NOP state one to avoid renaming all the states */
+MULTI_STATE stateOne() {
     return STATE_TWO;
 }
 
@@ -124,12 +135,24 @@ MULTI_STATE stateThree(){
 MULTI_STATE stateFour(){
     //drive(0,0);
     //printf("State: FOUR\n");
-    int * backSensorPtr = getBackLineSensor();
+    
+    // Make sure robot backs up enough before line sensors take over.
+    // Encoders were reset in STATE_THREE
+    // After minimum distance back traveled, line sensors code segment takes over
+    // as encoder is not reset in this state
+    if(getEncoder(FRONT_LEFT_ENCODER) > -4700){
+        setSubState(FOLLOW_BACKWARD);
+        return STATE_FOUR;
+    }
+    printf("Encoder value, State 4: %d\n", getEncoder(FRONT_LEFT_ENCODER));
+
+    int *backSensor;
+    backSensor = getBackLineSensor();
     int count = 0;
     // Check first 4 sensors
     int i;
-    for(i = 0; i < LINE_SENSOR_LEN-4; i++){
-        count = count + backSensorPtr[i];
+    for(i = 0; i < LINE_SENSOR_LEN; i++){
+        count = count + *(backSensor + i);
     }
     
     if(count < 3){
@@ -156,7 +179,7 @@ MULTI_STATE stateFour(){
     */
     setSubState(TURN_NEG_90);
     //setSubState(DRIVE_STOP);
-    usleep(100000);
+    usleep(10000);
     return STATE_FIVE;
 }
 
@@ -165,10 +188,12 @@ MULTI_STATE stateFour(){
 // This gets past the little line on the middle platform of the field
 MULTI_STATE stateFive(){
     //printf("State: FIVE\n");
-    if (!isFullLineFront()) { 
+    //if (!isFullLineFront()) { 
+    if (!isFrontCollision()) { 
         setSubState(FOLLOW_FORWARD);
         return STATE_FIVE;
     }
+    printOutLineData();
     drive(0,0);
     setSubState(DRIVE_STOP);
     return STATE_SIX;
@@ -177,21 +202,38 @@ MULTI_STATE stateFive(){
 // #1 Drive forward until detecting a full line on the FRONT line sensor. Then, turn right 90 degrees
 MULTI_STATE stateSix(){
     //printf("State: SIX\n");
+    setSubState(TURN_NEG_90);
+    usleep(10000);
     drive(0,0);
     setSubState(DRIVE_STOP);
-    usleep(100000);
-    return STATE_SIX; // TODO: Change back STATE_SEVEN
+    //usleep(100000);
+    return STATE_SEVEN; 
 }
 
 // Drive backward until hitting the wall on the back side. (Ball gathering #3)
 MULTI_STATE stateSeven(){
     //printf("State: SEVEN\n");
-    return STATE_EIGHT;
+    setSubState(FOLLOW_BACKWARD);
+    if (!isBackCollision()) {
+        return STATE_SEVEN;
+    }
+    drive(0,0);
+    return STATE_EIGHT; 
 }
 
 // Drive forward until hitting the wall on the front side. (Ball gathering #4)
 MULTI_STATE stateEight(){
     //printf("State: EIGHT\n");
+    if (!isFrontCollision()) {
+        setSubState(FOLLOW_FORWARD);
+        //turnRight90();      // Put out of this function?
+        //return STATE_ONE;
+        return STATE_EIGHT;
+    }
+    drive(0,0);
+    // Reset for next state
+    resetEncoder(FRONT_LEFT_ENCODER);
+    resetEncoder(FRONT_RIGHT_ENCODER);
     return STATE_NINE;
 }
 
@@ -199,13 +241,47 @@ MULTI_STATE stateEight(){
 // This should be tested brute force for the optimal angle
 MULTI_STATE stateNine(){
     //printf("State: NINE\n");
-    return STATE_TEN;
+    //
+    // Make sure robot backs up enough before line sensors take over.
+    // Encoders were reset in STATE_THREE
+    // After minimum distance back traveled, line sensors code segment takes over
+    // as encoder is not reset in this state
+    if(getEncoder(FRONT_LEFT_ENCODER) > -4700){
+        setSubState(FOLLOW_BACKWARD);
+        return STATE_NINE;
+    }
+    printf("Encoder value, State 4: %d\n", getEncoder(FRONT_LEFT_ENCODER));
+
+    int *backSensor;
+    backSensor = getBackLineSensor();
+    int count = 0;
+    // Check first 4 sensors
+    int i;
+    for(i = 0; i < LINE_SENSOR_LEN; i++){
+        count = count + *(backSensor + i);
+    }
+    
+    if(count < 3){
+        setSubState(FOLLOW_BACKWARD);
+        return STATE_NINE;
+    }
+    printOutLineData();
+
+    //TODO: PUT CORRECT TURN ANGLE
+    //setSubState(TURN_NEG_90);
+    //setSubState(DRIVE_STOP);
+    usleep(10000);
+
+    return STATE_TEN; 
 }
 
 // SHOOT ALL THE BALLS (includes necessary wait). Then, turn 90 degrees.
 MULTI_STATE stateTen(){
     //printf("State: TEN\n");
-    return STATE_ELEVEN;
+    drive(0,0);
+    setSubState(DRIVE_STOP);
+    usleep(100000);
+    return STATE_TEN;//TODO: CHANGE TO STATE_ELEVEN
 }
 
 // #1 Drive forward until detecting a full line on the FRONT line sensor.

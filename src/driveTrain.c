@@ -130,8 +130,9 @@ void *runDriveThread(void * param) {
                 drive(0, 0);
                 break;
             case 1:     /* DRIVESTATE: FOLLOW_FORWARD */
-                //lineFollowForward();
-                lineFollowForwardFast();
+                lineFollowForward();
+                // TODO: REVERT TO FAST IF IT WORKS OKAY
+                //lineFollowForwardFast();
                 break;
             case 2:     /* DRIVESTATE: FOLLOW_BACKWARD */
                 lineFollowBackward();
@@ -142,6 +143,14 @@ void *runDriveThread(void * param) {
                 break;
             case 4:     /* DRIVESTATE: TURN_NEG_90 (RIGHT) */
                 turnRight90();
+                SUBSTATE = 0;
+                break;
+            case 5:     /* DRIVESTATE: TURN_TO_SHOOT  */
+                turnToShoot();
+                SUBSTATE = 0;
+                break;
+            case 6:     /* DRIVESTATE: TURN_TO_ALIGN  */
+                turnToAlign();
                 SUBSTATE = 0;
                 break;
             default:    /* Sleep */
@@ -321,7 +330,12 @@ void turnLeft90(){
     start_orientation = getOrientation();
     /* 1.56 is ~90 degrees in radians */
     while(getOrientation() < start_orientation + 1.6) { 
-        drive(-70, 70);
+        if(rc_get_state() == RUNNING){
+            drive(-70, 70);
+        }
+        else {
+            break;
+        }
     }
 }
 
@@ -337,13 +351,70 @@ void turnLeft90(){
 *******************************************************************************/
 void turnRight90(){
     double start_orientation = 0; 
+    /* Desired angle is in radians */
+    double desired_angle = 91.6 * (PI/180.0);
     start_orientation = getOrientation();
-    /* 1.56 is ~90 degrees in radians */
-    while(getOrientation() > start_orientation - 1.65) { 
-        drive(40, -90);
+    
+    /* +/- depending on if robot is turning left or right to get to angle */
+    while(getOrientation() > start_orientation - desired_angle) {
+        if(rc_get_state() == RUNNING){
+            drive(40, -90);
+        } else{
+            break;
+        }
     }
 }
 
+/*******************************************************************************
+ *  void turnToShoot()
+ *
+ *  @brief Turn robot to shooting angle using IMU data.
+ *
+ *  The IMU angular data is used to turn to the shooting angle at fixed 
+ *  wheel speeds.
+ * 
+ *  @return void
+*******************************************************************************/
+void turnToShoot(){
+    double start_orientation = 0; 
+    /* Desired angle is in radians */
+    double desired_angle = 30 * (PI/180.0);
+    start_orientation = getOrientation();
+
+    /* +/- depending on if robot is turning left or right to get to angle */
+    while(getOrientation() > start_orientation - desired_angle) { 
+        if(rc_get_state() == RUNNING){
+            drive(40, -90);
+        } else{
+            break;
+        }
+    }
+}
+/*******************************************************************************
+ *  void turnToAlign()
+ *
+ *  @brief Turn robot to align back to line using IMU data.
+ *
+ *  The IMU angular data is used to turn back to the line at fixed 
+ *  wheel speeds.
+ * 
+ *  @return void
+*******************************************************************************/
+void turnToAlign(){
+    double start_orientation = 0; 
+    /* Desired angle is in radians */
+    double desired_angle = 60 * (PI/180.0);
+    start_orientation = getOrientation();
+
+    /* +/- depending on if robot is turning left or right to get to angle */
+    while(getOrientation() > start_orientation - desired_angle) { 
+        if(rc_get_state() == RUNNING){
+            drive(40, -90);
+        } else{
+            break;
+        }
+    }
+}
 /*******************************************************************************
  *  int bufferSpeed(int speed, int buffer)
  *

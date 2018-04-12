@@ -98,7 +98,7 @@ int isFullLineFront(void) {
 }
 
 int isFullLineBack(void) {
-    return (backSensorCount() > 6);  // TODO: Change to be back line sensor
+    return (backSensorCount() > 6);
 }
 
 int calculateBias(int sensor[], int weightMap[], int prevBias) {

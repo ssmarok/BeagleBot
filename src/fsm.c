@@ -85,28 +85,13 @@ MULTI_STATE stateTwo(){
 MULTI_STATE stateThree(){
     // Make sure robot backs up enough before line sensors take over. Encoders were reset in STATE_THREE
     // After minimum distance back traveled, line sensors code segment takes over as encoder is not reset in this state
+    //if(getEncoder(FRONT_LEFT_ENCODER) > -4700 || !isFullLineBack()){ TODO: See if this is necessary
     setSubState(FOLLOW_BACKWARD);
-    if(getEncoder(FRONT_LEFT_ENCODER) > -4700 || !isFullLineBack()){
+    if(!isFullLineBack()){
         // Note: updateLineData is implicit in FOLLOW_BACKWARD so isFullLineBack() below is accurate
         return STATE_THREE;
     }
     printf("Encoder value, State 4: %d\n", getEncoder(FRONT_LEFT_ENCODER));
-
-    /* TODO: Do we need this? Can it just be replaced by what is above?
-    int *backSensor;
-    backSensor = getBackLineSensor();
-    int count = 0;
-    // Check first 4 sensors
-    int i;
-    for(i = 0; i < LINE_SENSOR_LEN; i++){
-        count = count + *(backSensor + i);
-    }
-    
-    if(count < 3){
-        setSubState(FOLLOW_BACKWARD);
-        return STATE_FOUR;
-    }
-    */
     printOutLineData();
     setSubState(TURN_NEG_90);
     setSubState(DRIVE_STOP);
@@ -126,14 +111,14 @@ MULTI_STATE stateFour() {
     return STATE_FIVE;
 }
 
-// #1 Drive forward until detecting a full line on the FRONT line sensor. Then, turn right 90 degrees
+// Turn right 90 degrees
 MULTI_STATE stateFive(){
     setSubState(TURN_NEG_90);
     setSubState(DRIVE_STOP);
     return STATE_SIX;
 }
 
-// Drive forward until hitting the wall on the front side. (Ball gathering #4)
+// Drive forward until hitting the wall on the front side. (Ball gathering #3)
 MULTI_STATE stateSix(){
     setSubState(FOLLOW_FORWARD);
     if (!isFrontCollision()) {
@@ -143,7 +128,7 @@ MULTI_STATE stateSix(){
     return STATE_SEVEN;
 }
 
-// Drive backward until hitting the wall on the back side. (Ball gathering #3)
+// Drive backward until hitting the wall on the back side. (Ball gathering #4)
 MULTI_STATE stateSeven(){
     setSubState(FOLLOW_BACKWARD);
     if (!isBackCollision()) {
@@ -167,24 +152,6 @@ MULTI_STATE stateEight(){
     if(getEncoder(FRONT_LEFT_ENCODER) < 4700 || !isFullLineBack()){
         return STATE_EIGHT;
     }
-    /*
-    printf("Encoder value, State 4: %d\n", getEncoder(FRONT_LEFT_ENCODER));
-
-    int *backSensor;
-    backSensor = getBackLineSensor();
-    int count = 0;
-    // Check first 4 sensors
-    int i;
-    for(i = 0; i < LINE_SENSOR_LEN; i++){
-        count = count + *(backSensor + i);
-    }
-    
-    if(count < 3){
-        setSubState(FOLLOW_BACKWARD);
-        return STATE_EIGHT;
-    }
-    printOutLineData();
-    */
 
     //TODO: PUT CORRECT TURN ANGLE
     setSubState(TURN_TO_SHOOT);
@@ -201,7 +168,6 @@ MULTI_STATE stateNine(){
 
 // SHOOT ALL THE BALLS (includes necessary wait). Then, turn 90 degrees.
 MULTI_STATE stateTen(){
-    //printf("State: TEN\n");
     setSubState(DRIVE_STOP);
     drive(0,0);
 
@@ -211,31 +177,28 @@ MULTI_STATE stateTen(){
     usleep(5000000); // 5 Seconds
     resetShootingMechanism();
 
-    setSubState(TURN_TO_ALIGN);
     setSubState(DRIVE_STOP);
-    usleep(100000);
     return STATE_ELEVEN;
 }
 
 // #1 Drive forward until detecting a full line on the FRONT line sensor.
 // #2 Drive forward until detecting a full line on the BACK line sensor.
 // This gets past the little line on the middle platform of the field
-// Reset to state #1
 MULTI_STATE stateEleven(){
-    //printf("State: ELEVEN\n");
+    setSubState(TURN_TO_ALIGN);
     setSubState(DRIVE_STOP);
-    drive(0,0);
-    usleep(10000);
-    return STATE_ELEVEN;//TODO: CHANGE TO STATE_ONE_
-    /*
-    if (!isFrontCollision()) {
-        setSubState(FOLLOW_FORWARD);
-        return STATE_ELEVEN;
+    usleep(100000);
+    while(1) { //TODO: REMOVE LOOP & CONTINUE TO STATE_TWELVE
     }
-    // Reset for next state
-    resetEncoder(FRONT_LEFT_ENCODER);
-    resetEncoder(FRONT_RIGHT_ENCODER);
-    setSubState(DRIVE_STOP);
     return STATE_TWELVE;
-    */
+}
+
+// Drive back toward the other side of the field
+// Reset to state #1
+MULTI_STATE stateTwelve(){
+    setSubState(FOLLOW_FORWARD);
+    if (!isFrontCollision()) {
+        return STATE_TWELVE;
+    }
+    return STATE_ONE;
 }

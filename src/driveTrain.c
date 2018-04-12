@@ -284,8 +284,19 @@ void *parseKeyboardInput(void * param){
             case '~': /* Run Init State */
                 break;
             case '!': /* Run State 1 */
+                while (!isBackCollision()) {
+                    setSubState(FOLLOW_BACKWARD);
+                }
+                setSubState(DRIVE_STOP);
                 break;
             case '@': /* Run State 2 */
+                while (!isFrontCollision()) {
+                    setSubState(FOLLOW_FORWARD);
+                }
+                // Reset for next state
+                resetEncoder(FRONT_LEFT_ENCODER);
+                resetEncoder(FRONT_RIGHT_ENCODER);
+                setSubState(DRIVE_STOP);
                 break;
             case '#': /* Run State 3 */
                 break;

@@ -268,20 +268,30 @@ MULTI_STATE stateNine(){
     printOutLineData();
 
     //TODO: PUT CORRECT TURN ANGLE
-    //setSubState(TURN_NEG_90);
-    //setSubState(DRIVE_STOP);
+    setSubState(TURN_TO_SHOOT);
     usleep(10000);
-
+    setSubState(DRIVE_STOP);
+    drive(0,0);
     return STATE_TEN; 
 }
 
 // SHOOT ALL THE BALLS (includes necessary wait). Then, turn 90 degrees.
 MULTI_STATE stateTen(){
     //printf("State: TEN\n");
-    drive(0,0);
     setSubState(DRIVE_STOP);
-    usleep(100000);
-    return STATE_TEN;//TODO: CHANGE TO STATE_ELEVEN
+    drive(0,0);
+
+    setShootingMechanism();
+    usleep(1000000); // 1 Second
+    setShootingServo();
+    usleep(5000000); // 5 Seconds
+    resetShootingMechanism();
+
+    setSubState(TURN_TO_ALIGN);
+    usleep(10000);
+    setSubState(DRIVE_STOP);
+    drive(0,0);
+    return STATE_ELEVEN;
 }
 
 // #1 Drive forward until detecting a full line on the FRONT line sensor.
@@ -290,7 +300,10 @@ MULTI_STATE stateTen(){
 // Reset to state #1
 MULTI_STATE stateEleven(){
     //printf("State: ELEVEN\n");
-    return STATE_ONE;
+    setSubState(DRIVE_STOP);
+    drive(0,0);
+    usleep(10000);
+    return STATE_ELEVEN;//TODO: CHANGE TO STATE_ONE_
 }
 
 // Reset to state #1

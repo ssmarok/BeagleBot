@@ -27,6 +27,8 @@ void *parseKeyboardInput(void * param);
 
 void turnLeft90();
 void turnRight90();
+void turnToShoot();
+void turnToAlign();
 int bufferSpeed(int speed, int buffer);
 void drive(int lSpeed, int rSpeed);
 

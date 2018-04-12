@@ -19,3 +19,4 @@ int getLastEncoder(int encoder){
 int resetEncoder(int encoder){
     return rc_set_encoder_pos(encoder, 0);
 }
+

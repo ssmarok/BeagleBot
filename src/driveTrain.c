@@ -272,6 +272,28 @@ void *parseKeyboardInput(void * param){
             case '?': /* Print out help menu */
                 printDriveInstructions();
                 break;
+            case '~': /* Run Init State */
+                break;
+            case '!': /* Run State 1 */
+                break;
+            case '@': /* Run State 2 */
+                break;
+            case '#': /* Run State 3 */
+                break;
+            case '$': /* Run State 4 */
+                break;
+            case '%': /* Run State 5 */
+                break;
+            case '^': /* Run State 6 */
+                break;
+            case '&': /* Run State 7 */
+                break;
+            case '*': /* Run State 8 */
+                break;
+            case '(': /* Run State 9 */
+                break;
+            case ')': /* Run State 10 */
+                break;
             default:  /* Any other key press */
                 printf("Running Thread");
                 break;

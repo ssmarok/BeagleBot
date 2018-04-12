@@ -94,6 +94,7 @@ MULTI_STATE stateThree(){
     printf("Encoder value, State 4: %d\n", getEncoder(FRONT_LEFT_ENCODER));
     printOutLineData();
     setSubState(TURN_NEG_90);
+    usleep(10000);
     setSubState(DRIVE_STOP);
     return STATE_FOUR;
 }
@@ -114,6 +115,7 @@ MULTI_STATE stateFour() {
 // Turn right 90 degrees
 MULTI_STATE stateFive(){
     setSubState(TURN_NEG_90);
+    usleep(10000);
     setSubState(DRIVE_STOP);
     return STATE_SIX;
 }
@@ -186,8 +188,8 @@ MULTI_STATE stateTen(){
 // This gets past the little line on the middle platform of the field
 MULTI_STATE stateEleven(){
     setSubState(TURN_TO_ALIGN);
+    usleep(10000);
     setSubState(DRIVE_STOP);
-    usleep(100000);
     while(1) { //TODO: REMOVE LOOP & CONTINUE TO STATE_TWELVE
     }
     return STATE_TWELVE;

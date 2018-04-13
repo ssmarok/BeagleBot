@@ -46,6 +46,8 @@ int *getBackLineSensor();
 int isCentered(int sensor[]);
 int isFullLineFront(void);
 int isFullLineBack(void);
+int isHalfLineFront(void);
+int isHalfLineBack(void);
 
 void lineFollowForward(void);
 void lineFollowForwardFast(void);

@@ -101,6 +101,14 @@ int isFullLineBack(void) {
     return (backSensorCount() > 6);
 }
 
+int isHalfLineFront(void) {
+    return (frontSensorCount() > 3);
+}
+
+int isHalfLineBack(void) {
+    return (backSensorCount() > 3);
+}
+
 int calculateBias(int sensor[], int weightMap[], int prevBias) {
     int bias = 0;
     for (int i=0; i<LINE_SENSOR_LEN; i++) {

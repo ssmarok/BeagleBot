@@ -130,9 +130,7 @@ void *runDriveThread(void * param) {
                 drive(0, 0);
                 break;
             case 1:     /* DRIVESTATE: FOLLOW_FORWARD */
-                lineFollowForward();
-                // TODO: REVERT TO FAST IF IT WORKS OKAY
-                //lineFollowForwardFast();
+                lineFollowForwardFast();
                 break;
             case 2:     /* DRIVESTATE: FOLLOW_BACKWARD */
                 lineFollowBackward();

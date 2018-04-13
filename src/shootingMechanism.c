@@ -59,6 +59,6 @@ void resetShootingMechanism() {
 void releaseTrigger() { rc_gpio_set_value_mmap(MOTOR_FIRE, HIGH); }
 void holdTrigger() { rc_gpio_set_value_mmap(MOTOR_FIRE, LOW); }
 void releaseServo(){ rc_send_servo_pulse_normalized(TUBE_SERVO_CHANNEL, -1.4); }
-void holdServo(){ rc_send_servo_pulse_normalized(TUBE_SERVO_CHANNEL, -0.60); }
+void holdServo(){ rc_send_servo_pulse_normalized(TUBE_SERVO_CHANNEL, -0.70); }
 
 void releaseBucket(int direction){ rc_send_servo_pulse_normalized(BUCKET_SERVO_CHANNEL, direction ? 1.5:-1.5); }

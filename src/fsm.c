@@ -85,28 +85,58 @@ MULTI_STATE stateTwo(){
 
 // Drive backward until detecting a full wall of black line on front sensor. Then, turn right 90 degrees
 MULTI_STATE stateThree(){
-    // Make sure robot backs up enough before line sensors take over. Encoders were reset in STATE_THREE
+    // Make sure robot backs up enough before line sensors take over. Encoders were reset in STATE_TWO
     // After minimum distance back traveled, line sensors code segment takes over as encoder is not reset in this state
-    setSubState(FOLLOW_BACKWARD);
-    if(getEncoder(FRONT_LEFT_ENCODER) > -4700){
+    if(getEncoder(FRONT_LEFT_ENCODER) > -6450){
+        setSubState(FOLLOW_BACKWARD);
         // Note: updateLineData is implicit in FOLLOW_BACKWARD so isFullLineBack() below is accurate
         return STATE_THREE;
+    } 
+    /*
+    else if (!isHalfLineBack()) {
+        return STATE_THREE;
     }
+    */
     printf("Encoder value, State 4: %d\n", getEncoder(FRONT_LEFT_ENCODER));
     printOutLineData();
     setSubState(TURN_NEG_90);
     usleep(10000);
+
+    resetEncoder(FRONT_LEFT_ENCODER);
+    resetEncoder(FRONT_RIGHT_ENCODER);
     setSubState(DRIVE_STOP);
-    return STATE_DUMMY;
-    //return STATE_FOUR;
+    //return STATE_DUMMY;
+    return STATE_FOUR;
 }
 
 // #1 Drive forward until detecting a full line on the FRONT line sensor.
 // #2 Drive forward until detecting a full line on the BACK line sensor.
 // This gets past the little line on the middle platform of the field
 MULTI_STATE stateFour() {
+    //static int fullLineDetected = 0;
+
+    // Drive for a bit using line following
     setSubState(FOLLOW_FORWARD);
+    if(getEncoder(FRONT_LEFT_ENCODER) < 30000){
+        return STATE_FOUR;
+    }
+
+    /*
+    if(isFullLineFront() || fullLineDetected){
+        printf("FULL LINE WAS DETECTED\n");
+        fullLineDetected = 1;
+        setSubState(FORWARD);
+    } else {
+        
+       // setSubState(FOLLOW_FORWARD);
+    }
+    */
+
+    // Check if wall has been hit
     if (!isFrontCollision()) {
+        // Once full line is detected on other side, change to following forwaed
+        // blindly
+        setSubState(FOLLOW_FORWARD); //TODO
         return STATE_FOUR;
     }
     printOutLineData();
@@ -122,26 +152,29 @@ MULTI_STATE stateFive(){
     return STATE_SIX;
 }
 
-// Drive forward until hitting the wall on the front side. (Ball gathering #3)
+// Drive backward until hitting the wall on the back side. (Ball gathering #3)
 MULTI_STATE stateSix(){
-    setSubState(FOLLOW_FORWARD);
-    if (!isFrontCollision()) {
+    if (!isBackCollision()) {
+        setSubState(FOLLOW_BACKWARD);
         return STATE_SIX;
     }
+
     setSubState(DRIVE_STOP);
     return STATE_SEVEN;
 }
 
-// Drive backward until hitting the wall on the back side. (Ball gathering #4)
+// Drive forward until hitting the wall on the front side. (Ball gathering #4)
 MULTI_STATE stateSeven(){
-    setSubState(FOLLOW_BACKWARD);
-    if (!isBackCollision()) {
+    printf("In forward state\n");
+    if (!isFrontCollision()) {
+        setSubState(FOLLOW_FORWARD);
         return STATE_SEVEN;
     }
-    // Reset for next state
+
     resetEncoder(FRONT_LEFT_ENCODER);
     resetEncoder(FRONT_RIGHT_ENCODER);
     setSubState(DRIVE_STOP);
+    usleep(10000);
     return STATE_EIGHT;
 }
 
@@ -149,11 +182,11 @@ MULTI_STATE stateSeven(){
 // This should be tested brute force for the optimal angle
 MULTI_STATE stateEight(){
     // Make sure robot backs up enough before line sensors take over.
-    // Encoders were reset in STATE_THREE
+    // Encoders were reset in STATE_SEVEN
     // After minimum distance back traveled, line sensors code segment takes over
     // as encoder is not reset in this state
-    setSubState(FOLLOW_FORWARD);
-    if(getEncoder(FRONT_LEFT_ENCODER) < 4700){
+    if(getEncoder(FRONT_LEFT_ENCODER) > -8700){
+        setSubState(FOLLOW_BACKWARD);
         return STATE_EIGHT;
     }
 
@@ -192,21 +225,56 @@ MULTI_STATE stateEleven(){
     setSubState(TURN_TO_ALIGN);
     usleep(10000);
     setSubState(DRIVE_STOP);
-    while(1) { //TODO: REMOVE LOOP & CONTINUE TO STATE_TWELVE
-    }
+    //while(1) { //TODO: REMOVE LOOP & CONTINUE TO STATE_TWELVE
+    //}
     return STATE_TWELVE;
 }
 
 // Drive back toward the other side of the field
 // Reset to state #1
 MULTI_STATE stateTwelve(){
-    setSubState(FOLLOW_FORWARD);
+    static int fullLineDetected = 0;
+
+    // Drive for a bit using line following
+    if(getEncoder(FRONT_LEFT_ENCODER) < 10000){
+        setSubState(FOLLOW_FORWARD);
+        return STATE_TWELVE;
+    }
+
+    // Once full line is detected on other side, change to following forwaed
+    // blindly
+    //setSubState(FORWARD);
+
+    // Once full line is detected on other side, change to following forward
+    // blindly
+    /*
+    if(isFullLineFront() || fullLineDetected){
+        printf("FULL LINE WAS DETECTED\n");
+        fullLineDetected = 1;
+        setSubState(FORWARD);
+    } else {
+        setSubState(FOLLOW_FORWARD);
+    }
     if (!isFrontCollision()) {
         return STATE_TWELVE;
     }
-    return STATE_ONE;
+    */
+    if (!isFrontCollision()) {
+        // Once full line is detected on other side, change to following forwaed
+        // blindly
+        setSubState(FORWARD);
+        return STATE_TWELVE;
+    }
+    setSubState(TURN_NEG_90);
+    usleep(10000);
+    setSubState(DRIVE_STOP);
+    return STATE_DUMMY;
 }
 
 MULTI_STATE stateDummy(){
+    //setSubState(TURN_NEG_90);
+    drive(0,0);
+    setSubState(DRIVE_STOP);
+    usleep(10000);
     return STATE_DUMMY;
 }

@@ -114,6 +114,9 @@ int calculateBias(int sensor[], int weightMap[], int prevBias) {
     for (int i=0; i<LINE_SENSOR_LEN; i++) {
         bias += sensor[i] ? weightMap[i] : 0;
     }
+    if (sensorCount(sensor) > 3) {
+        return 0;
+    }
     if (sensorCount(sensor) > 1) {
         return bias;
     }

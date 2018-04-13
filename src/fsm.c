@@ -23,6 +23,7 @@ MULTI_STATE stateNine();
 MULTI_STATE stateTen();
 MULTI_STATE stateEleven();
 MULTI_STATE stateTwelve();
+MULTI_STATE stateDummy();
 
 state_ptr FUNC_LUT[NUM_STATES] =
 {
@@ -38,7 +39,8 @@ state_ptr FUNC_LUT[NUM_STATES] =
     stateNine,
     stateTen,
     stateEleven,
-    stateTwelve
+    stateTwelve,
+    stateDummy
 };
 
 void runFSM(){
@@ -95,7 +97,8 @@ MULTI_STATE stateThree(){
     setSubState(TURN_NEG_90);
     usleep(10000);
     setSubState(DRIVE_STOP);
-    return STATE_FOUR;
+    return STATE_DUMMY;
+    //return STATE_FOUR;
 }
 
 // #1 Drive forward until detecting a full line on the FRONT line sensor.
@@ -202,4 +205,8 @@ MULTI_STATE stateTwelve(){
         return STATE_TWELVE;
     }
     return STATE_ONE;
+}
+
+MULTI_STATE stateDummy(){
+    return STATE_DUMMY;
 }

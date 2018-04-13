@@ -151,7 +151,8 @@ MULTI_STATE stateEight(){
     // After minimum distance back traveled, line sensors code segment takes over
     // as encoder is not reset in this state
     setSubState(FOLLOW_FORWARD);
-    if(getEncoder(FRONT_LEFT_ENCODER) < 4700 || !isFullLineBack()){
+    //if(getEncoder(FRONT_LEFT_ENCODER) < 4700 || !isFullLineBack()){
+    if(!isFullLineBack()){
         return STATE_EIGHT;
     }
 

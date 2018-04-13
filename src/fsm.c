@@ -206,9 +206,7 @@ MULTI_STATE stateNine(){
 // SHOOT ALL THE BALLS (includes necessary wait). Then, turn 90 degrees.
 MULTI_STATE stateTen(){
     setSubState(DRIVE_STOP);
-    drive(0,0);
-
-    setShootingMechanism();
+    drive(0,0); setShootingMechanism();
     usleep(1000000); // 1 Second
     setShootingServo();
     usleep(5000000); // 5 Seconds

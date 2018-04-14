@@ -101,28 +101,14 @@ MULTI_STATE stateTwo(){
 MULTI_STATE stateThree(){
     // Make sure robot backs up enough before line sensors take over. Encoders were reset in STATE_TWO
     // After minimum distance back traveled, line sensors code segment takes over as encoder is not reset in this state
-    if(getEncoder(FRONT_LEFT_ENCODER) > -4670){
-        setSubState(BACKWARD);
-        // Note: updateLineData is implicit in FOLLOW_BACKWARD so isFullLineBack() below is accurate
-        usleep(1000);
-        return STATE_THREE;
-    } 
-    /*
-    else if (!isHalfLineBack()) {
-        return STATE_THREE;
-    }
-    */
-   
-    printf("Encoder value, State 4: %d\n", getEncoder(FRONT_LEFT_ENCODER));
-    printOutLineData();
+    setSubState(NOP);
+    drive(-50, -50);
+    usleep(5000000); // 5 Seconds
+    drive(50, -50);
+    usleep(2000000); // 5 Seconds
 
     setSubState(TURN_NEG_90);
     usleep(10000);
-
-    /*
-    setSubState(FORWARD);
-    usleep(1000000);
-    */
 
     resetEncoder(FRONT_LEFT_ENCODER);
     resetEncoder(FRONT_RIGHT_ENCODER);

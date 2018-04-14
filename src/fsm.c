@@ -101,14 +101,28 @@ MULTI_STATE stateTwo(){
 MULTI_STATE stateThree(){
     // Make sure robot backs up enough before line sensors take over. Encoders were reset in STATE_TWO
     // After minimum distance back traveled, line sensors code segment takes over as encoder is not reset in this state
-    setSubState(NOP);
-    drive(-50, -50);
-    usleep(5000000); // 5 Seconds
-    drive(50, -50);
-    usleep(2000000); // 5 Seconds
+    /*
+    if(getEncoder(FRONT_LEFT_ENCODER) > -4670){
+        setSubState(BACKWARD);
+        usleep(1000);
+        return STATE_THREE;
+    } 
+   
+    printf("Encoder value, State 4: %d\n", getEncoder(FRONT_LEFT_ENCODER));
+    printOutLineData();
 
     setSubState(TURN_NEG_90);
     usleep(10000);
+
+    resetEncoder(FRONT_LEFT_ENCODER);
+    resetEncoder(FRONT_RIGHT_ENCODER);
+    setSubState(DRIVE_STOP);
+    */
+    setSubState(NOP);
+    drive(-50, -50);
+    usleep(1000000); // 5 Seconds
+    drive(50, -50);
+    usleep(750000); // 5 Seconds
 
     resetEncoder(FRONT_LEFT_ENCODER);
     resetEncoder(FRONT_RIGHT_ENCODER);
@@ -253,24 +267,25 @@ MULTI_STATE stateTen(){
 
 // Go back to center
 MULTI_STATE stateEleven(){
+    setSubState(NOP);
+    drive(-50, -50);
+    usleep(1000000); // 5 Seconds
+    drive(50, -50);
+    usleep(750000); // 5 Seconds
+
+    resetEncoder(FRONT_LEFT_ENCODER);
+    resetEncoder(FRONT_RIGHT_ENCODER);
+    setSubState(DRIVE_STOP);
+
+    /*
     if(getEncoder(FRONT_LEFT_ENCODER) > -5150){
         //setSubState(FOLLOW_BACKWARD);
         setSubState(FOLLOW_BACKWARD);
         return STATE_ELEVEN;
     } 
-    /*else if (!isHalfLineBack()) {
-        return STATE_TEN;
-    }
     */
-
-    /*
-    setSubState(TURN_TO_ALIGN);
-    */
-    usleep(10000);
-    setSubState(DRIVE_STOP);
-    resetEncoder(FRONT_LEFT_ENCODER);
-    resetEncoder(FRONT_RIGHT_ENCODER);
-    return STATE_TWELVE;
+    //return STATE_TWELVE;
+    return STATE_THIRTEEN;
 }
 
 // #1 Drive forward until detecting a full line on the FRONT line sensor.

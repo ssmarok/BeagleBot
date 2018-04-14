@@ -197,7 +197,12 @@ void *parseKeyboardInput(void * param){
                 SUBSTATE = 1;
                 break;
             case 'W': /* Drive forward (no line following) */
-                drive(BASE_SPEED, BASE_SPEED);
+                //drive(BASE_SPEED, BASE_SPEED);
+				drive(-50, -50);
+				usleep(1500000); // 3.5 Seconds
+				drive(50, -50);
+				usleep(750000); // 2 Seconds
+                drive(0, 0);
                 SUBSTATE = -1;
                 break;
             case 's': /* Drive backwards (line following) */
@@ -369,7 +374,8 @@ void turnLeft90(){
 void turnRight90(){
     double start_orientation = 0; 
     /* Desired angle is in radians */
-    double desired_angle = 91.6 * (PI/180.0);
+    double desired_angle = 105 * (PI/180.0);
+    //double desired_angle = 91.6 * (PI/180.0);
     start_orientation = getOrientation();
     
     /* +/- depending on if robot is turning left or right to get to angle */

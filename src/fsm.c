@@ -113,7 +113,14 @@ MULTI_STATE stateFive(){
 
 MULTI_STATE stateSix(){
     // TODO: ADD CODE TO SHOOT EVERYTHING
-    usleep(5000000); // 5 Second
+    setSubState(DRIVE_STOP);
+    drive(0,0); setShootingMechanism();
+    usleep(1000000); // 1 Second
+    setShootingServo();
+    usleep(5000000); // 5 Seconds
+    resetShootingMechanism();
+
+    setSubState(DRIVE_STOP);
     setSubState(DRIVE_STOP);
     return STATE_SEVEN;
 }

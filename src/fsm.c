@@ -86,6 +86,7 @@ MULTI_STATE stateTwo(){
 // Drive backward until intersection
 // Turn right 90
 MULTI_STATE stateThree(){
+    setSubState(NOP);
     drive(-50, -50);
     usleep(1000000); // 2 Second
     resetEncoder(FRONT_LEFT_ENCODER);
@@ -105,6 +106,7 @@ MULTI_STATE stateFour() {
 
 // Align to shoot
 MULTI_STATE stateFive(){
+    setSubState(NOP);
     drive(-50, 50);
     usleep(1000000); // 1 Second
     setSubState(DRIVE_STOP);
@@ -127,6 +129,7 @@ MULTI_STATE stateSix(){
 
 // Align back onto platform
 MULTI_STATE stateSeven(){
+    setSubState(NOP);
     drive(50, -50);
     usleep(1000000); // 1 Second
     setSubState(DRIVE_STOP);

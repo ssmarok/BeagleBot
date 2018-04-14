@@ -23,6 +23,9 @@ MULTI_STATE stateNine();
 MULTI_STATE stateTen();
 MULTI_STATE stateEleven();
 MULTI_STATE stateTwelve();
+MULTI_STATE stateThirteen();
+MULTI_STATE stateAlignFirst();
+MULTI_STATE stateAlignSecond();
 MULTI_STATE stateDummy();
 
 state_ptr FUNC_LUT[NUM_STATES] =
@@ -40,6 +43,9 @@ state_ptr FUNC_LUT[NUM_STATES] =
     stateTen,
     stateEleven,
     stateTwelve,
+    stateThirteen,
+    stateAlignFirst,
+    stateAlignSecond,
     stateDummy
 };
 
@@ -83,11 +89,11 @@ MULTI_STATE stateTwo(){
     return STATE_THREE;
 }
 
-// Drive backward until detecting a full wall of black line on front sensor. Then, turn right 90 degrees
+// Drive backward using encoder values, then turn 90 degrees
 MULTI_STATE stateThree(){
     // Make sure robot backs up enough before line sensors take over. Encoders were reset in STATE_TWO
     // After minimum distance back traveled, line sensors code segment takes over as encoder is not reset in this state
-    if(getEncoder(FRONT_LEFT_ENCODER) > -6450){
+    if(getEncoder(FRONT_LEFT_ENCODER) > -4700){
         setSubState(FOLLOW_BACKWARD);
         // Note: updateLineData is implicit in FOLLOW_BACKWARD so isFullLineBack() below is accurate
         return STATE_THREE;
@@ -97,8 +103,10 @@ MULTI_STATE stateThree(){
         return STATE_THREE;
     }
     */
+   
     printf("Encoder value, State 4: %d\n", getEncoder(FRONT_LEFT_ENCODER));
     printOutLineData();
+
     setSubState(TURN_NEG_90);
     usleep(10000);
 
@@ -113,33 +121,23 @@ MULTI_STATE stateThree(){
 // #2 Drive forward until detecting a full line on the BACK line sensor.
 // This gets past the little line on the middle platform of the field
 MULTI_STATE stateFour() {
-    //static int fullLineDetected = 0;
-
     // Drive for a bit using line following
-    setSubState(FOLLOW_FORWARD);
     if(getEncoder(FRONT_LEFT_ENCODER) < 30000){
+        setSubState(FOLLOW_FORWARD);
         return STATE_FOUR;
     }
 
-    /*
-    if(isFullLineFront() || fullLineDetected){
-        printf("FULL LINE WAS DETECTED\n");
-        fullLineDetected = 1;
-        setSubState(FORWARD);
-    } else {
-        
-       // setSubState(FOLLOW_FORWARD);
-    }
-    */
+    setSubState(FORWARD);
 
     // Check if wall has been hit
     if (!isFrontCollision()) {
         // Once full line is detected on other side, change to following forwaed
         // blindly
-        setSubState(FOLLOW_FORWARD); //TODO
+        setSubState(FORWARD); //TODO
         return STATE_FOUR;
     }
     printOutLineData();
+
     setSubState(DRIVE_STOP);
     return STATE_FIVE;
 }
@@ -149,30 +147,34 @@ MULTI_STATE stateFive(){
     setSubState(TURN_NEG_90);
     usleep(10000);
     setSubState(DRIVE_STOP);
-    return STATE_SIX;
+
+    // TODO: SEE IF THIS WORKS
+    return STATE_ALIGN_FIRST; // Extra alignment
+    // return STATE_SIX
 }
 
 // Drive backward until hitting the wall on the back side. (Ball gathering #3)
 MULTI_STATE stateSix(){
     if (!isBackCollision()) {
-        setSubState(FOLLOW_BACKWARD);
+        //setSubState(FOLLOW_BACKWARD);
+        setSubState(BACKWARD); // TODO
         return STATE_SIX;
     }
 
+    resetEncoder(FRONT_LEFT_ENCODER);
+    resetEncoder(FRONT_RIGHT_ENCODER);
     setSubState(DRIVE_STOP);
     return STATE_SEVEN;
 }
 
 // Drive forward until hitting the wall on the front side. (Ball gathering #4)
 MULTI_STATE stateSeven(){
-    printf("In forward state\n");
-    if (!isFrontCollision()) {
-        setSubState(FOLLOW_FORWARD);
+    //printf("In forward state\n");
+    if(getEncoder(FRONT_RIGHT_ENCODER) < 2000){
+        setSubState(NOP);
+        drive(-1 * BASE_SPEED, BASE_SPEED);
         return STATE_SEVEN;
     }
-
-    resetEncoder(FRONT_LEFT_ENCODER);
-    resetEncoder(FRONT_RIGHT_ENCODER);
     setSubState(DRIVE_STOP);
     usleep(10000);
     return STATE_EIGHT;
@@ -185,24 +187,47 @@ MULTI_STATE stateEight(){
     // Encoders were reset in STATE_SEVEN
     // After minimum distance back traveled, line sensors code segment takes over
     // as encoder is not reset in this state
-    if(getEncoder(FRONT_LEFT_ENCODER) > -8700){
-        setSubState(FOLLOW_BACKWARD);
+    /*
+    if(getEncoder(FRONT_LEFT_ENCODER) > -7700){
+        //setSubState(FOLLOW_BACKWARD);
+        setSubState(BACKWARD);
         return STATE_EIGHT;
     }
 
     //TODO: PUT CORRECT TURN ANGLE
     setSubState(TURN_TO_SHOOT);
     usleep(10000);
-    return STATE_NINE;
-}
+    */
+    if (!isFrontCollision()) {
+       // setSubState(FOLLOW_FORWARD);
+        setSubState(FORWARD);
+        return STATE_EIGHT;
+    }
+    resetEncoder(FRONT_LEFT_ENCODER);
+    resetEncoder(FRONT_RIGHT_ENCODER);
 
-// SHOOT ALL THE BALLS (includes necessary wait). Then, turn 90 degrees.
-MULTI_STATE stateNine(){
     setSubState(DRIVE_STOP);
+    usleep(10000);
     drive(0,0);
-    return STATE_TEN; 
+    return STATE_NINE;
+
 }
 
+MULTI_STATE stateNine(){
+
+    if(getEncoder(FRONT_LEFT_ENCODER) > -2000){
+        setSubState(FOLLOW_BACKWARD);
+        return STATE_NINE;
+    }
+
+    //resetEncoder(FRONT_LEFT_ENCODER);
+    //resetEncoder(FRONT_RIGHT_ENCODER);
+
+    setSubState(DRIVE_STOP);
+    setSubState(TURN_TO_SHOOT);
+    usleep(10000);
+    return STATE_TEN;
+}
 // SHOOT ALL THE BALLS (includes necessary wait). Then, turn 90 degrees.
 MULTI_STATE stateTen(){
     setSubState(DRIVE_STOP);
@@ -212,33 +237,57 @@ MULTI_STATE stateTen(){
     usleep(5000000); // 5 Seconds
     resetShootingMechanism();
 
+    resetEncoder(FRONT_LEFT_ENCODER);
+    resetEncoder(FRONT_RIGHT_ENCODER);
     setSubState(DRIVE_STOP);
     return STATE_ELEVEN;
+}
+
+// Go back to center
+MULTI_STATE stateEleven(){
+    if(getEncoder(FRONT_LEFT_ENCODER) > -5100){
+        //setSubState(FOLLOW_BACKWARD);
+        setSubState(FOLLOW_BACKWARD);
+        return STATE_ELEVEN;
+    } 
+    /*else if (!isHalfLineBack()) {
+        return STATE_TEN;
+    }
+    */
+
+    /*
+    setSubState(TURN_TO_ALIGN);
+    */
+    usleep(10000);
+    setSubState(DRIVE_STOP);
+    return STATE_TWELVE;
 }
 
 // #1 Drive forward until detecting a full line on the FRONT line sensor.
 // #2 Drive forward until detecting a full line on the BACK line sensor.
 // This gets past the little line on the middle platform of the field
-MULTI_STATE stateEleven(){
-    setSubState(TURN_TO_ALIGN);
-    usleep(10000);
-    setSubState(DRIVE_STOP);
+MULTI_STATE stateTwelve(){
     //while(1) { //TODO: REMOVE LOOP & CONTINUE TO STATE_TWELVE
     //}
-    return STATE_TWELVE;
+    setSubState(TURN_NEG_90);
+    usleep(10000);
+    resetEncoder(FRONT_LEFT_ENCODER);
+    resetEncoder(FRONT_RIGHT_ENCODER);
+    return STATE_THIRTEEN;
 }
 
 // Drive back toward the other side of the field
 // Reset to state #1
-MULTI_STATE stateTwelve(){
-    static int fullLineDetected = 0;
+MULTI_STATE stateThirteen(){
+    //static int fullLineDetected = 0;
 
     // Drive for a bit using line following
-    if(getEncoder(FRONT_LEFT_ENCODER) < 10000){
+    if(getEncoder(FRONT_LEFT_ENCODER) < 30000){
         setSubState(FOLLOW_FORWARD);
-        return STATE_TWELVE;
+        return STATE_THIRTEEN;
     }
 
+    setSubState(FORWARD);
     // Once full line is detected on other side, change to following forwaed
     // blindly
     //setSubState(FORWARD);
@@ -261,11 +310,24 @@ MULTI_STATE stateTwelve(){
         // Once full line is detected on other side, change to following forwaed
         // blindly
         setSubState(FORWARD);
-        return STATE_TWELVE;
+        return STATE_THIRTEEN;
     }
     setSubState(TURN_NEG_90);
     usleep(10000);
     setSubState(DRIVE_STOP);
+    return STATE_ALIGN_SECOND;
+}
+
+MULTI_STATE stateAlignFirst(){
+    printf("In align state\n");
+    setSubState(TURN_TO_ALIGN);
+    usleep(10000);
+    return STATE_SIX;
+}
+MULTI_STATE stateAlignSecond(){
+    printf("In align state\n");
+    setSubState(TURN_TO_ALIGN);
+    usleep(10000);
     return STATE_DUMMY;
 }
 

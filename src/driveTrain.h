@@ -12,7 +12,7 @@
 #define DRIVETRAIN_H
 
 /* Definitions */
-#define BASE_SPEED 50
+#define BASE_SPEED 40 // 50
 #define MAX_SPEED 100
 #define MAX_DRIVE_SPEED 0.99
 

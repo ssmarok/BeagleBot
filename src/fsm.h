@@ -16,8 +16,15 @@ typedef enum MULTI_STATE{
     STATE_TEN=10,
     STATE_ELEVEN=11,
     STATE_TWELVE=12,
-    STATE_DUMMY=13,
-    NUM_STATES=14
+    STATE_THIRTEEN=13,
+
+    STATE_ALIGN_FIRST = 14,
+    STATE_ALIGN_SECOND = 15,
+
+
+    STATE_DUMMY=16,
+
+    NUM_STATES=17
 }MULTI_STATE;
 
 typedef MULTI_STATE (*state_ptr)( void );

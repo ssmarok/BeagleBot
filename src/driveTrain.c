@@ -369,7 +369,7 @@ void turnLeft90(){
 void turnRight90(){
     double start_orientation = 0; 
     /* Desired angle is in radians */
-    double desired_angle = 90.0 * (PI/180.0);
+    double desired_angle = 88.0 * (PI/180.0);
     start_orientation = getOrientation();
     
     /* +/- depending on if robot is turning left or right to get to angle */
@@ -395,7 +395,7 @@ void turnRight90(){
 void turnToShoot(){
     double start_orientation = 0; 
     /* Desired angle is in radians */
-    double desired_angle = 30 * (PI/180.0);
+    double desired_angle = 8 * (PI/180.0);
     start_orientation = getOrientation();
 
     /* +/- depending on if robot is turning left or right to get to angle */
@@ -420,11 +420,12 @@ void turnToShoot(){
 void turnToAlign(){
     double start_orientation = 0; 
     /* Desired angle is in radians */
-    double desired_angle = 60 * (PI/180.0);
+    double desired_angle = 25 * (PI/180.0);
     start_orientation = getOrientation();
 
     /* +/- depending on if robot is turning left or right to get to angle */
     while(getOrientation() > start_orientation - desired_angle) { 
+        printf("Turning to align\n");
         if(rc_get_state() == RUNNING){
             drive(40, -90);
         } else{

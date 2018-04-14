@@ -26,6 +26,8 @@ MULTI_STATE stateTwelve();
 MULTI_STATE stateThirteen();
 MULTI_STATE stateAlignFirst();
 MULTI_STATE stateAlignSecond();
+MULTI_STATE stateBackAlign();
+MULTI_STATE stateFirstCorrection();
 MULTI_STATE stateDummy();
 
 state_ptr FUNC_LUT[NUM_STATES] =
@@ -46,6 +48,8 @@ state_ptr FUNC_LUT[NUM_STATES] =
     stateThirteen,
     stateAlignFirst,
     stateAlignSecond,
+    stateBackAlign,
+    stateFirstCorrection,
     stateDummy
 };
 
@@ -68,17 +72,21 @@ MULTI_STATE initialization(){
 
 // Drive backward until hitting the wall on the back side. (Ball gathering #1)
 MULTI_STATE stateOne() {
-    setSubState(FOLLOW_BACKWARD);
+    setSubState(BACKWARD);
     if (!isBackCollision()) {
         return STATE_ONE;
     }
     setSubState(DRIVE_STOP);
-    return STATE_TWO;
+    // Reset for next state
+    resetEncoder(FRONT_LEFT_ENCODER);
+    resetEncoder(FRONT_RIGHT_ENCODER);
+    setSubState(DRIVE_STOP);
+    return STATE_FIRST_CORRECTION;
 }
 
 // Drive forward until hitting the wall on the front side. (Ball gathering #2)
 MULTI_STATE stateTwo(){
-    setSubState(FOLLOW_FORWARD);
+    setSubState(FORWARD);
     if (!isFrontCollision()) {
         return STATE_TWO;
     }
@@ -93,9 +101,10 @@ MULTI_STATE stateTwo(){
 MULTI_STATE stateThree(){
     // Make sure robot backs up enough before line sensors take over. Encoders were reset in STATE_TWO
     // After minimum distance back traveled, line sensors code segment takes over as encoder is not reset in this state
-    if(getEncoder(FRONT_LEFT_ENCODER) > -4700){
-        setSubState(FOLLOW_BACKWARD);
+    if(getEncoder(FRONT_LEFT_ENCODER) > -4670){
+        setSubState(BACKWARD);
         // Note: updateLineData is implicit in FOLLOW_BACKWARD so isFullLineBack() below is accurate
+        usleep(1000);
         return STATE_THREE;
     } 
     /*
@@ -110,6 +119,11 @@ MULTI_STATE stateThree(){
     setSubState(TURN_NEG_90);
     usleep(10000);
 
+    /*
+    setSubState(FORWARD);
+    usleep(1000000);
+    */
+
     resetEncoder(FRONT_LEFT_ENCODER);
     resetEncoder(FRONT_RIGHT_ENCODER);
     setSubState(DRIVE_STOP);
@@ -122,7 +136,7 @@ MULTI_STATE stateThree(){
 // This gets past the little line on the middle platform of the field
 MULTI_STATE stateFour() {
     // Drive for a bit using line following
-    if(getEncoder(FRONT_LEFT_ENCODER) < 30000){
+    if(getEncoder(FRONT_LEFT_ENCODER) < 15000){
         setSubState(FOLLOW_FORWARD);
         return STATE_FOUR;
     }
@@ -138,6 +152,8 @@ MULTI_STATE stateFour() {
     }
     printOutLineData();
 
+    resetEncoder(FRONT_LEFT_ENCODER);
+    resetEncoder(FRONT_RIGHT_ENCODER);
     setSubState(DRIVE_STOP);
     return STATE_FIVE;
 }
@@ -149,6 +165,8 @@ MULTI_STATE stateFive(){
     setSubState(DRIVE_STOP);
 
     // TODO: SEE IF THIS WORKS
+    resetEncoder(FRONT_LEFT_ENCODER);
+    resetEncoder(FRONT_RIGHT_ENCODER);
     return STATE_ALIGN_FIRST; // Extra alignment
     // return STATE_SIX
 }
@@ -162,7 +180,7 @@ MULTI_STATE stateSix(){
     }
 
     resetEncoder(FRONT_LEFT_ENCODER);
-    resetEncoder(FRONT_RIGHT_ENCODER);
+    resetEncoder(FRONT_RIGHT_ENCODER); 
     setSubState(DRIVE_STOP);
     return STATE_SEVEN;
 }
@@ -177,6 +195,8 @@ MULTI_STATE stateSeven(){
     }
     setSubState(DRIVE_STOP);
     usleep(10000);
+    resetEncoder(FRONT_LEFT_ENCODER);
+    resetEncoder(FRONT_RIGHT_ENCODER);
     return STATE_EIGHT;
 }
 
@@ -226,6 +246,8 @@ MULTI_STATE stateNine(){
     setSubState(DRIVE_STOP);
     setSubState(TURN_TO_SHOOT);
     usleep(10000);
+    resetEncoder(FRONT_LEFT_ENCODER);
+    resetEncoder(FRONT_RIGHT_ENCODER);
     return STATE_TEN;
 }
 // SHOOT ALL THE BALLS (includes necessary wait). Then, turn 90 degrees.
@@ -234,7 +256,7 @@ MULTI_STATE stateTen(){
     drive(0,0); setShootingMechanism();
     usleep(1000000); // 1 Second
     setShootingServo();
-    usleep(5000000); // 5 Seconds
+    usleep(9000000); // 5 Seconds
     resetShootingMechanism();
 
     resetEncoder(FRONT_LEFT_ENCODER);
@@ -245,7 +267,7 @@ MULTI_STATE stateTen(){
 
 // Go back to center
 MULTI_STATE stateEleven(){
-    if(getEncoder(FRONT_LEFT_ENCODER) > -5100){
+    if(getEncoder(FRONT_LEFT_ENCODER) > -5150){
         //setSubState(FOLLOW_BACKWARD);
         setSubState(FOLLOW_BACKWARD);
         return STATE_ELEVEN;
@@ -260,6 +282,8 @@ MULTI_STATE stateEleven(){
     */
     usleep(10000);
     setSubState(DRIVE_STOP);
+    resetEncoder(FRONT_LEFT_ENCODER);
+    resetEncoder(FRONT_RIGHT_ENCODER);
     return STATE_TWELVE;
 }
 
@@ -273,6 +297,17 @@ MULTI_STATE stateTwelve(){
     usleep(10000);
     resetEncoder(FRONT_LEFT_ENCODER);
     resetEncoder(FRONT_RIGHT_ENCODER);
+
+    setSubState(NOP);
+    usleep(10000);
+
+    /*
+    setSubState(FORWARD);
+    usleep(2000000);
+    */
+
+    resetEncoder(FRONT_LEFT_ENCODER);
+    resetEncoder(FRONT_RIGHT_ENCODER);
     return STATE_THIRTEEN;
 }
 
@@ -282,8 +317,8 @@ MULTI_STATE stateThirteen(){
     //static int fullLineDetected = 0;
 
     // Drive for a bit using line following
-    if(getEncoder(FRONT_LEFT_ENCODER) < 30000){
-        setSubState(FOLLOW_FORWARD);
+    if(getEncoder(FRONT_LEFT_ENCODER) < 15000){
+        setSubState(FOLLOW_FORWARD); // TODO
         return STATE_THIRTEEN;
     }
 
@@ -315,26 +350,64 @@ MULTI_STATE stateThirteen(){
     setSubState(TURN_NEG_90);
     usleep(10000);
     setSubState(DRIVE_STOP);
+    resetEncoder(FRONT_LEFT_ENCODER);
+    resetEncoder(FRONT_RIGHT_ENCODER);
     return STATE_ALIGN_SECOND;
 }
 
+// After getting to second side
 MULTI_STATE stateAlignFirst(){
     printf("In align state\n");
     setSubState(TURN_TO_ALIGN);
-    usleep(10000);
+    usleep(40000);
+    resetEncoder(FRONT_LEFT_ENCODER);
+    resetEncoder(FRONT_RIGHT_ENCODER);
     return STATE_SIX;
 }
+
+// After getting to start
 MULTI_STATE stateAlignSecond(){
-    printf("In align state\n");
+    printf("In second align state\n");
     setSubState(TURN_TO_ALIGN);
-    usleep(10000);
-    return STATE_DUMMY;
+    usleep(40000);
+    resetEncoder(FRONT_LEFT_ENCODER);
+    resetEncoder(FRONT_RIGHT_ENCODER);
+    return STATE_BACK_ALIGN;
 }
 
+MULTI_STATE stateBackAlign(){
+    if (!isBackCollision()) {
+        //setSubState(FOLLOW_BACKWARD);
+        setSubState(BACKWARD); // TODO
+        usleep(10000);
+        return STATE_BACK_ALIGN;
+    }
+
+    resetEncoder(FRONT_LEFT_ENCODER);
+    resetEncoder(FRONT_RIGHT_ENCODER);
+    setSubState(DRIVE_STOP);
+    return STATE_ONE;
+}
+
+MULTI_STATE stateFirstCorrection(){
+    //printf("In forward state\n");
+    if(getEncoder(FRONT_RIGHT_ENCODER) < 2000){
+        setSubState(NOP);
+        drive(-1 * BASE_SPEED, BASE_SPEED);
+        return STATE_FIRST_CORRECTION;
+    }
+    setSubState(DRIVE_STOP);
+    usleep(10000);
+    resetEncoder(FRONT_LEFT_ENCODER);
+    resetEncoder(FRONT_RIGHT_ENCODER);
+    return STATE_TWO;
+}
 MULTI_STATE stateDummy(){
     //setSubState(TURN_NEG_90);
     drive(0,0);
     setSubState(DRIVE_STOP);
     usleep(10000);
+    resetEncoder(FRONT_LEFT_ENCODER);
+    resetEncoder(FRONT_RIGHT_ENCODER);
     return STATE_DUMMY;
 }

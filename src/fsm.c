@@ -92,8 +92,7 @@ MULTI_STATE stateTwo(){
     }
     // Reset for next state
     resetEncoder(FRONT_LEFT_ENCODER);
-    resetEncoder(FRONT_RIGHT_ENCODER);
-    setSubState(DRIVE_STOP);
+    resetEncoder(FRONT_RIGHT_ENCODER); setSubState(DRIVE_STOP);
     return STATE_THREE;
 }
 
@@ -135,7 +134,7 @@ MULTI_STATE stateThree(){
 // #2 Drive forward until detecting a full line on the BACK line sensor.
 // This gets past the little line on the middle platform of the field
 MULTI_STATE stateFour() {
-// Drive for a bit using line following
+    // Drive for a bit using line following
     if(getEncoder(FRONT_LEFT_ENCODER) < 15000){
         setSubState(FOLLOW_FORWARD);
         return STATE_FOUR;
